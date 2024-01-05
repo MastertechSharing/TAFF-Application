@@ -1,0 +1,2 @@
+ตัวอย่างข้อมูล แฟ้มข้อมูลแผนก [ Example Import Data Upload Section ]
+000001,ทดสอบการโอนข้อมูลแผนก,test upload file section,000001

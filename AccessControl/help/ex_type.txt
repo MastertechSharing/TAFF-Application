@@ -1,0 +1,2 @@
+ตัวอย่างข้อมูล แฟ้มข้อมูลประเภทพนักงาน [ Example Import Data Upload Type Employee ]
+000001,ทดสอบโอนข้อมูลประเภทพนักงาน,test upload file type employee

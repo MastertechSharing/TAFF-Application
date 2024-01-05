@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">	
+	
+	<servlet>
+    <servlet-name>MyApp</servlet-name>
+	<servlet-class>org.apache.struts.action.ActionServlet</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+	<servlet-name>DownloadLogFile</servlet-name>
+	<servlet-class>access.action.DownloadLogFile</servlet-class>
+	</servlet>
+	
+	<servlet>
+    <servlet-name>DownloadTAFFile</servlet-name>
+	<servlet-class>access.action.DownloadTAFFile</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>DownloadTXTFile</servlet-name>
+	<servlet-class>access.action.DownloadTXTFile</servlet-class>   
+	</servlet>
+	
+	<servlet>
+	<servlet-name>GetDataMonitor</servlet-name>
+	<servlet-class>access.action.GetDataMonitor</servlet-class>
+	</servlet>
+	
+	<servlet>
+	<servlet-name>GetResponseCommand</servlet-name>
+	<servlet-class>access.action.GetResponseCommand</servlet-class>
+	</servlet>	
+	
+	<servlet>
+	<servlet-name>SetRequestCommand</servlet-name>
+	<servlet-class>access.action.SetRequestCommand</servlet-class>
+	</servlet>
+		
+	<servlet>
+	<servlet-name>ReportTimeStamp</servlet-name>
+    <servlet-class>access.report.Rep101_TimeStamp</servlet-class>
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportTransAll</servlet-name>
+    <servlet-class>access.report.Rep102_TransAll</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+	<servlet-name>ReportTransAllColumn</servlet-name>
+    <servlet-class>access.report.Rep103_TransAllColumn</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportTransInOut</servlet-name>
+    <servlet-class>access.report.Rep104_TransInOut</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportTransInOutDaily</servlet-name>
+   	<servlet-class>access.report.Rep106_TransInOutDaily</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportTimeLate</servlet-name>
+    <servlet-class>access.report.Rep107_TimeLate</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportLastTrans</servlet-name>
+    <servlet-class>access.report.Rep110_LastTrans</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportTransInOutAndSafety</servlet-name>
+    <servlet-class>access.report.Rep111_TransInOutAndSafety</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportTransAllInternalExternalPerson</servlet-name>
+    <servlet-class>access.report.Rep112_TransAllInternalExternalPerson</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportTransAllWorkCode</servlet-name>
+    <servlet-class>access.report.Rep113_TransAllWorkCode</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportTransAllTemperature</servlet-name>
+    <servlet-class>access.report.Rep114_TransAllTemperature</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportSumByPerson</servlet-name>
+    <servlet-class>access.report.Rep201_SumByPerson</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportSumByDoor</servlet-name>
+    <servlet-class>access.report.Rep202_SumByDoor</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportSumTimeLate</servlet-name>
+    <servlet-class>access.report.Rep205_SumTimeLate</servlet-class>
+    </servlet>	
+	
+	<servlet>
+    <servlet-name>ReportTransEvent</servlet-name>
+    <servlet-class>access.report.Rep301_TransEvent</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportTransEventDoor</servlet-name>
+    <servlet-class>access.report.Rep302_TransEventDoor</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportEmpNotDatabase</servlet-name>
+    <servlet-class>access.report.Rep303_EmpNotDatabase</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportRightInOut</servlet-name>
+    <servlet-class>access.report.Rep401_RightInOut</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportData1</servlet-name>
+    <servlet-class>access.report.ReportData1</servlet-class>   
+	</servlet>
+	
+	<servlet>
+    <servlet-name>ReportData2</servlet-name>
+    <servlet-class>access.report.ReportData2</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportEmployee</servlet-name>
+    <servlet-class>access.report.ReportEmployee</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportMaintenance</servlet-name>
+    <servlet-class>access.report.ReportMaintenance</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportMonitorDetail</servlet-name>
+    <servlet-class>access.report.ReportMonitorDetail</servlet-class>   
+	</servlet>				   	
+	
+	<servlet>
+    <servlet-name>Select</servlet-name>
+    <servlet-class>access.report.Select</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>SelectEvent</servlet-name>
+    <servlet-class>access.report.SelectEvent</servlet-class>   
+	</servlet>	
+	
+	<servlet>
+    <servlet-name>ReportBlacklist</servlet-name>
+    <servlet-class>access.report.ReportBlacklist</servlet-class>   
+	</servlet>	
+	
+	<servlet-mapping>
+    <servlet-name>MyApp</servlet-name>
+    <url-pattern>*.do</url-pattern>
+	</servlet-mapping>	
+		
+	<servlet-mapping>
+	<servlet-name>DownloadLogFile</servlet-name>
+    <url-pattern>/DownloadLogFile.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>DownloadTAFFile</servlet-name>
+    <url-pattern>/DownloadTAFFile.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	<servlet-name>DownloadTXTFile</servlet-name>
+    <url-pattern>/DownloadTXTFile.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	<servlet-name>GetDataMonitor</servlet-name>
+	<url-pattern>/GetDataMonitor.do</url-pattern>
+	</servlet-mapping>		
+	
+	<servlet-mapping>
+	<servlet-name>GetResponseCommand</servlet-name>
+	<url-pattern>/GetResponse.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>SetRequestCommand</servlet-name>
+	<url-pattern>/SetRequest.do</url-pattern>
+	</servlet-mapping>
+		
+	<servlet-mapping>
+	<servlet-name>ReportTimeStamp</servlet-name>
+	<url-pattern>/ReportTimeStamp.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportTransAll</servlet-name>
+    <url-pattern>/ReportTransAll.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportTransAllColumn</servlet-name>
+    <url-pattern>/ReportTransAllColumn.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportTransInOut</servlet-name>
+    <url-pattern>/ReportTransInOut.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportTransInOutDaily</servlet-name>
+    <url-pattern>/ReportTransInOutDaily.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+    <servlet-name>ReportTimeLate</servlet-name>
+    <url-pattern>/ReportTimeLate.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportLastTrans</servlet-name>
+    <url-pattern>/ReportLastTrans.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportTransInOutAndSafety</servlet-name>
+    <url-pattern>/ReportTransInOutAndSafety.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportTransAllInternalExternalPerson</servlet-name>
+    <url-pattern>/ReportTransAllInternalExternalPerson.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportTransAllWorkCode</servlet-name>
+    <url-pattern>/ReportTransAllWorkCode.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+    <servlet-name>ReportTransAllTemperature</servlet-name>
+    <url-pattern>/ReportTransAllTemperature.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportSumByPerson</servlet-name>
+    <url-pattern>/ReportSumByPerson.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportSumByDoor</servlet-name>
+    <url-pattern>/ReportSumByDoor.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportSumTimeLate</servlet-name>
+    <url-pattern>/ReportSumTimeLate.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	<servlet-name>ReportTransEvent</servlet-name>
+    <url-pattern>/ReportTransEvent.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportTransEventDoor</servlet-name>
+    <url-pattern>/ReportTransEventDoor.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportEmpNotDatabase</servlet-name>
+    <url-pattern>/ReportEmpNotDatabase.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportRightInOut</servlet-name>
+	<url-pattern>/ReportRightInOut.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	<servlet-name>ReportData1</servlet-name>
+    <url-pattern>/ReportData1.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	<servlet-name>ReportData2</servlet-name>
+    <url-pattern>/ReportData2.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	<servlet-name>ReportEmployee</servlet-name>
+	<url-pattern>/ReportEmployee.do</url-pattern>
+	</servlet-mapping>		
+	
+	<servlet-mapping>
+	<servlet-name>ReportMaintenance</servlet-name>
+	<url-pattern>/ReportMaintenance.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportMonitorDetail</servlet-name>
+	<url-pattern>/ReportMonitorDetail.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>Select</servlet-name>
+    <url-pattern>/Select.do</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet-mapping>
+	<servlet-name>SelectEvent</servlet-name>
+    <url-pattern>/SelectEvent.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	<servlet-name>ReportBlacklist</servlet-name>
+    <url-pattern>/ReportBlacklist.do</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

@@ -1,0 +1,162 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+
+/* Smaller than standard 960 (devices and browsers) */
+@media only screen and (max-width: 959px) {}
+/* Tablet Portrait size to standard 960 (devices and browsers) */
+@media only screen and (min-width: 768px) and (max-width: 959px) {}
+/* All Mobile Sizes (devices and browser) */
+@media only screen and (max-width: 767px) {}
+/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+@media only screen and (max-width: 479px) {}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 50px;
+  padding-bottom: 20px; 
+  background-color: #FFFFFF;
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
+.tone-background {
+/***	IE 7, 8, 9		***/
+  background: rgba(71,175,204,1);
+  background: -moz-linear-gradient(-45deg, rgba(71,175,204,1) 0%, rgba(124,211,235,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(71,175,204,1)), color-stop(100%, rgba(124,211,235,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(71,175,204,1) 0%, rgba(124,211,235,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(71,175,204,1) 0%, rgba(124,211,235,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(71,175,204,1) 0%, rgba(124,211,235,1) 100%);
+  background: linear-gradient(135deg, rgba(71,175,204,1) 0%, rgba(124,211,235,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1fc8db', endColorstr='#2cb5e8', GradientType=1 );
+/***	IE 10+, IE Edge, Chrome		***/
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  height: 100%;
+  background-attachment: fixed;
+}
+.tone-background-header { }
+.tone-background-footer { }
+.tone-background-menu { }
+
+.head-display {
+  padding: 1px 0px 1px 0px;
+  margin: 5px 0px 5px 0px; 
+  background-color: #EFEFEF;
+  text-align: center;
+}
+.head-display h2 {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-bottom: 0px;
+}
+
+.text-head {
+  padding-top: 10px;
+  text-shadow: 0px 1px 3px rgba(0,0,1,.5);
+}
+
+.body-display { 
+  width: 100%;
+  background-color: #FFFFFF; 
+  margin-bottom: -10px; 
+}
+
+.label-text-1 { 
+  text-align: right; 
+  margin-top: 6px;
+}
+
+.form-login {
+  z-index: 1;
+  background: #FFFFFF;
+  min-width: 430px;
+  max-width: 450px;
+  margin: 0 auto 100px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form-raduis-10 {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;		/*	For IE	*/
+}
+.form-transparent-7 {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+table, tr, td {
+  padding: 3px !important;
+  padding-bottom: 2px !important;
+}
+
+img { cursor: pointer; }
+
+.pull-right { float: right; }
+.pull-left { float: left; }
+
+.pad-left-10 { padding-left: 10px !important; }
+.pad-left-15 { padding-left: 15px !important; }
+.pad-left-30 { padding-left: 30px !important; }
+.pad-left-50 { padding-left: 50px !important; }
+
+.pad-right-15 { padding-right: 15px !important; }
+
+.max-height-24 { max-height: 24px; }
+.max-height-26 { max-height: 26px; }
+.max-height-28 { max-height: 28px; }
+.max-height-30 { max-height: 30px; }
+.max-height-34 { max-height: 34px; }
+
+.min-width-80 { min-width: 80px; }
+
+.ellipsis_string {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.button-shadow1 { transition-duration: 0.5s; }
+.button-shadow2:hover { box-shadow: 0 8px 12px 0 rgba(0,0,0,0.15),0 10px 25px 0 rgba(0,0,0,0.10); }
+ 
+.display-none { display: none; !important; }
+ 
+.bodycontainer { 
+/*  max-height: 440px;	*/
+  width: 100%; 
+  margin: 0; 
+  overflow-x: auto; 
+  overflow-y: auto; 
+  background-color: #FFFFFF; 
+}
+
+.bs-callout-info {
+  border-left-color: #1b809e;
+}
+.bs-callout {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #1b809e;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.4rem;
+  background-color: #efefef;
+  text-align: center;
+}
+  

@@ -1,0 +1,2 @@
+ตัวอย่างข้อมูล แฟ้มข้อมูลตำแหน่ง [ Example Import Data Upload Position ]
+000001,ทดสอบโอนข้อมูลตำแหน่ง,test upload file position

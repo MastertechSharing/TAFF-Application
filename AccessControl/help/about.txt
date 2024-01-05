@@ -1,0 +1,172 @@
+Version		: Access Control [Version 5.5]
+Last Update	: 08/06/2565
+
+Update Version
+25/12/2555 : Access Control [Version 1.0]
+26/03/2557 : Access Control [Version 1.1]
+	- Update try-catch
+	- Add menu About
+	- Update menu Report and Tools
+02/04/2557 : Access Control [Version 1.2]
+	- Update Report In-Out [Calendar] show status I/O
+	- Add Proximity Card ID Format to dbreader
+12/05/2557 : Access Control [Version 1.3]
+	- Add menu Delete Data Employee [Conditions]
+	- Add menu Import Data /Upload Group And menu Export Data /Export Group
+	- Add menu Event Transaction Data From Door
+	- Add menu Help
+30/06/2557 : Access Control [Version 1.4]
+	- Update menu Import Data [TXT] And menu Process File about message duplicate
+	- Update menu Report Event Transaction Data And Add Condition find by Idcard and Event Code Between 01-24 and 47
+	- Update menu Report Event Transaction Data From Door find by Event Code Between 25-46 and 48-50
+09/07/2557 : Access Control [Version 1.5]
+	- Update Report by user is employees can choose the door to output the report
+13/08/2557 : Access Control [Version 1.6]
+	- Update Report Event Transaction Data. Can choose section to output the report
+08/09/2557 : Access Control [Version 1.6.1]
+	- Update menu Process File/File New Format [TAF] And File Old Format [RAW] About Insert Event Code Between 01-08 to dbtransaction and Event Code Between 09-24 and 47 to dbtransaction_ev and Event Code Between 25-46 and 48-50 to dbtrans_event
+10/10/2557 : Access Control [Version 1.7]
+	- Update menu data event Add new button is Access For TA
+	- Update error some menu about version SQL Server and MySQL
+05/03/2558 : Access Control [Version 1.8]
+	- Add menu Download Employees data from scan record
+11/06/2558 : Access Control [Version 1.9]	
+	- Update menu Config Show description status door when add or edit data door
+	- Add function delete status door and command in file class when to sent data door to success
+19/01/2559 : Access Control [Version 2.0]
+	- Update menu Report Adjust the code sql of pdf report and excel report as a function
+	- Update menu Config Change the selection from radio button to checkbox
+26/02/2559 : Access Control [Version 2.1]
+	- Update menu Event Add event data action 9 [Capture]
+14/05/2559 : Access Control [Version 2.2]
+	- Update menu Config>Add Employee[files] Show the message selected or not select employees
+	- Update function ConvertIpAddr for create referent code at SetRequestCommand
+24/05/2559 : Access Control [Version 2.3]
+	- Update menu Employee update length serial card key input 8 or 14 digit only
+18/06/2559 : Access Control [Version 2.4]
+	- Update menu Get Employee and Get Employee [File] display length serial card  8 or 14 digit 
+28/06/2559 : Access Control [Version 2.5]
+	- Update menu data door about card pattern only can select or not select read serial card
+11/08/2559 : Access Control [Version 2.6]
+	- Update menu report is incorrect display data of door id or reader no. in pdf and excel
+	- Update menu import employee can't insert serial card 14 digits to database 
+	- Update menu add employee[file] select idcard error SQL Exception
+	- Update menu get employee[file] export serial card by excel unlisted 0
+	- Update menu set write card and set write card master error action select ip address
+	- Update menu delete data transaction about delete data by date unsuccessful
+01/11/2559 : Access Control [Version 2.7]	
+ 	- Add Script/create_view.sql
+	- Update calendar report display time (I/O) is incorrect
+	- Adjust the menu into categories
+	- Check the access privileges based on the user's system
+	- Find and view more, then the error SQLException on menu Employee, Reader and Holiday
+	- Check select blank or null of the section, position, type, and a group at menu employees
+	- Check data location blank or null
+	- Change command of function replace from use sign double quote to use sign single quote
+	- Fixed an error in the five-digit reader_no of the report as pdf, excel
+	- Add menu Employee for Upload Picture, Download Picture and Delete Picture 
+	- Add menu Data Transaction by date-time for Dump Transaction, Download Capture Pictures and Delete Capture Picture
+	- Add menu Picture&Multimedia for Upload, Delete and Get List Video
+	- Add menu Picture&Multimedia for Upload, Delete and Get List Picture Slide
+	- Add menu Picture&Multimedia for Upload Sound
+20/03/2560 : Access Controls [Version 2.8]
+	- Add Script/create_view.sql and create_view SQL Server.sql
+	- Change display index monitor to event monitor door 
+	- Add menu Tools for Process Time Attendance (BCP)
+	- Add Field for Disable TAFF Std. Mifare Card and Disable Mifare Card UID Mapping for data reader	
+	- Resolve java classes report and web.xml 
+	- Resolve search keyword of thai language
+	- Resolve search employee by group at menu Add Employee[File]
+	- Resolve login by idcard of employee
+	- Resolve uploading employee data from file successful but data not found
+	- Resolve data employee use default expire date 100 year and use calendar date and time is now
+	- Resolve data reader at card pattren only not used default Read Serial Card 
+	- Resolve report id and check report pdf and excel of database MySQL and SQL Server
+	- Add Host IP Addess For connect TAFFServer by Location
+	- Resolve convert of datetime before insert or update on SQL Server
+21/04/2560 : Access Controls [Version 2.9]
+	- Manage menu report pdf and excel and change report id 
+	- Add function for use all report 
+31/10/2560 : Access Controls [Version 3.0]
+	- Adjust the display and new functionality
+	- Add menu report 108-110
+14/11/2560 : Access Controls [Version 3.1]
+	- Add menu user online
+15/12/2560 : Access Controls [Version 3.2]
+	- Add function take photo and enroll finger print at menu Employee
+	- Add filter employee by photo or template at menu Employee
+	- Remove icon view and fix modal view at menu File
+	- Resolve Log In process by admin
+	- Resolve display data Timezone
+25/01/2561 : Access Controls [Version 3.3]
+	- Add Left Menu for IE. at menu Report
+	- Resolve hide checkbox for submit data at menu Report and Connect HW
+08/02/2561 : Access Controls [Version 3.4]
+	- Add menu blacklist and report blacklist
+28/02/2561 : Access Controls [Version 3.5]
+	- Adjust menu get capture picture [Connect HW] add view picture by pass and not pass, and sort by event and employee
+	- Adjust menu download and dump transaction [Connect HW] add download file, view transaction and process to database 
+	- Fix menu set picture employee [Connect HW] check extensions file uppercase and lowercase
+09/05/2561 : Access Controls [Version 3.6]
+	- Add menu Transaction File [Tools]
+	- Add function process to data format at menu File New Format TAF [Tools]
+	- Add function download file and process file to data format at menu Download transaction and Dump transaction [Connect HW] 
+04/12/2561 : Access Controls [Version 3.7]
+	- Adjust report 109 not check duty
+	- Adjust menu process files add function process data to .taf file  [Tools]
+	- Move path ini from C:/Mastertech to folder web access (folder name webini)
+27/12/2561 : Access Controls [Version 3.8]
+	- Adjust Connect HW by Door ID
+18/01/2562 : Access Controls [Version 3.9]
+	- Update menu Setting User add checkbox monitor data by user 
+	- Add new user permission monitor view 
+20/02/2562 : Access Controls [Version 4.0]
+	- Add menu Clear Anti-Passback
+10/05/2562 : Access Controls [Version 4.1]
+	- Adjust menu Blacklist
+27/05/2562 : Access Controls [Version 4.2]
+	- Add menu Server
+	- Add menu Download Text File [TXT]
+	- Adjust menu Location field IP Server
+	- Add loading popup while login
+18/07/2562 : Access Controls [Version 4.3]	
+	- Add menu Download Text File [TXT] [Conditions]
+07/08/2562 : Access Controls [Version 4.4]	
+	- Adjust menu Setting User administrator can define group reader by department/section (Manager, Supervisor)
+	- Adjust menu Group Employee control reader by group as specified by the administrator
+22/08/2562 : Access Controls [Version 4.5]	
+	- Adjust menu Grant Group  
+27/04/2563 : Access Controls [Version 4.6]
+	- Update menu Server Add config masterTime
+08/07/2563 : Access Controls [Version 4.7]
+	- Adjust menu Employee add issue 00-99
+	- Adjust menu Add Employee [File] [Connect HW] add search employee
+	- Adjust menu Download Text File [TXT] [Tools] refresh data after download file
+08/10/2563 : Access Controls [Version 4.8]
+	- Adjust menu Process Files Format To TXT
+15/10/2563 : Access Controls [Version 4.9]
+	- Add menu Workcode and Report Workcode 
+	- Add menu Set Workcode and Get Workcode [Connect HW]
+21/10/2563 : Access Controls [Version 5.0]
+	- Adjust Server IPAddress for Connection
+12/11/2563 : Access Controls [Version 5.1]
+	- Add menu report [113] - All Transaction [Work Code]
+	- Adjust menu Set Workcode add button clear workcode [Connect HW]
+26/01/2564 : Access Controls [Version 5.2]
+	- Resolve menu monitor data transaction change flash to server sent event (sse)
+	- Resolve search thai language
+18/08/2564 : Access Controls [Version 5.3]
+	- Resolve menu  Download Text File [TXT]
+	- Resolve menu  Process Files / File New Format [TAF]
+	- Resolve menu  Process Files / Transaction File [Format TAFF67]
+	- Resolve menu  Data System / Server for set Path STD
+	- Add menu Map Serial
+	- Add menu report [114] - All Transaction [Temperature-Mask]
+18/10/2564 : Access Controls [Version 5.4]	
+	- Add menu Map Duty
+08/06/2565 : Access Controls [Version 5.5]	
+	- Resolve data display view transactions monitor
+15/02/2566 : Access Controls [Version 5.6]
+	- Add menu Import Data Holiday
+	- Add menu Export Data Holiday
+	- Resolve Get ID Table Display Serial Card 14 Digits

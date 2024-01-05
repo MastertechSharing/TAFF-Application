@@ -1,0 +1,58 @@
+วิธีเซ็ตกล้องให้ทำงานเมื่อใช้ https มี 2 ขั้นตอน
+
+ขั้นตอนที่ 1 ให้ Copy ไฟล์ KeyStore ที่อยู่ในโฟลเดอร์ bin ของ WEB ไปวางไว้ในโฟลเดอร์ Tomcat/conf/ ได้เลย
+
+*** หากไม่พบไฟล์ KeyStore ดังกล่าว สามารถสร้างไฟล์ โดยใช้ keytool.exe ของ Java ผ่าน Command Promt ได้
+
+วิธีการสร้างไฟล์ KeyStore ผ่าน Command Promt โดยใช้ keytool.exe ของ Java
+1.1 คลิกที่ปุ่ม Start > Run ( คีย์ลัด Windows + R ) พิมพ์คำสั่ง cmd แล้วกด Enter เพื่อเข้าสู่โหมด Command Prompt
+
+1.2 เข้าไปที่โฟลเดอร์ bin ของ Java โดยพิมพ์คำสั่ง cd path Java/jre1.x.x/bin
+กด Enter จะได้ตามตัวอย่างด้านล่าง
+C:\Users\[User]>cd C:\Program Files\Java\jre1.x.x\bin
+C:\Program Files\Java\jre1.x.x\bin>
+
+1.3 สร้างไฟล์ KeyStore พิมพ์คำสั่ง keytool.exe -genkey -alias tomcat -keyalg RSA -keystore C:\KeyStore 
+*** [C:\KeyStore] ชื่อไฟล์  KeyStore จะไปอยู่ในไดร์ C: สามารถระบุที่อยู่ใหม่ได้ หรืออาจจะระบุไปยัง path ของ Tomcat/conf/ เลยก็ได้
+กด Enter จะมีข้อมูลให้กรอกได้ตามตัวอย่างด้านล่าง 
+C:\Program Files\Java\jre1.x.x\bin>keytool.exe -genkey -alias tomcat -keyalg RSA -keystore C:\KeyStore 
+Enter keystore password: password ( กรอก password ของไฟล์  KeyStore *password จะไม่แสดงให้เห็น )
+Re-enter new password: password ( กรอกยืนยัน password ของไฟล์  KeyStore *password จะไม่แสดงให้เห็น )
+What is your first and last name?
+  [Unknown]:  AccessCtrl ( กรอกชื่อและนามสกุล )
+What is the name of your organizational unit?
+  [Unknown]:  Personal ( กรอกหน่วยองค์กร )
+What is the name of your organization?
+  [Unknown]:  Personal ( กรอกองค์กร )
+What is the name of your City or Locality?
+  [Unknown]:  Ngamwongwan ( กรอกเมืองหรือตำแหน่งที่ตั้ง )
+What is the name of your State or Province?
+  [Unknown]:  Nonthaburi ( กรอกรัฐหรือจังหวัด )
+What is the two-letter country code for this unit?
+  [Unknown]:  TH ( กรอกตัวย่อของประเทศ )
+Is CN=AccessCtrl, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=TH correct?
+  [no]:  yes ( ตรวจสอบและพิมพ์ yes เพื่อยืนยัน )
+
+Enter key password for <tomcat>
+        (RETURN if same as keystore password): password ( กรอก password สำหรับ Tomcat *password จะไม่แสดงให้เห็น )
+Re-enter new password: password ( กรอกยืนยัน password สำหรับ Tomcat *password จะไม่แสดงให้เห็น )
+
+เมื่อสำเร็จจะได้ไฟล์ KeyStore อยู่ในไดร์ C:
+*** ตอนสร้างไฟล์ KeyStore หากมีการระบุไฟล์มาไว้ใน path ของ Tomcat/conf/ แล้ว สามารถข้ามขั้นตอนในข้อ 1.4 ได้เลย
+
+1.4 ให้ Copy ไฟล์ KeyStore ที่ได้ไปวางไว้ในโฟลเดอร์ Tomcat/conf/
+
+ขั้นตอนที่ 2 กำหนด SSL บนไฟล์ server.xml ของ Tomcat
+2.1 เปิดไฟล์ server.xml ใน path Tomcat/conf/ และ Copy Tag <Connector /> ด้านล่างไปวางไว้ใน Tag <Service name="Catalina">
+
+	<Connector port="443" protocol="HTTP/1.1" 
+		maxThreads="200" scheme="https" secure="true" SSLEnabled="true" 
+		keystoreFile="conf/TomcatKeyStore" keystorePass="mastertech" 
+		clientAuth="false" sslProtocol="TLS" />
+
+*** keystoreFile="conf/TomcatKeyStore" สามารถชี้ไปที่ไดร์อื่นได้ ในกรณีที่ไม่ได้ทำข้อ 1.4
+*** keystorePass="mastertech" ถ้า Copy ไฟล์ในโฟลเดอร์ bin ให้ใช้ mastertech ถ้าสร้างเองให้ใช้ password ที่สร้างขึ้นมา
+
+2.2 Restart Service Tomcat 1 ครั้ง
+
+2.3 เข้าเว็บด้วย https://localhost/AccessCtrl ( ไม่ต้องพิมพ์ :port ในกรณีที่เซ็ต port="443" )

@@ -1,0 +1,27 @@
+วิธีการลบข้อมูลการแตะบัตร ก่อนวันที่กำหนด (ลบข้อมูลก่อนวันที่ 2014-01-01)
+1. DELETE FROM taff_data.dbtransaction WHERE (date_event < '2014-01-01')
+2. DELETE FROM taff_data.dbtrans_event WHERE (date_event < '2014-01-01')
+3. DELETE FROM taff_data.dbtransaction_ev WHERE (date_event < '2014-01-01')
+
+วิธีอัพเดต Database แต่ละ table ตามโครงสร้างของโปรแกรม TAFFServer67 Version 3.4
+	ข้อมูลในแต่ละ table ถ้าเยอะจะทำให้การปรับโครงสร้างแฟ้มนั้นๆ ช้า จะแบ็กอัพ หรือจะลบจะตัดข้อมูลใดๆ ก็จัดการให้เรียบร้อยก่อนเมื่อเตรียม Database พร้อมแล้วให้ทำตามขั้นตอนต่อไปนี้
+1. เปิด explorer เข้าไปที่ MySQL\data\taff_data แล้ว copy ไฟล์ dbtrans_event.frm, dbtrans_event.MYD, dbtrans_event.MYI
+2. นำไฟล์ทั้งสามที่ copy เรียบร้อยมา rename เป็น dbtransaction_ev.frm, dbtransaction_ev.MYD, dbtransaction_ev.MYI
+3. เปิด MySQL Query Browser	   
+   3.1 delete FROM taff_data.dbtransaction_ev where (event_code > '24') and (event_code != '47');
+   3.2 รัน script ดังนี้
+	ALTER TABLE taff_data.dbtransaction_ev ADD duty varchar(1) DEFAULT '';
+	ALTER TABLE taff_data.dbtransaction_ev ADD data_seq varchar(4) DEFAULT '';
+	ALTER TABLE taff_data.dbtransaction_ev ADD data_blank varchar(6) DEFAULT '';
+	ALTER TABLE taff_data.dbtransaction_ev ADD datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP;	
+	ALTER TABLE taff_data.dbtransaction_ev MODIFY idcard varchar(16) NOT NULL;
+	ALTER TABLE taff_data.dbtransaction_ev DROP PRIMARY KEY, ADD PRIMARY KEY (date_event,time_event,reader_no,event_code,idcard) USING BTREE;
+   3.3 delete FROM taff_data.dbtrans_event where (event_code <= '24') or (event_code = '47');
+   3.4 รัน script ดังนี้
+	ALTER TABLE taff_data.dbtrans_event  DROP idcard;
+	ALTER TABLE taff_data.dbtrans_event  ADD data_seq varchar(4) DEFAULT '';
+	ALTER TABLE taff_data.dbtrans_event  ADD data_blank varchar(6) DEFAULT '';
+	ALTER TABLE taff_data.dbtrans_event  ADD datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+   3.5 รัน script ดังนี้
+	UPDATE taff_data.dbevent set th_desc = 'เพิ่มรหัสพนักงานที่หัวอ่าน', en_desc = 'Upload ID Table' where event_code = '47';
+	ALTER TABLE taff_data.dbresult ADD datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP;

@@ -1,0 +1,19 @@
+  - วิธีเซ็ต Log Query Mysql
+
+1.) คลิกที่ปุ่ม Start Menu (มุมซ้ายล่าง) พิมพ์คำว่า Services ที่ช่องค้นหา กดคลิกซ้ายเพื่อเปิด Services
+2.) เลื่อนหาที่ MySQL กดให้ขึ้นสีน้ำเงินทึบ และกด “Stop” the service
+3.) ไปที่ Path ของ MySQL ที่ลงไว้ ( C:\Program Files (x86)\MySQL\MySQL Server 5.2 ) เปิด my.ini ขึ้นมา
+4.) เลื่อนไปที่บรรทัดสุดท้าย กด Enter ขึ้นบรรทัดใหม่ และพิมพ์ข้อความตามด้านล่าง (5 บรรทัด) เสร็จแล้วให้กดบันทึกและกดปิด
+    log_bin = mysql-bin
+    log-bin-index = mysql-bin.index
+    binlog-format = STATEMENT
+    expire-logs-days = 14
+    max-binlog-size = 500M
+** กรณีที่บันทึกไม่ได้ ให้ Copy ไฟล์ my.ini ออกมาไว้ที่หน้า Desktop ก่อนค่อยแก้ไขไฟล์ เมื่อบันทึกแล้ว ให้ Copy กลับไปทับของเก่า
+5.) ไปที่ Services กดเลือก MySQL กด “Start” the service และปิดหน้าต่าง Services
+
+
+  - ตรวจสอบ Log Query Mysql
+
+    ไปที่ Path ของ MySQL ที่ลงไว้ ( C:\Program Files (x86)\MySQL\MySQL Server 5.2\data ) จะเห็นไฟล์ mysql-bin.000001 กดเปิดขึ้นมาด้วย Notepad สามารถค้นหาข้อมูลด้วยการ Search (Ctrl+F) 
+** ทุกๆ การ Restart MySQL ไฟล์ mysql-bin จะสร้างขึ้นใหม่เสมอ โดยที่นามสกุลจะบวกขึ้นมาที่ละ 1 เช่น  mysql-bin.000001,  mysql-bin.000002

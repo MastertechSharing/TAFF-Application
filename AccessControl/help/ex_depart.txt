@@ -1,0 +1,2 @@
+ตัวอย่างข้อมูล แฟ้มข้อมูลฝ่าย [ Example Import Data Upload Department ]
+000001,ทดสอบโอนข้อมูลฝ่าย,test upload file department

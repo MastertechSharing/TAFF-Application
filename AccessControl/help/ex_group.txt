@@ -1,0 +1,2 @@
+ตัวอย่างข้อมูล แฟ้มข้อมูลกลุ่มพนักงาน [ Example Import Data Upload Group Employee ]
+000001,ทดสอบโอนข้อมูลกลุ่มพนักงาน,test upload file group employee
