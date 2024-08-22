@@ -48,6 +48,11 @@
 				<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_109.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_109 %> </a> </li>
 				<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_110.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_110 %> </a> </li>
 				<!--	<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_111.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_111 %> </a> </li>	-->
+				<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_112.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_112 %> </a> </li>
+				<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_113.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_113 %> </a> </li>
+				<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_114.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_114 %> </a> </li>
+				<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_115.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_115 %> </a> </li>
+				<!--	<li style="margin-top: -10px; margin-bottom: -10px; margin-left: -15px;"> <a href="report_151.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_151 %> </a> </li>  -->
 				
 				<!--	200		-->
 				<li style="margin-top: 10px;"> <font color="white" style="font-size: 16px;"> <b> <%= lb_reportname %> <%= lb_report200 %> </b> </font> </li>

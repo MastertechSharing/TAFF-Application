@@ -279,7 +279,7 @@
 				
 				<div class="table-responsive" style="border: 0px !important;" border="0">
 					<div style="min-width: 1080px; margin-top: 10px;">
-						<label class="control-label col-md-12" style="font-family:Tahoma;font-size: 10px;font-style: normal;color: #FF0000;"> ** <%= lb_comment %> : HW1=UnLock, HW2=Alarm, HW3=Bell, HW4=OUT4, HW5=Write Transaction, HW6=All Lock, HW7=All UnLock, HW8=All Alarm, HW9=Capture, SW6=Write Transaction, SW7=Send TCP/IP Socket, SW7=Send API 3rd Party </label>
+						<label class="control-label col-md-12" style="font-family:Tahoma;font-size: 10px;font-style: normal;color: #FF0000;"> ** <%= lb_comment %> : HW1=UnLock, HW2=Alarm, HW3=Bell, HW4=OUT4, HW5=Write Transaction, HW6=All Lock, HW7=All UnLock, HW8=All Alarm, HW9=Capture, SW6=Write Transaction, SW7=Send TCP/IP Socket, SW8=Send API 3rd Party </label>
 					</div>
 				</div>
 				

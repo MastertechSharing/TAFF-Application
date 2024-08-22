@@ -285,7 +285,7 @@
 										<div class="row">
 											<h5 class="modal-title col-xs-2 col-md-2" style="margin-top: 4px;"> <div align="right"> <b> <%= lb_eventcode %> : </b> </div> </h5>
 											<div class="modal-title col-xs-2 col-md-2"> 
-												<input type="text" class="form-control" id="code" name="code" maxlength="2" style="min-height: 28px !important;" onKeyUp="get_datatransaction(this.value, '<%= lang %>')">
+												<input type="text" class="form-control" id="evid" name="evid" maxlength="2" style="min-height: 28px !important;" onKeyUp="get_datatransaction(this.value, '<%= lang %>')">
 											</div>
 											<div class="modal-title col-xs-1 col-md-1">
 										<%	if(checkPermissionNot(ses_per, 9)){	%>
@@ -294,7 +294,7 @@
 											</div>
 											<h5 class="modal-title col-xs-3 col-md-3" style="margin-top: 4px;"> <div align="right"> <b> <%= lb_eventname %> : </b> </div> </h5>
 											<div class="modal-title col-xs-3 col-md-3">
-												<input type="text" class="form-control" id="desc" name="desc" style="min-height: 28px !important; background-color:#F0F0F0" readonly="readonly"/>
+												<input type="text" class="form-control" id="nameev" name="nameev" style="min-height: 28px !important; background-color:#F0F0F0" readonly="readonly"/>
 											</div>
 											<div class="modal-title col-xs-1 col-md-1"> </div> 
 										</div>

@@ -62,6 +62,7 @@
 		if(page_jsp.equals("report_112.jsp"))									update_page = true;
 		if(page_jsp.equals("report_113.jsp"))									update_page = true;
 		if(page_jsp.equals("report_114.jsp"))									update_page = true;
+		if(page_jsp.equals("report_115.jsp"))									update_page = true;
 		if(page_jsp.equals("report_151.jsp"))									update_page = true;
 	
 	//	Report Data Transaction [Infer]		

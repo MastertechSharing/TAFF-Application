@@ -214,6 +214,7 @@
 					'[<%= lb_reportname %>] <%= lb_report_112 %>',
 					'[<%= lb_reportname %>] <%= lb_report_113 %>',
 					'[<%= lb_reportname %>] <%= lb_report_114 %>',
+					'[<%= lb_reportname %>] <%= lb_report_115 %>',
 			<!--	'[<%= lb_reportname %>] <%= lb_report_151 %>',	-->
 					
 					<!--	Report Data Transaction [Infer]	-->
@@ -630,6 +631,7 @@
 										<li> <a href="report_112.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_112 %> </a> </li>
 										<li> <a href="report_113.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_113 %> </a> </li>
 										<li> <a href="report_114.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_114 %> </a> </li>
+										<li> <a href="report_115.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_115 %> </a> </li>
 										<!--	<li> <a href="report_151.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_report_151 %> </a> </li>	-->
 									</ul>
 								</li> 
@@ -1149,6 +1151,8 @@
 				title_menu = lb_report_113;
 			}else if(subtitle.equals("report_114")){
 				title_menu = lb_report_114;
+			}else if(subtitle.equals("report_115")){
+				title_menu = lb_report_115;
 			}else if(subtitle.equals("report_151")){
 				title_menu = lb_report_151;
 			}

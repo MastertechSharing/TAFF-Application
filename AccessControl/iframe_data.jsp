@@ -486,9 +486,9 @@
 											<img src="images/complete.gif" width="20" height="20" align="absmiddle" onMouseOver="this.style.cursor='hand';" onClick="add_value_select_emp('<%= code %>', 'report_employee_detail.jsp');">
 									<%	}else if(ac.equals("event")){	
 											if(ac_code.equals("1")){	%>
-												<img src="images/complete.gif" width="20" height="20" align="absmiddle" onMouseOver="this.style.cursor='hand';" onClick="add_value_selectIDDesc('<%= code %>', '<%= desc %>', 'report_301.jsp');">
+												<img src="images/complete.gif" width="20" height="20" align="absmiddle" onMouseOver="this.style.cursor='hand';" onClick="add_value_event('<%= code %>', '<%= desc %>', 'report_301.jsp');">
 									<%		}else if(ac_code.equals("2")){	%>
-												<img src="images/complete.gif" width="20" height="20" align="absmiddle" onMouseOver="this.style.cursor='hand';" onClick="add_value_selectIDDesc('<%= code %>', '<%= desc %>', 'report_302.jsp');">
+												<img src="images/complete.gif" width="20" height="20" align="absmiddle" onMouseOver="this.style.cursor='hand';" onClick="add_value_event('<%= code %>', '<%= desc %>', 'report_302.jsp');">
 									<%		}else{	%>
 												<img src="images/complete.gif" width="20" height="20" align="absmiddle" onMouseOver="this.style.cursor='hand';" onClick="add_value_selectID('<%= code %>', '<%= modes %>', 'report_data1_pdf.jsp');">
 									<%		}

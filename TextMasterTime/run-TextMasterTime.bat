@@ -1,2 +1,2 @@
-set path=C:\Program Files\Java\jre1.8.0_212\bin\
-java -Xmx1024m -Xms512m -XX:NewSize=512m -XX:MaxNewSize=512m -XX:+UseParallelGC -XX:MinHeapFreeRatio=40 -XX:MaxHeapFreeRatio=70 -jar TextMasterTime.jar
+::set path=C:\Program Files\Java\jre1.8.0_212\bin\
+java -Xmx1024m -Xms512m -XX:NewSize=512m -XX:MaxNewSize=512m -XX:+UseParallelGC -XX:MinHeapFreeRatio=40 -XX:MaxHeapFreeRatio=70 -jar TextMasterTime.jar 

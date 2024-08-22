@@ -119,7 +119,7 @@ function add_value_selectEmpID(p_id, p_name, post_file) {
 	req.send("p_id="+p_id+"&p_name="+p_name);
 }
 
-function add_value_event(p_id,  p_depart) {
+function add_value_event(p_id,  p_depart, post_file) {
 	var req = Inint_AJAX();		
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
@@ -134,7 +134,7 @@ function add_value_event(p_id,  p_depart) {
 		}  
 	};
 	
-	req.open("POST", "report_301.jsp");
+	req.open("POST", post_file);
 	req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=tis-620");
 	req.send("p_id="+p_id+"&p_depart="+p_depart);
 }

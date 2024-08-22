@@ -613,8 +613,8 @@ INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES (
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('48', 'ปุ่ม Door Bell บน Reader ถูกกด', 'Door bell button press', '0000100000');
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('49', 'ปุ่มฉุกเฉิน บน Reader ถูกกด', 'Emergency button press', '0000100000');
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('50', 'เครื่องถูกถอดออกจากที่ติดตั้ง', 'Tamper switch on', '0000100000');
-UPDATE taff_data.dbevent SET software_act = '0000011000' WHERE (event_code <= '07');
-UPDATE taff_data.dbevent SET software_act = '0000001000' WHERE (event_code = '06' || event_code >= '08');
+UPDATE taff_data.dbevent SET software_act = '0000011000' WHERE (event_code <= '08') AND (software_act = '0000000000');
+UPDATE taff_data.dbevent SET software_act = '0000001000' WHERE (event_code = '06' || event_code > '08') AND (software_act = '0000000000');
 INSERT INTO taff_data.dbdepart (dep_code, th_desc, en_desc) VALUES('000001', 'ค่าเริ่มต้น', 'Default');
 INSERT INTO taff_data.dbsection (sec_code, th_desc, en_desc, dep_code) VALUES('000001', 'ค่าเริ่มต้น', 'Default', '000001');
 INSERT INTO taff_data.dbposition (pos_code, th_desc, en_desc) VALUES('000001', 'พนักงาน', 'Employee');

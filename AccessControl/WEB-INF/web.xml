@@ -95,6 +95,11 @@
 	</servlet>	
 	
 	<servlet>
+    <servlet-name>ReportTransInOutCalculateTime</servlet-name>
+    <servlet-class>access.report.Rep115_TransInOutCalculateTime</servlet-class>   
+	</servlet>
+	
+	<servlet>
     <servlet-name>ReportSumByPerson</servlet-name>
     <servlet-class>access.report.Rep201_SumByPerson</servlet-class>   
 	</servlet>
@@ -224,6 +229,7 @@
     <url-pattern>/ReportTransInOut.do</url-pattern>
 	</servlet-mapping>
 	
+	
 	<servlet-mapping>
 	<servlet-name>ReportTransInOutDaily</servlet-name>
     <url-pattern>/ReportTransInOutDaily.do</url-pattern>
@@ -253,10 +259,16 @@
     <servlet-name>ReportTransAllWorkCode</servlet-name>
     <url-pattern>/ReportTransAllWorkCode.do</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
     <servlet-name>ReportTransAllTemperature</servlet-name>
     <url-pattern>/ReportTransAllTemperature.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+    <servlet-name>ReportTransInOutCalculateTime</servlet-name>
+    <url-pattern>/ReportTransInOutCalculateTime.do</url-pattern>
+	</servlet-mapping>	
 	
 	<servlet-mapping>
 	<servlet-name>ReportSumByPerson</servlet-name>

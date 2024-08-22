@@ -200,7 +200,7 @@
 											</div>
 											<h5 class="modal-title col-xs-3 col-md-3" style="margin-top: 4px;"> <div align="right"> <b> <%= lb_eventname %> : </b> </div> </h5>
 											<div class="modal-title col-xs-3 col-md-3">
-												<input type="text" class="form-control" id="desc" name="desc" style="min-height: 28px !important; background-color:#F0F0F0" readonly="readonly"/>
+												<input type="text" class="form-control" id="nameev" name="nameev" style="min-height: 28px !important; background-color:#F0F0F0" readonly="readonly"/>
 											</div>
 											<div class="modal-title col-xs-1 col-md-1"> </div> 
 										</div>

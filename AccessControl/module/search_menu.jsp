@@ -78,6 +78,7 @@
 			if(data.equals("["+lb_reportname+"] "+lb_report_112))										out.println(" <script> window.parent.location.href = '../report_112.jsp'; </script> ");
 			if(data.equals("["+lb_reportname+"] "+lb_report_113))										out.println(" <script> window.parent.location.href = '../report_113.jsp'; </script> ");
 			if(data.equals("["+lb_reportname+"] "+lb_report_114))										out.println(" <script> window.parent.location.href = '../report_114.jsp'; </script> ");
+			if(data.equals("["+lb_reportname+"] "+lb_report_115))										out.println(" <script> window.parent.location.href = '../report_115.jsp'; </script> ");
 			if(data.equals("["+lb_reportname+"] "+lb_report_151))										out.println(" <script> window.parent.location.href = '../report_151.jsp'; </script> ");
 		
 		//	Report Data Transaction [Infer]		

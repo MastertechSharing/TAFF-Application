@@ -188,6 +188,9 @@
 										if(page_jsp.equals("report_110.jsp"))									page_jsp = "["+lb_reportname+"] "+lb_report_110;
 										if(page_jsp.equals("report_111.jsp"))									page_jsp = "["+lb_reportname+"] "+lb_report_111;
 										if(page_jsp.equals("report_112.jsp"))									page_jsp = "["+lb_reportname+"] "+lb_report_112;
+										if(page_jsp.equals("report_113.jsp"))									page_jsp = "["+lb_reportname+"] "+lb_report_113;
+										if(page_jsp.equals("report_114.jsp"))									page_jsp = "["+lb_reportname+"] "+lb_report_114;
+										if(page_jsp.equals("report_115.jsp"))									page_jsp = "["+lb_reportname+"] "+lb_report_115;
 										if(page_jsp.equals("report_151.jsp"))									page_jsp = "["+lb_reportname+"] "+lb_report_151;
 									
 									//	Report Data Transaction [Infer]		

@@ -807,8 +807,6 @@
 	String lb_records = "";
 	String lb_alldata = "";
 	String lb_alldata_door = "";
-	String lb_report100 = "";
-	String lb_report200 = "";
 	String lb_idcard_master = "";	
 	String lb_rep_datafile = "";
 	String lb_rep_dataevent = "";	
@@ -829,6 +827,9 @@
 	String lb_code = "";	
 	String lb_total_inout_late = "";	
 	String lb_time_trans = "";
+	String lb_breakTime = "";
+	String lb_report100 = "";
+	String lb_report200 = "";
 	String lb_report_101 = "";
 	String lb_report_102 = ""; 
 	String lb_report_103 = ""; 
@@ -843,6 +844,7 @@
 	String lb_report_112 = "";
 	String lb_report_113 = "";
 	String lb_report_114 = "";
+	String lb_report_115 = "";
 	String lb_report_151 = ""; 
 	String lb_report_201 = "";
 	String lb_report_202 = ""; 
@@ -1840,6 +1842,7 @@
 		lb_code = "รหัส";		
 		lb_total_inout_late = "รวม เข้าสาย-กลับก่อน";
 		lb_time_trans = "เวลาแตะบัตร";
+		lb_breakTime = "เวลาเบรค";
 		
 		lb_report_101 = "[101] - บันทึกเวลาปฏิบัติงาน";
 		lb_report_102 = "[102] - การแตะบัตรทั้งหมด"; 
@@ -1855,6 +1858,7 @@
 		lb_report_112 = "[112] - การแตะบัตรทั้งหมด บุคคลภายในและภายนอก";
 		lb_report_113 = "[113] - การแตะบัตรทั้งหมด [รหัสงาน]";
 		lb_report_114 = "[114] - การแตะบัตรทั้งหมด [อุณหภูมิ-หน้ากาก]";
+		lb_report_115 = "[115] - การแตะบัตรเข้า-ออก [คำนวนเวลา]";
 		lb_report_151 = "[151] - การแตะบัตรผิดปกติ";
 		
 		lb_report_201 = "[201] - สรุปการแตะบัตรแยกคน";
@@ -2946,6 +2950,7 @@
 		lb_code = "Code";		
 		lb_total_inout_late = "Total In-Out Late";
 		lb_time_trans = "Time";
+		lb_breakTime = "Break Time";
 	
 		lb_report_101 = "[101] - Time Recording";
 		lb_report_102 = "[102] - All Transaction"; 
@@ -2961,6 +2966,7 @@
 		lb_report_112 = "[112] - All Transaction Internal And External Person";
 		lb_report_113 = "[113] - All Transaction [Work Code]"; 
 		lb_report_114 = "[114] - All Transaction [Temperature-Mask]"; 
+		lb_report_115 = "[115] - In-Out Transaction [Calculate Time]";
 		lb_report_151 = "[151] - Abnormal Transactions";
 		
 		lb_report_201 = "[201] - Summary Transaction By Employee";

@@ -470,6 +470,9 @@
 		}else if (idReport.equals("114")) {
 			thdesc = "รายงานการแตะบัตรทั้งหมด [อุณหภูมิ-หน้ากาก]";
 			endesc = "Report All Transaction [Temperature-Mask]";
+		}else if (idReport.equals("115")) {
+			thdesc = "รายงานการแตะบัตรเข้า-ออก [คำนวนเวลา]";
+			endesc = "Report In-Out Transaction [Calculate Time]";
 		}else if (idReport.equals("151")) {
 			thdesc = "รายงานการแตะบัตรผิดปกติ";
 			endesc = "Report Abnormal Transactions";
@@ -689,6 +692,19 @@
 					+ "event_desc varchar(60) DEFAULT '', "
 					+ "temperature varchar(4) DEFAULT '', "
 					+ "wearmask varchar(1) DEFAULT '', ";
+		} else if (idReport.equals("115")) {
+			result = result + "id_card varchar(16) DEFAULT '', "
+					+ "emp_name varchar(80) DEFAULT '', "
+					+ "date_work varchar(10) DEFAULT '', "
+					+ "day_work varchar(1) DEFAULT '', "
+					+ "time_in varchar(8) DEFAULT '', "
+					+ "reader_in varchar(6) DEFAULT '', "
+					+ "status_in varchar(2) DEFAULT '', "
+					+ "time_out varchar(8) DEFAULT '', "
+					+ "reader_out varchar(6) DEFAULT '', "
+					+ "status_out varchar(2) DEFAULT '', "
+					+ "time_calculate varchar(8) DEFAULT '', "
+					+ "group_door varchar(2) DEFAULT '', ";
 		} else if (idReport.equals("201") || idReport.equals("203")) {
 			result = result + "id_card varchar(16) DEFAULT '', "
 					+ "emp_name varchar(80) DEFAULT '', "
@@ -900,6 +916,23 @@
 				+ "time_event, duty, reader_desc, event_desc, temperature, wearmask) " + "VALUES ('" + id + "','" + id_card
 				+ "','" + emp_name + "','" + date_work + "','" + day_work + "','" + time_event + "','"
 				+ duty + "','" + reader_desc + "','" + event_desc + "','" + temperature+ "','" + wear_mask + "')";
+		return result;
+	}
+	
+	public String getSQLInsertTmp115(String tmpName, int id, String id_card, String emp_name, String date_work, 
+			String day_work, String time_in, String reader_in, String status_in, String time_out, String reader_out, 
+			String status_out, String group_door) {
+		String result = "INSERT INTO " + tmpName + "(id, id_card, emp_name, date_work, day_work, "
+				+ "time_in, reader_in, status_in, time_out, reader_out, status_out, group_door) " 
+				+ "VALUES ('" + id + "','" + id_card + "','" + emp_name + "','" + date_work + "','" + day_work + "','"
+				+ time_in + "','" + reader_in + "','" + status_in + "','" + time_out + "','" + reader_out + "','"
+				+ status_out + "','" + group_door + "')";
+		return result;
+	}
+	
+	public String getSQLUpdateTmp115(String tmpName, int id, String time_out, String reader_out, String group_door, String status_out) {
+		String result = "UPDATE "+tmpName+" SET time_out ='"+time_out+"', reader_out ='"+reader_out
+				+"', group_door ='"+group_door+"', status_out ='"+status_out+"' WHERE (id = '"+id+"')";
 		return result;
 	}
 	
