@@ -1,5 +1,5 @@
-Version		: Access Control [Version 5.5]
-Last Update	: 08/06/2565
+Version		: Access Control [Version 5.7]
+Last Update	: 23/08/2567
 
 Update Version
 25/12/2555 : Access Control [Version 1.0]
@@ -170,3 +170,5 @@ Update Version
 	- Add menu Import Data Holiday
 	- Add menu Export Data Holiday
 	- Resolve Get ID Table Display Serial Card 14 Digits
+23/08/2567 : Access Controls [Version 5.7]
+	- Add menu report [115] - In-Out Transaction [Calculate Time]

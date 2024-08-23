@@ -81,7 +81,7 @@
 		
 	}
 	
-	String title = rc.displayVersionSW(sizeSW, "5.6");
+	String title = rc.displayVersionSW(sizeSW, "5.7");
 	session.setAttribute("sw_title", title);
 	session.setAttribute("sw_version", version);
 	NumberFormat nf1 = NumberFormat.getInstance();	
