@@ -44,7 +44,7 @@
 	response.setHeader("Cache-Control","no-cache");
 	response.setHeader("Pragma","no-cache");
 	response.setDateHeader ("Expires", 0);
-	
+		
 	String action = "";
 	if(request.getParameter("action") != null){
 		action = request.getParameter("action");
@@ -53,8 +53,8 @@
 	String username = request.getParameter("username");
 	String userpass = request.getParameter("password");
 	String exdate = "";	
-	String monitor_data = "0";
-	
+	String monitor_data = "0";	
+		
 	if(action.equals("setmsg")){
 		
 		Thread.sleep(100);
@@ -73,7 +73,7 @@
 			stmtUp.executeUpdate("DELETE FROM dbtransaction WHERE (date_event < '"+dates+"')");
 			stmtUp.executeUpdate("DELETE FROM dbtransaction_ev WHERE (date_event < '"+dates+"')");
 			stmtUp.executeUpdate("DELETE FROM dbtrans_event WHERE (date_event < '"+dates+"')");
-			//	Create password if field password equals null or empty
+			//	Create password if field password equals null or empty			
 			stmtUp.executeUpdate("UPDATE dbemployee SET pass_word = "+convertPassField("idcard", mode)+" WHERE (pass_word IS NULL OR pass_word = '')");
 		}catch(SQLException e){
 			out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
@@ -121,7 +121,7 @@
 			control_reader = rs.getString("control_reader");
 		}
 		rs.close();
-		
+				
 		if(users.equals("")){
 			sql = "SELECT idcard, pass_word, ex_date FROM dbemployee "
 					+ "WHERE (idcard = '"+username+"') AND (pass_word = '"+userpass+"')";

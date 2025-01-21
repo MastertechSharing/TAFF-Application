@@ -85,12 +85,12 @@
 		String colName = cols[col];
 		String setWhere = "", setAnd = "";
 		if(view_data.equals("all")){
-			setWhere = " WHERE ( door.duplicate_ip != '"+view_data+"' ) ";
+			setWhere = " WHERE (door.hardware_model = '') and ( door.duplicate_ip != '"+view_data+"' ) ";
 		}else{
-			setWhere = " WHERE ( door.duplicate_ip = '"+view_data+"' ) ";
+			setWhere = " WHERE (door.hardware_model = '') and ( door.duplicate_ip = '"+view_data+"' ) ";
 		}
 		
-		int total = getCountRecord("dbdoor", stmtQry);
+		int total = getCountRecord("dbdoor", "hardware_model", "", stmtQry);
 		int totalAfterFilter = total;
 		
 		//	check show all record

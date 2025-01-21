@@ -170,6 +170,16 @@
 		if(page_jsp.equals("cmd_del_slide.jsp"))								update_page = true;
 		if(page_jsp.equals("cmd_get_listvideo.jsp"))							update_page = true;
 		if(page_jsp.equals("cmd_get_listslide.jsp"))							update_page = true;
+		
+	//	Face
+		if(page_jsp.equals("cmd_face_set_datetime.jsp"))						update_page = true;
+		if(page_jsp.equals("cmd_face_get_infor.jsp"))							update_page = true;
+		if(page_jsp.equals("cmd_face_set_infor.jsp"))							update_page = true;
+		if(page_jsp.equals("cmd_face_get_employee_list.jsp"))					update_page = true;
+		if(page_jsp.equals("cmd_face_get_employee.jsp"))						update_page = true;
+		if(page_jsp.equals("cmd_face_set_employee.jsp"))						update_page = true;
+		if(page_jsp.equals("cmd_face_del_employee.jsp"))						update_page = true;		
+		if(page_jsp.equals("cmd_face_get_transaction.jsp"))						update_page = true;	
 
 //	System Info	===================================================================================
 		if(page_jsp.equals("view_configcompany.jsp"))							update_page = true;

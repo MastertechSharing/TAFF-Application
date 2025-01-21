@@ -67,7 +67,7 @@
 		stmtTmp = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		stmtSes = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	}
-
+	
 	int sizeSW = 0;
 	try {
 		String ver_soft = "";	
@@ -78,10 +78,10 @@
 		}
 		sizeSW = Integer.parseInt(ver_soft);
 	} catch (Exception e) {
-		
+		response.sendRedirect("../try_catch.jsp?error=" + e.getMessage());	
 	}
 	
-	String title = rc.displayVersionSW(sizeSW, "5.7");
+	String title = rc.displayVersionSW(sizeSW, "5.8");
 	session.setAttribute("sw_title", title);
 	session.setAttribute("sw_version", version);
 	NumberFormat nf1 = NumberFormat.getInstance();	

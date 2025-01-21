@@ -74,66 +74,83 @@
 	//	Connect HW	====================================================================================================	
 	public String selectDbLocationByHost() {
 		return "SELECT lo.* FROM dblocation lo "
-				+ "LEFT OUTER JOIN dbserver_config serve ON lo.server_code = serve.server_code "
-				+ "WHERE serve.server_ip = '"+getServerIPAddress()+"' "
+				+ "LEFT OUTER JOIN dbserver_config server_c ON lo.server_code = server_c.server_code "
+				+ "WHERE server_c.server_ip = '"+getServerIPAddress()+"' "
 				+ "ORDER BY lo.locate_code ASC ";				
 	}
 	
 	public String selectDbDoorByHost() {
 		return "SELECT door.door_id, door.th_desc, door.en_desc, door.ip_address, door.locate_code, door.duplicate_ip, "
-				+ "lo.th_desc AS l_th_desc, lo.en_desc AS l_en_desc, serve.server_ip "
+				+ "lo.th_desc AS l_th_desc, lo.en_desc AS l_en_desc, server_c.server_ip "
 				+ "FROM dbdoor door "
 				+ "LEFT OUTER JOIN dblocation lo ON (door.locate_code = lo.locate_code) "
-				+ "LEFT OUTER JOIN dbserver_config serve ON (lo.server_code = serve.server_code) "
-				+ "WHERE serve.server_ip = '"+getServerIPAddress()+"' "
+				+ "LEFT OUTER JOIN dbserver_config server_c ON (lo.server_code = server_c.server_code) "
+				+ "WHERE server_c.server_ip = '"+getServerIPAddress()+"' "
 				+ "ORDER BY door.door_id ASC ";
 	}
 	
 	public String selectDbDoorByHost(String cmd) {
 		return "SELECT door.door_id, door.th_desc, door.en_desc, door.ip_address, door.locate_code, door.duplicate_ip, "
-				+ "lo.th_desc AS l_th_desc, lo.en_desc AS l_en_desc, ds.date_time, ds.status_no "
+				+ "lo.th_desc AS l_th_desc, lo.en_desc AS l_en_desc, status_d.date_time, status_d.status_no "
 				+ "FROM dbdoor door "
 				+ "LEFT OUTER JOIN dblocation lo ON (door.locate_code = lo.locate_code) "
-				+ "LEFT OUTER JOIN dbserver_config serve ON (lo.server_code = serve.server_code) "
-				+ "LEFT OUTER JOIN dbstatus_door ds ON ((door.door_id = ds.door_id) AND (ds.comm_code = '" + cmd + "')) "
-				+ "WHERE serve.server_ip = '"+getServerIPAddress()+"' "
+				+ "LEFT OUTER JOIN dbserver_config server_c ON (lo.server_code = server_c.server_code) "
+				+ "LEFT OUTER JOIN dbstatus_door status_d ON ((door.door_id = status_d.door_id) AND (status_d.comm_code = '" + cmd + "')) "
+				+ "WHERE server_c.server_ip = '"+getServerIPAddress()+"' "
 				+ "ORDER BY door.door_id ASC ";
+	}
+	
+	public String selectDbDoorByHostByGroupUserByHWModel(int ses_per, String group_user, String control_reader, String hw_model) {
+		String sqlModel = "";
+		if(!hw_model.equals("ALL")){			
+			sqlModel = " AND ( door.hardware_model = '"+hw_model+"' ) ";
+		}
+		return "SELECT DISTINCT door.door_id, door.th_desc, door.en_desc, door.ip_address, door.locate_code, door.duplicate_ip, "
+				+ "locate.th_desc AS l_th_desc, locate.en_desc AS l_en_desc, server_c.server_ip "
+				+ "FROM dbdoor door "
+				+ "LEFT OUTER JOIN dblocation locate ON (door.locate_code = locate.locate_code) "
+				+ "LEFT OUTER JOIN dbserver_config server_c ON (locate.server_code = server_c.server_code) "
+				+ "LEFT OUTER JOIN dbreader reader ON (door.door_id = reader.door_id) "
+				+ "WHERE server_c.server_ip = '"+getServerIPAddress()+"' " 
+				+ sqlModel				
+				+ whereReaderList(ses_per, group_user, control_reader)
+				+ " ORDER BY door.door_id ASC ";
 	}
 	
 	public String selectDbDoorByHostByGroupUser(int ses_per, String group_user, String control_reader) {
 		return "SELECT DISTINCT door.door_id, door.th_desc, door.en_desc, door.ip_address, door.locate_code, door.duplicate_ip, "
-				+ "locate.th_desc AS l_th_desc, locate.en_desc AS l_en_desc, serve.server_ip "
+				+ "locate.th_desc AS l_th_desc, locate.en_desc AS l_en_desc, server_c.server_ip "
 				+ "FROM dbdoor door "
 				+ "LEFT OUTER JOIN dblocation locate ON (door.locate_code = locate.locate_code) "
-				+ "LEFT OUTER JOIN dbserver_config serve ON (locate.server_code = serve.server_code) "
+				+ "LEFT OUTER JOIN dbserver_config server_c ON (locate.server_code = server_c.server_code) "
 				+ "LEFT OUTER JOIN dbreader reader ON (door.door_id = reader.door_id) "
-				+ "WHERE serve.server_ip = '"+getServerIPAddress()+"' "
+				+ "WHERE server_c.server_ip = '"+getServerIPAddress()+"' "
 				+ whereReaderList(ses_per, group_user, control_reader)
 				+ " ORDER BY door.door_id ASC ";
 	}
 	
 	public String selectDbDoorByHostByGroupUser(String cmd, int ses_per, String group_user, String control_reader) {
 		return "SELECT DISTINCT door.door_id, door.th_desc, door.en_desc, door.ip_address, door.locate_code, door.duplicate_ip, "
-				+ "locate.th_desc AS l_th_desc, locate.en_desc AS l_en_desc, statd.date_time, statd.status_no "
+				+ "locate.th_desc AS l_th_desc, locate.en_desc AS l_en_desc, status_d.date_time, status_d.status_no "
 				+ "FROM dbdoor door "
 				+ "LEFT OUTER JOIN dblocation locate ON (door.locate_code = locate.locate_code) "
-				+ "LEFT OUTER JOIN dbserver_config serve ON (locate.server_code = serve.server_code) "
+				+ "LEFT OUTER JOIN dbserver_config server_c ON (locate.server_code = server_c.server_code) "
 				+ "LEFT OUTER JOIN dbreader reader ON (door.door_id = reader.door_id) "
-				+ "LEFT OUTER JOIN dbstatus_door statd ON ((door.door_id = statd.door_id) AND (statd.comm_code = '" + cmd + "')) "
-				+ "WHERE serve.server_ip = '"+getServerIPAddress()+"' "
+				+ "LEFT OUTER JOIN dbstatus_door status_d ON ((door.door_id = status_d.door_id) AND (status_d.comm_code = '" + cmd + "')) "
+				+ "WHERE server_c.server_ip = '"+getServerIPAddress()+"' "
 				+ whereReaderList(ses_per, group_user, control_reader)
 				+ " ORDER BY door.door_id ASC ";
 	}
 	
 	public String selectDbDoorByHostByGroupCode(String group_code, int ses_per, String group_user, String control_reader) {
 		return "SELECT DISTINCT door.door_id, door.th_desc, door.en_desc, door.ip_address, door.locate_code, door.duplicate_ip, "
-				+ "locate.th_desc AS l_th_desc, locate.en_desc AS l_en_desc, serve.server_ip "
+				+ "locate.th_desc AS l_th_desc, locate.en_desc AS l_en_desc, server_c.server_ip "
 				+ "FROM dbdoor door "
 				+ "LEFT OUTER JOIN dblocation locate ON (door.locate_code = locate.locate_code) "
-				+ "LEFT OUTER JOIN dbserver_config serve ON (locate.server_code = serve.server_code) "
+				+ "LEFT OUTER JOIN dbserver_config server_c ON (locate.server_code = server_c.server_code) "
 				+ "LEFT OUTER JOIN dbzone_group zgroup ON (door.door_id = SUBSTRING(zgroup.reader_no, 1, 4)) "
 				+ "LEFT OUTER JOIN dbreader reader ON (door.door_id = reader.door_id) "
-				+ "WHERE (serve.server_ip = '"+getServerIPAddress()+"') AND (zgroup.group_code = '"+group_code+"') "
+				+ "WHERE (server_c.server_ip = '"+getServerIPAddress()+"') AND (zgroup.group_code = '"+group_code+"') "
 				+ whereReaderList(ses_per, group_user, control_reader)				
 				+ " ORDER BY door.door_id ASC";
 	}

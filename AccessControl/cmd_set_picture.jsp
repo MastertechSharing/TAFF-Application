@@ -178,7 +178,7 @@
 							String chkbox_door_id = "";
 							int numtaff = 0, num_duplicateip = 0;
 							try{
-								ResultSet rs = stmtQry.executeQuery(selectDbDoorByHostByGroupUser(ses_per, ses_group_user, ses_control_reader));
+								ResultSet rs = stmtQry.executeQuery(selectDbDoorByHostByGroupUserByHWModel(ses_per, ses_group_user, ses_control_reader,""));
 								while(rs.next()){ 
 									door_id = rs.getString("door_id");
 									door_id_link = "<b> <a href='#' onClick='show_door(\""+ door_id +"\");' data-toggle='tooltip' data-placement='left' title='"+lb_viewdata+"'>" + door_id + "</a> </b>";

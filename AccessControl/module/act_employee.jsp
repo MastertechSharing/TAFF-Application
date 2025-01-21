@@ -364,6 +364,12 @@
 		} catch (Exception ef) { }
 			
 	} else {
+		//face
+		String face_sncard = request.getParameter("face_sn_card").toUpperCase();
+		String face_pincode = request.getParameter("face_pincode");
+		String face_identifymode = request.getParameter("face_identify_mode");
+		/////////
+		
 		int sex = Integer.parseInt(request.getParameter("sex"));
 		int prefix = Integer.parseInt(request.getParameter("prefix"));
 		String th_fname = new String(request.getParameter("th_fname").getBytes("ISO8859_1"), "tis-620");
@@ -460,14 +466,14 @@
 										sql = "INSERT INTO dbemployee (idcard, sex, prefix, th_fname, th_sname, en_fname, en_sname, "
 												+ "issue, pincode, st_date, ex_date, sec_code, pos_code, group_code, type_code, "
 												+ "use_finger, st_time, ex_time, use_map_card, sn_card, emp_card, card_id, "
-												+ "nationality, phone_no, email, pass_word, date_data) VALUES ('" + idcard + "','" 
-												+ sex + "','" + prefix + "','" + th_fname + "','" + th_sname + "','" + en_fname 
+												+ "nationality, phone_no, email, pass_word, date_data, face_sn_card, face_pincode, face_identify_mode) VALUES ('" 
+												+ idcard + "','" + sex + "','" + prefix + "','" + th_fname + "','" + th_sname + "','" + en_fname 
 												+ "','" + en_sname + "','" + issue + "','" + pincode + "','" + stdate + "','" 
 												+ exdate + "','" + sec_code + "','" + pos_code + "','" + groupCodeAdd + "','"
 												+ type_code + "','" + use_finger + "','" + st_time + "','" + ex_time + "','" 
 												+ usemapcard + "','" + sncard + "','" + emp_card + "','" + card_id + "','" 
 												+ nationality + "','" + phoneno + "','" + email + "','" + user_password + "'," 
-												+ date_updates + ")";
+												+ date_updates + ",'" + face_sncard + "','" + face_pincode + "','" + face_identifymode + "')";
 										resultQry = stmtUp.executeUpdate(sql);
 										if (resultQry != 0) {
 									
@@ -598,7 +604,8 @@
 					+ type_code + "', use_finger='" + use_finger+ "', st_time='" + st_time + "', ex_time='" 
 					+ ex_time + "', use_map_card='" + usemapcard + "', sn_card='" + sncard + "', emp_card='" 
 					+ emp_card + "', card_id='" + card_id+ "', nationality='" + nationality + "', phone_no='" 
-					+ phoneno + "', email='" + email + "' ";
+					+ phoneno + "', email='" + email + "', face_sn_card='" + face_sncard + "', face_pincode='" 
+					+ face_pincode + "', face_identify_mode='" + face_identifymode + "' ";
 			try {
 				if (idcard.equals(idcard2)) {
 					if(dup_cardid == false && dup_sncard == false){

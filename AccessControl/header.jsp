@@ -394,8 +394,9 @@
 					'[<%= lb_config %>] <%= lb_cmdD2 %>',
 					'[<%= lb_config %>] <%= lb_cmdD3 %>',
 					'[<%= lb_config %>] <%= lb_cmd12 %>',
-					'[<%= lb_config %>] <%= lb_cmd13 %>',
-					<%	}	%>
+					'[<%= lb_config %>] <%= lb_cmd13 %>',					
+					<%	}	%>					
+					'[<%= lb_config %>] <%= lb_getinfo %>',
 
 				<!--	System Info	-->
 					<%	if(checkPermission(ses_per, "0")){	%>
@@ -561,11 +562,12 @@
 										<li class="divider"> </li>
 										<li> <a href="data_door.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_door %> </a> </li> 
 										<li> <a href="data_reader.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_reader %> </a> </li> 
+										<li> <a href="data_reader_face.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_reader %> [<%= lb_face %>] </a> </li>
 										<li> <a href="data_event.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_event %> </a> </li>
 									<!--	<li> <a href="data_mapserial.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_mapserial %> </a> </li> -->
-										<li> <a href="data_mapduty.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_mapduty %> </a> </li>
+										<li> <a href="data_mapduty.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_mapduty %> </a> </li>										
 									<!--	<li class="divider"> </li>
-										<li> <a href="data_reader_face.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_reader %> [Face ID] </a> </li>	-->
+											-->
 									</ul>
 								</li> 
 							<%	}	%>
@@ -887,6 +889,22 @@
 									</ul>
 								</li>
 							<%	}	%>
+
+								<!--	Face	-->
+								<li class="dropdown dropdown-submenu"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <label class="txt-shadow"> <%= lb_face %> </label> </a>	
+									<ul class="dropdown-menu" style="min-width: 250px;" data-dropdown-in="fadeInLeft" data-dropdown-out="fadeOutRight">
+										<li> <a href="cmd_face_set_datetime.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setdatetime %> </a> </li>
+										<li> <a href="cmd_face_get_infor.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_getinfo %> </a> </li>
+										<!--<li> <a href="cmd_face_set_infor.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setinfo %> </a> </li>-->
+										<li> <a href="cmd_face_get_employee_list.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_getemployeelist %> </a> </li>
+										<li> <a href="cmd_face_get_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_getemployee %> </a> </li>
+										<li> <a href="cmd_face_set_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setemployee %> </a> </li>
+										<li> <a href="cmd_face_del_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_delemployee %> </a> </li>
+										<!--<li> <a href="cmd_face_get_transaction.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_gettransaction %> </a> </li>-->
+									</ul>
+								</li>
+
 							</ul>
 						</li>
 						<!--	System Info	-->
@@ -1395,6 +1413,25 @@
 				title_menu = lb_cmd12;
 			}else if(subtitle.equals("getlistslide")){
 				title_menu = lb_cmd13;
+			}										
+		}else if(subpage.equals("face")){
+			title_sub_menu = lb_face;
+			if(subtitle.equals("facesetdatetime")){
+				title_menu = lb_face_setdatetime;
+			}else if(subtitle.equals("facegetinfor")){
+				title_menu = lb_face_getinfo;
+			}else if(subtitle.equals("facesetinfor")){
+				title_menu = lb_face_setinfo;
+			}else if(subtitle.equals("facegetemployeelist")){
+				title_menu = lb_face_getemployeelist;
+			}else if(subtitle.equals("facegetemployee")){
+				title_menu = lb_face_getemployee;
+			}else if(subtitle.equals("facesetemployee")){
+				title_menu = lb_face_setemployee;
+			}else if(subtitle.equals("facedelemployee")){
+				title_menu = lb_face_delemployee;			
+			}else if(subtitle.equals("facegettransaction")){
+				title_menu = lb_face_gettransaction;			
 			}
 		}
 		display_menu = "<i class='glyphicon glyphicon-wrench'></i> &nbsp; "+lb_config+

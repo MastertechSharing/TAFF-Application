@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=tis-620" language="java"%>
 
 <%!		
+
 	public String displayColorStr(String data, String lang) {
 		String th_color[] = { "ขาว", "แดง", "เขียว", "เหลือง" };
 		String en_color[] = { "White", "Red", "Green", "Yellow" };
@@ -330,6 +331,33 @@
 		}
 		return result;
 	}	
+	
+	public String displayFaceIdentifyMode(String data) {
+		String result = "";
+		//String[] identifyMode = { "Face", "Card and Face", "Card or Face", "Card", "ID and Face", "ID or Face", "ID and Card", "ID or Card", "Default Device", "ID and Pin" };
+		if (data.equals("0")) {
+			result = "Face";
+		} else if (data.equals("1")) {
+			result = "Card and Face";
+		} else if (data.equals("2")) {
+			result = "Card or Face";
+		} else if (data.equals("3")) {
+			result = "Card";
+		} else if (data.equals("4")) {
+			result = "ID and Face";
+		} else if (data.equals("5")) {
+			result = "ID or Face";
+		} else if (data.equals("6")) {
+			result = "ID and Card";
+		} else if (data.equals("7")) {
+			result = "ID or Card";
+		} else if (data.equals("8")) {
+			result = "Default Device";
+		} else if (data.equals("9")) {
+			result = "ID and Pin";
+		}
+		return result;
+	}
 
 	// -----textmessage menu config about [set]-----//
 	public String displayTextAlert(String status, String times, String lang, String cmd) {

@@ -1134,6 +1134,16 @@
 	String btn_okserver = "";
 	String btn_configuser = "";
 	String btn_edit = "";
+
+	String lb_face = "";
+	String lb_face_setdatetime = "";
+	String lb_face_getinfo = "";
+	String lb_face_setinfo = "";	
+	String lb_face_getemployeelist = "";
+	String lb_face_getemployee = "";
+	String lb_face_setemployee = "";
+	String lb_face_delemployee = "";
+	String lb_face_gettransaction = "";
 	
 	if(lang.equals("th")){
 		lb_language2 = "ภาษา";
@@ -1858,7 +1868,7 @@
 		lb_report_112 = "[112] - การแตะบัตรทั้งหมด บุคคลภายในและภายนอก";
 		lb_report_113 = "[113] - การแตะบัตรทั้งหมด [รหัสงาน]";
 		lb_report_114 = "[114] - การแตะบัตรทั้งหมด [อุณหภูมิ-หน้ากาก]";
-		lb_report_115 = "[115] - การแตะบัตรเข้า-ออก [คำนวนเวลา]";
+		lb_report_115 = "[115] - การแตะบัตรเข้า-ออกช่วงวันเวลา [คำนวนเวลา]";
 		lb_report_151 = "[151] - การแตะบัตรผิดปกติ";
 		
 		lb_report_201 = "[201] - สรุปการแตะบัตรแยกคน";
@@ -2239,7 +2249,17 @@
 		btn_okserver = "ตกลง (เซิร์ฟเวอร์)";
 		btn_configuser = "กำหนด(ผู้ใช้)";
 		btn_edit = "แก้ไข";
-		
+				
+		lb_face = "เครื่องสแกนใบหน้า";
+		lb_face_setdatetime = "กำหนดวันที่-เวลา";
+		lb_face_getinfo = "อ่านคุณสมบัติทั่วไป";
+		lb_face_setinfo = "กำหนดคุณสมบัติทั่วไป";	
+		lb_face_getemployeelist = "อ่านข้อมูลพนักงาน [วันที่อัพเดต]";
+		lb_face_getemployee = "อ่านข้อมูลพนักงาน";
+		lb_face_setemployee = "เพิ่มข้อมูลพนักงาน";
+		lb_face_delemployee = "ลบข้อมูลพนักงาน";
+		lb_face_gettransaction = "ดาวน์โหลดข้อมูลการบันทึกเวลา";
+	
 	}else{
 		lb_language2 = "Language";
 		lb_thai = "Thai";
@@ -2966,7 +2986,7 @@
 		lb_report_112 = "[112] - All Transaction Internal And External Person";
 		lb_report_113 = "[113] - All Transaction [Work Code]"; 
 		lb_report_114 = "[114] - All Transaction [Temperature-Mask]"; 
-		lb_report_115 = "[115] - In-Out Transaction [Calculate Time]";
+		lb_report_115 = "[115] - In-Out Transaction By Datetime [Calculate Time]";
 		lb_report_151 = "[151] - Abnormal Transactions";
 		
 		lb_report_201 = "[201] - Summary Transaction By Employee";
@@ -3347,12 +3367,22 @@
 		btn_close = "Close";
 		btn_okserver = "OK (server)";
 		btn_configuser = "Config (user)";
-		btn_edit = "Edit";		
+		btn_edit = "Edit";	
+
+		lb_face = "Face Scan";			
+		lb_face_setdatetime = "Set Date Time";
+		lb_face_getinfo = "Get Information";
+		lb_face_setinfo = "Set Information";	
+		lb_face_getemployeelist = "Get Employee List";
+		lb_face_getemployee = "Get Employee";
+		lb_face_setemployee = "Set Employee";
+		lb_face_delemployee = "Del Employee";
+		lb_face_gettransaction = "Download Transaction";
+
 	}
 	
-	
-	
-	//	About Face ID
+		
+	//	About Face Scan
 	
 	String lb_readerface_no = "";
 	String lb_version = "";
@@ -3386,6 +3416,5 @@
 		msg_dupreaderface = "Duplicate Reader Face No.";
 		
 	}
-	
-	
+		
 %>

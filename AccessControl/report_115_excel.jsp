@@ -137,8 +137,9 @@
 					+ "LEFT OUTER JOIN dbsection sec ON (emp.sec_code = sec.sec_code) "
 					+ "LEFT OUTER JOIN dbreader rd ON (trs.reader_no = rd.reader_no) "
 					+ "LEFT OUTER JOIN dbdoor door ON (rd.door_id = door.door_id) "
-					+ "WHERE (trs.date_event BETWEEN '"+dateYMD1+"' AND '"+dateYMD2+"') "
-					+ "AND (trs.time_event BETWEEN '"+time1+"' AND '"+time2+"') "
+					+ "WHERE (trs.workday BETWEEN '"+date_time1+"' AND '"+date_time2+"') "
+					//+ "WHERE (trs.date_event BETWEEN '"+dateYMD1+"' AND '"+dateYMD2+"') "
+					//+ "AND (trs.time_event BETWEEN '"+time1+"' AND '"+time2+"') "
 					+ "AND (trs.idcard <> '****************') "
 					+ "AND (trs.event_code BETWEEN '01' AND '08') ";			
 			if(sw_version.equals("67")){	

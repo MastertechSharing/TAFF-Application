@@ -872,3 +872,9 @@ ALTER TABLE taff_data.dbo.dbdoor ADD time_increased_text INT(10) DEFAULT '0';
 
 ## 32 ALTER TABLE ON TAFF_DATA (Update 24/11/2023)
 ALTER TABLE taff_data.dbo.dbserver_config ADD branch_code VARCHAR(6) DEFAULT '';
+
+## 33 ALTER TABLE ON TAFF_DATA (Update 15/01/2025)
+ALTER TABLE taff_data.dbo.dbdoor ADD hardware_model VARCHAR(20) DEFAULT '';
+ALTER TABLE taff_data.dbo.dbemployee ADD face_sn_card VARCHAR(20) DEFAULT '';
+ALTER TABLE taff_data.dbo.dbemployee ADD face_pincode VARCHAR(6) DEFAULT '';
+ALTER TABLE taff_data.dbo.dbemployee ADD face_identify_mode VARCHAR(1) DEFAULT '0';

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html; charset=tis-620" language="java"%>
 <%@ include file="../function/language.jsp"%>
+<%@ include file="../function/connect.jsp"%>
 <% 	
 	response.setHeader("Cache-Control", "no-cache");
 	response.setHeader("Pragma", "no-cache");

@@ -297,6 +297,16 @@
 										if(page_jsp.equals("cmd_del_slide.jsp"))								page_jsp = "["+lb_config+"] "+lb_cmdD3;
 										if(page_jsp.equals("cmd_get_listvideo.jsp"))							page_jsp = "["+lb_config+"] "+lb_cmd12;
 										if(page_jsp.equals("cmd_get_listslide.jsp"))							page_jsp = "["+lb_config+"] "+lb_cmd13;
+									
+									//  Face
+										if(page_jsp.equals("cmd_face_set_datetime.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_setdatetime;
+										if(page_jsp.equals("cmd_face_get_infor.jsp"))							page_jsp = "["+lb_config+"] "+lb_face_getinfo;
+										if(page_jsp.equals("cmd_face_set_infor.jsp"))							page_jsp = "["+lb_config+"] "+lb_face_setinfo;
+										if(page_jsp.equals("cmd_face_get_employee_list.jsp"))					page_jsp = "["+lb_config+"] "+lb_face_getemployeelist;
+										if(page_jsp.equals("cmd_face_get_employee.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_getemployee;
+										if(page_jsp.equals("cmd_face_set_employee.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_setemployee;
+										if(page_jsp.equals("cmd_face_del_employee.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_delemployee;
+										if(page_jsp.equals("cmd_face_get_transaction.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_gettransaction;
 
 								//	System Info	====================================================================================================================================================================
 										if(page_jsp.equals("view_configcompany.jsp"))							page_jsp = "["+lb_systeminfo+"] "+lb_configcom;

@@ -657,11 +657,53 @@
 								</div>
 							</div> 
 						</div> 
-					</div> 
-				
+					</div> 								
 				</div>
+					
+				<div class="bs-callout bs-callout-info" style="border: 0px !important; margin-top: -15px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;" border="0">		
+				</div> 
+
+				<div class="row" style="border: 0px !important; margin-top: -15px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;" border="0">
+					<div class="bs-callout bs-callout-info">
+						<div class="row alert-message-info" style="height: 32px; margin-left: -10px; margin-top: -10px; margin-right: -10px; margin-bottom: 10px;"> 
+							<label class="control-label" style="margin-left: 2%; margin-top: 5px;"> <i class="glyphicon glyphicon-cog" > </i> &nbsp; <b> Face Employee Information </b> </label>
+						  </div> 
+										
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> <%= lb_serial_card %> : </label>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="face_sn_card" name="face_sn_card" maxlength="20" placeholder="<%= lb_serial_card %>" onKeyPress="IsValidCharacter()">
+							</div>
+						</div> 
+						
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> <%= lb_pincode %> : </label>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="face_pincode" name="face_pincode" maxlength="6" placeholder="<%= lb_pincode %>" onKeyPress="IsValidNumber()">
+							</div>
+						</div>
+	
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> Identify Mode : </label>
+							<div class="col-md-5">
+								<select class="form-control selectpicker" data-width="100%" data-size="10" name="face_identify_mode" id="face_identify_mode">
+									<option value="0"> <%= displayFaceIdentifyMode("0") %> </option>
+									<option value="1"> <%= displayFaceIdentifyMode("1") %> </option>
+									<option value="2"> <%= displayFaceIdentifyMode("2") %> </option>
+									<option value="3"> <%= displayFaceIdentifyMode("3") %> </option>
+									<option value="4"> <%= displayFaceIdentifyMode("4") %> </option>
+									<option value="5"> <%= displayFaceIdentifyMode("5") %> </option>
+									<option value="6"> <%= displayFaceIdentifyMode("6") %> </option>
+									<option value="7"> <%= displayFaceIdentifyMode("7") %> </option>
+									<option value="8" selected> <%= displayFaceIdentifyMode("8") %> </option>
+									<option value="9"> <%= displayFaceIdentifyMode("9") %> </option>
+								</select>
+							</div>							
+						</div> 							
+					</div> 
+				</div> 
 			
-				<div class="row" style="border: 0px !important; margin-top: -15px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;">
+				<div class="row" style="border: 0px !important; margin-top: 10px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;">
 					<div class="bs-callout bs-callout-info"> 
 						<center>
 							<input type="button" class="btn btn-primary btn-sm button-shadow1 button-shadow2" id="btnok" value=" &nbsp; &nbsp; &nbsp; <%= btn_ok %> &nbsp; &nbsp; &nbsp; " onClick="ConfirmAdd('add', '<%=msg_confirmedit %>', '<%= msg_notinput_emp %>', '<%= msg_chk_mapcard %>', '<%= msg_chk_issue %>', '<%= msg_chk_pincode %>', '<%= msg_mistake_datetime %>', '<%= msg_chksel_sec %>', '<%= msg_chksel_pos %>', '<%= msg_chksel_type %>', '<%= msg_chksel_group %>', '<%= msg_chk_inputissue%>');"> &nbsp; 
@@ -720,7 +762,12 @@
 						}
 						if(!(card_id.equals("") || card_id.equals("null"))){
 							card_id = displayFormatPublicId(card_id);
-						}					
+						}	
+						
+						String facesncard = rs.getString("face_sn_card");
+						String facepincode = rs.getString("face_pincode");
+						String faceidentifymode = rs.getString("face_identify_mode");
+						
 %>				
 				<div class="row">
 				
@@ -1063,6 +1110,51 @@
 					</div>
 					
 				</div>
+				
+				<div class="bs-callout bs-callout-info" style="border: 0px !important; margin-top: -15px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;" border="0">		
+				</div> 
+
+				<div class="row" style="border: 0px !important; margin-top: -15px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;" border="0">
+					<div class="bs-callout bs-callout-info">
+						<div class="row alert-message-info" style="height: 32px; margin-left: -10px; margin-top: -10px; margin-right: -10px; margin-bottom: 10px;"> 
+							<label class="control-label" style="margin-left: 2%; margin-top: 5px;"> <i class="glyphicon glyphicon-cog" > </i> &nbsp; <b> Face Employee Information </b> </label>
+						  </div> 
+						
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> <%= lb_serial_card %> : </label>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="face_sn_card" name="face_sn_card" value="<%= facesncard %>" maxlength="20" placeholder="<%= lb_serial_card %>" onKeyPress="IsValidCharacter()">
+								<input type="hidden" name="txface_sn_card" id="txface_sn_card" value="<%= facesncard %>">
+							</div>
+						</div> 
+						
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> <%= lb_pincode %> : </label>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="face_pincode" name="face_pincode" value="<%= facepincode %>" maxlength="6" placeholder="<%= lb_pincode %>" onKeyPress="IsValidNumber()">								
+								<input type="hidden" name="txface_pincode" id="txface_pincode" value="<%= facepincode %>">
+							</div>
+						</div>
+	
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> Identify Mode : </label>
+							<div class="col-md-5">
+								<select class="form-control selectpicker" data-width="100%" data-size="10" name="face_identify_mode" id="face_identify_mode">
+									<option value="0" <%= checkDataSelected(faceidentifymode, "0") %>> <%= displayFaceIdentifyMode("0") %> </option>
+									<option value="1" <%= checkDataSelected(faceidentifymode, "1") %>> <%= displayFaceIdentifyMode("1") %> </option>
+									<option value="2" <%= checkDataSelected(faceidentifymode, "2") %>> <%= displayFaceIdentifyMode("2") %> </option>
+									<option value="3" <%= checkDataSelected(faceidentifymode, "3") %>> <%= displayFaceIdentifyMode("3") %> </option>
+									<option value="4" <%= checkDataSelected(faceidentifymode, "4") %>> <%= displayFaceIdentifyMode("4") %> </option>
+									<option value="5" <%= checkDataSelected(faceidentifymode, "5") %>> <%= displayFaceIdentifyMode("5") %> </option>
+									<option value="6" <%= checkDataSelected(faceidentifymode, "6") %>> <%= displayFaceIdentifyMode("6") %> </option>
+									<option value="7" <%= checkDataSelected(faceidentifymode, "7") %>> <%= displayFaceIdentifyMode("7") %> </option>
+									<option value="8" <%= checkDataSelected(faceidentifymode, "8") %>> <%= displayFaceIdentifyMode("8") %> </option>
+									<option value="9" <%= checkDataSelected(faceidentifymode, "9") %>> <%= displayFaceIdentifyMode("9") %> </option>
+								</select>							
+							</div>							
+						</div> 							
+					</div> 
+				</div> 
 				
 				<div class="row" style="border: 0px !important; margin-top: -15px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;">
 					<div class="bs-callout bs-callout-info"> 

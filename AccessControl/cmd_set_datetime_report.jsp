@@ -7,7 +7,7 @@
 	session.setAttribute("page_g", "tool"); 
 	session.setAttribute("subpage", "general");
 	session.setAttribute("subtitle", "setdatetime");
-	session.setAttribute("action", "setdatetime_report.jsp?");
+	session.setAttribute("action", "cmd_set_datetime_report.jsp?");
 	
 	String countip = "";
 	if (session.getAttribute("ipcount") != null) { 
@@ -59,7 +59,7 @@
 					<td width="5%" align="center"> <b> <%= lb_no %> </b> </td>
 					<td width="20%" align="center"> <b> <%= lb_doorcode %> </b> </td>
 					<td width="60%" align="center"> <b> <%= lb_description %> </b> </td>
-					<td width="15%" align="center"> <b> <%= lb_result %> </b> </td>
+					<td width="15%" align="center"> <b> <%= lb_result %> </b> </td>					
 				</thead>
 			</table>
 		</div>

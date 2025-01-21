@@ -254,6 +254,16 @@
 			if(data.equals("["+lb_config+"] "+lb_cmd12))												out.println(" <script> window.parent.location.href = '../cmd_get_listvideo.jsp'; </script> ");
 			if(data.equals("["+lb_config+"] "+lb_cmd13))												out.println(" <script> window.parent.location.href = '../cmd_get_listslide.jsp'; </script> ");
 		}
+		
+		//	Face
+			if(data.equals("["+lb_config+"] "+lb_face_setdatetime))										out.println(" <script> window.parent.location.href = '../cmd_face_set_datetime.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_getinfo))											out.println(" <script> window.parent.location.href = '../cmd_face_get_infor.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_setinfo))											out.println(" <script> window.parent.location.href = '../cmd_face_set_infor.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_getemployeelist))									out.println(" <script> window.parent.location.href = '../cmd_face_get_employee_list.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_getemployee))										out.println(" <script> window.parent.location.href = '../cmd_face_get_employee.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_setemployee))										out.println(" <script> window.parent.location.href = '../cmd_face_set_employee.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_delemployee))										out.println(" <script> window.parent.location.href = '../cmd_face_del_employee.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_gettransaction))									out.println(" <script> window.parent.location.href = '../cmd_face_get_transaction.jsp'; </script> ");
 	
 	//	System Info	====================================================================================================================================================================
 		if(checkPermission(ses_per, "0")){
