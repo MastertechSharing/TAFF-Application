@@ -254,6 +254,7 @@
 														  rs.getString("use_map_card")+","+rs.getString("nationality")+","+rs.getString("card_id")+","+
 														  rs.getString("phone_no")+","+rs.getString("email")+","+rs.getString("use_finger")+","+
 														  rs.getString("st_time")+","+rs.getString("ex_time");
+														  // +","+rs.getString("face_sn_card")+","+rs.getString("face_pincode")+","+rs.getString("face_identify_mode");
 												pw.println(new String(StrText.getBytes("tis-620")));
 											}
 											

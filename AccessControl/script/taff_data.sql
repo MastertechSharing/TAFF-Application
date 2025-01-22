@@ -882,3 +882,4 @@ ALTER TABLE taff_data.dbdoor ADD hardware_model VARCHAR(20) DEFAULT '';
 ALTER TABLE taff_data.dbemployee ADD face_sn_card VARCHAR(20) DEFAULT '';
 ALTER TABLE taff_data.dbemployee ADD face_pincode VARCHAR(6) DEFAULT '';
 ALTER TABLE taff_data.dbemployee ADD face_identify_mode VARCHAR(1) DEFAULT '0';
+ALTER TABLE taff_data.dbemployee ADD face_date_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP;

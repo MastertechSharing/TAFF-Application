@@ -83,6 +83,10 @@
 	String st_time = "";
 	String ex_time = "";
 	
+	String face_sncard = "";
+	String face_pincode = "";
+	String face_identifymode = "";
+	
 	String contentType = request.getContentType();	
     if((contentType != null) && (contentType.indexOf("multipart/form-data") >= 0)){
 		
@@ -195,6 +199,11 @@
 								st_time = data_arr[23].trim();
 								ex_time = data_arr[24].trim();
 								date_data = getCurrentDateTime();
+								
+								/*face_sncard = data_arr[25].trim();
+								face_pincode = data_arr[26].trim();								
+								face_identifymode = data_arr[27].trim();
+								*/
 								
 								if(!(issue.equals(""))){
 									if(issue.length() >= 1 || issue.length() <= 2){									
@@ -404,11 +413,11 @@
 										</div>
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div>
-											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> <%= lb_sex %> ( 1 <%= lb_letter2 %> <%= lb_sex_desction %> ), </label> 
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> <%= lb_sex %> ( 1 <%= lb_letter %> <%= lb_sex_desction %> ), </label> 
 										</div>
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div>
-											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> <%= lb_prefix %> ( 1 <%= lb_letter2 %> <%= lb_sex_mr_mrs %>), </label> 
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> <%= lb_prefix %> ( 1 <%= lb_letter %> <%= lb_sex_mr_mrs %>), </label> 
 										</div>
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div>
@@ -499,6 +508,21 @@
 											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> <%= lb_expiretime %> ( HH:MM ) </label> 
 										</div>
 										
+										<!--Face
+										<div class="row">
+											<div class="col-md-2 col-xs-2"> &nbsp; </div>
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face <%= lb_serial_card %> ( <%= lb_numberic %> ), </label> 
+										</div>
+										<div class="row">
+											<div class="col-md-2 col-xs-2"> &nbsp; </div>
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face <%= lb_pincode %> ( <%= lb_numberic %> 6 <%= lb_letter %> <%= lb_orspace %> ), </label> 
+										</div>										
+										<div class="row">
+											<div class="col-md-2 col-xs-2"> &nbsp; </div>
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face Identify Mode ( 1 <%= lb_letter %> <%= lb_ex2 %> : 0 = Face, 1 = Card and Face, 2 = Card or Face, 3 = Card, 4 = ID and Face, 5 = ID or Face, 6 = ID and Card, 7 = ID or Card, 8 = Default Device, 9 = ID and Pin) </label> 
+										</div>
+										-->
+										
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div> 
 											<div class="col-md-6 col-xs-6">
@@ -508,7 +532,7 @@
 												<input type="button" name="upload" id="btnok" class="btn btn-primary btn-sm button-shadow1 button-shadow2" value=" &nbsp; &nbsp; &nbsp; <%= lb_upload %> &nbsp; &nbsp; &nbsp; " onclick="return checkInputFile(document.form1.files, '<%= alert_InputFile %>');">
 											</div> 
 										</div>
-										
+																				
 									</div> 
 								</div>
 

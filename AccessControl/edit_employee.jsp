@@ -672,7 +672,7 @@
 						<div class="row form-group">
 							<label class="control-label label-text-1 col-md-4"> <%= lb_serial_card %> : </label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="face_sn_card" name="face_sn_card" maxlength="20" placeholder="<%= lb_serial_card %>" onKeyPress="IsValidCharacter()">
+								<input type="text" class="form-control" id="face_sncard" name="face_sncard" maxlength="20" placeholder="<%= lb_serial_card %>" onKeyPress="IsValidCharacter()">
 							</div>
 						</div> 
 						
@@ -686,7 +686,7 @@
 						<div class="row form-group">
 							<label class="control-label label-text-1 col-md-4"> Identify Mode : </label>
 							<div class="col-md-5">
-								<select class="form-control selectpicker" data-width="100%" data-size="10" name="face_identify_mode" id="face_identify_mode">
+								<select class="form-control selectpicker" data-width="100%" data-size="10" name="face_identifymode" id="face_identifymode">
 									<option value="0"> <%= displayFaceIdentifyMode("0") %> </option>
 									<option value="1"> <%= displayFaceIdentifyMode("1") %> </option>
 									<option value="2"> <%= displayFaceIdentifyMode("2") %> </option>
@@ -1123,8 +1123,8 @@
 						<div class="row form-group">
 							<label class="control-label label-text-1 col-md-4"> <%= lb_serial_card %> : </label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="face_sn_card" name="face_sn_card" value="<%= facesncard %>" maxlength="20" placeholder="<%= lb_serial_card %>" onKeyPress="IsValidCharacter()">
-								<input type="hidden" name="txface_sn_card" id="txface_sn_card" value="<%= facesncard %>">
+								<input type="text" class="form-control" id="face_sncard" name="face_sncard" value="<%= facesncard %>" maxlength="20" placeholder="<%= lb_serial_card %>" onKeyPress="IsValidCharacter()">
+								<input type="hidden" name="txtface_sncard" id="txtface_sncard" value="<%= facesncard %>">
 							</div>
 						</div> 
 						
@@ -1132,14 +1132,14 @@
 							<label class="control-label label-text-1 col-md-4"> <%= lb_pincode %> : </label>
 							<div class="col-md-5">
 								<input type="text" class="form-control" id="face_pincode" name="face_pincode" value="<%= facepincode %>" maxlength="6" placeholder="<%= lb_pincode %>" onKeyPress="IsValidNumber()">								
-								<input type="hidden" name="txface_pincode" id="txface_pincode" value="<%= facepincode %>">
+								<input type="hidden" name="txtface_pincode" id="txtface_pincode" value="<%= facepincode %>">
 							</div>
 						</div>
 	
 						<div class="row form-group">
 							<label class="control-label label-text-1 col-md-4"> Identify Mode : </label>
 							<div class="col-md-5">
-								<select class="form-control selectpicker" data-width="100%" data-size="10" name="face_identify_mode" id="face_identify_mode">
+								<select class="form-control selectpicker" data-width="100%" data-size="10" name="face_identifymode" id="face_identifymode">
 									<option value="0" <%= checkDataSelected(faceidentifymode, "0") %>> <%= displayFaceIdentifyMode("0") %> </option>
 									<option value="1" <%= checkDataSelected(faceidentifymode, "1") %>> <%= displayFaceIdentifyMode("1") %> </option>
 									<option value="2" <%= checkDataSelected(faceidentifymode, "2") %>> <%= displayFaceIdentifyMode("2") %> </option>
@@ -1150,7 +1150,8 @@
 									<option value="7" <%= checkDataSelected(faceidentifymode, "7") %>> <%= displayFaceIdentifyMode("7") %> </option>
 									<option value="8" <%= checkDataSelected(faceidentifymode, "8") %>> <%= displayFaceIdentifyMode("8") %> </option>
 									<option value="9" <%= checkDataSelected(faceidentifymode, "9") %>> <%= displayFaceIdentifyMode("9") %> </option>
-								</select>							
+								</select>	
+								<input name="txtface_identifymode" type="hidden" id="txtface_identifymode" value="<%= faceidentifymode %>">								
 							</div>							
 						</div> 							
 					</div> 

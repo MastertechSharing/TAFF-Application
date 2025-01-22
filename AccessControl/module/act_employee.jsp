@@ -365,9 +365,9 @@
 			
 	} else {
 		//face
-		String face_sncard = request.getParameter("face_sn_card").toUpperCase();
+		String face_sncard = request.getParameter("face_sncard").toUpperCase();
 		String face_pincode = request.getParameter("face_pincode");
-		String face_identifymode = request.getParameter("face_identify_mode");
+		String face_identifymode = request.getParameter("face_identifymode");
 		/////////
 		
 		int sex = Integer.parseInt(request.getParameter("sex"));
@@ -466,14 +466,14 @@
 										sql = "INSERT INTO dbemployee (idcard, sex, prefix, th_fname, th_sname, en_fname, en_sname, "
 												+ "issue, pincode, st_date, ex_date, sec_code, pos_code, group_code, type_code, "
 												+ "use_finger, st_time, ex_time, use_map_card, sn_card, emp_card, card_id, "
-												+ "nationality, phone_no, email, pass_word, date_data, face_sn_card, face_pincode, face_identify_mode) VALUES ('" 
-												+ idcard + "','" + sex + "','" + prefix + "','" + th_fname + "','" + th_sname + "','" + en_fname 
-												+ "','" + en_sname + "','" + issue + "','" + pincode + "','" + stdate + "','" 
-												+ exdate + "','" + sec_code + "','" + pos_code + "','" + groupCodeAdd + "','"
-												+ type_code + "','" + use_finger + "','" + st_time + "','" + ex_time + "','" 
-												+ usemapcard + "','" + sncard + "','" + emp_card + "','" + card_id + "','" 
-												+ nationality + "','" + phoneno + "','" + email + "','" + user_password + "'," 
-												+ date_updates + ",'" + face_sncard + "','" + face_pincode + "','" + face_identifymode + "')";
+												+ "nationality, phone_no, email, pass_word, date_data, "
+												+ "face_sn_card, face_pincode, face_identify_mode, face_date_data) VALUES ('" 
+												+ idcard + "','" + sex + "','" + prefix + "','" + th_fname + "','" + th_sname + "','" + en_fname + "','" + en_sname + "','" 
+												+ issue + "','" + pincode + "','" + stdate + "','" + exdate + "','" + sec_code + "','" + pos_code + "','" + groupCodeAdd + "','" + type_code + "','" 
+												+ use_finger + "','" + st_time + "','" + ex_time + "','" + usemapcard + "','" + sncard + "','" + emp_card + "','" + card_id + "','" 
+												+ nationality + "','" + phoneno + "','" + email + "','" + user_password + "'," + date_updates + ",'" 
+												+ face_sncard + "','" + face_pincode + "','" + face_identifymode + "'," + date_updates + ")";
+											
 										resultQry = stmtUp.executeUpdate(sql);
 										if (resultQry != 0) {
 									
@@ -547,6 +547,10 @@
 			String txtenfname = new String(request.getParameter("txtenfname").getBytes("ISO8859_1"), "tis-620");
 			String txtensname = new String(request.getParameter("txtensname").getBytes("ISO8859_1"), "tis-620");
 			
+			String txtface_sncard = request.getParameter("txtface_sncard");
+			String txtface_pincode = request.getParameter("txtface_pincode");
+			String txtface_identifymode = request.getParameter("txtface_identifymode");			
+			
 			String txtcard_id = request.getParameter("txtcardid");
 			if (!(txtcard_id.equals("") || txtcard_id.equals("null") || (txtcard_id.length() == 13))) {
 				txtcard_id = subStrPublicID(txtcard_id);
@@ -600,12 +604,12 @@
 					+ "', th_fname='" + th_fname + "', th_sname='" + th_sname + "', en_fname='" + en_fname 
 					+ "', en_sname='" + en_sname + "', issue='" + issue + "', pincode='" + pincode 
 					+ "', st_date='" + stdate + "', ex_date='" + exdate + "', sec_code='" + sec_code 
-					+ "', pos_code='" + pos_code + "', group_code='" + groupCodeAdd + "', type_code='" 
-					+ type_code + "', use_finger='" + use_finger+ "', st_time='" + st_time + "', ex_time='" 
-					+ ex_time + "', use_map_card='" + usemapcard + "', sn_card='" + sncard + "', emp_card='" 
-					+ emp_card + "', card_id='" + card_id+ "', nationality='" + nationality + "', phone_no='" 
-					+ phoneno + "', email='" + email + "', face_sn_card='" + face_sncard + "', face_pincode='" 
-					+ face_pincode + "', face_identify_mode='" + face_identifymode + "' ";
+					+ "', pos_code='" + pos_code + "', group_code='" + groupCodeAdd + "', type_code='" + type_code 
+					+ "', use_finger='" + use_finger+ "', st_time='" + st_time + "', ex_time='" + ex_time 
+					+ "', use_map_card='" + usemapcard + "', sn_card='" + sncard + "', emp_card='" + emp_card 
+					+ "', card_id='" + card_id+ "', nationality='" + nationality + "', phone_no='" + phoneno 
+					+ "', email='" + email + "', face_sn_card='" + face_sncard + "', face_pincode='" + face_pincode 
+					+ "', face_identify_mode='" + face_identifymode + "' ";
 			try {
 				if (idcard.equals(idcard2)) {
 					if(dup_cardid == false && dup_sncard == false){
@@ -619,7 +623,16 @@
 								|| (!txst_mm2.equals(mm2)) || (!txtcard_id.equals(card_id))) {
 							// data modify update datetime to date_data
 							sql += ", date_data=" + date_updates;
-						}
+						}		
+			
+						if ((!txtface_sncard.equals(face_sncard)) || (!txtface_pincode.equals(face_pincode))
+								|| (!txtface_identifymode.equals(face_identifymode))
+								|| (!txtthfname.equals(th_fname)) || (!txtthsname.equals(th_sname))
+								|| (!txtenfname.equals(en_fname)) || (!txtensname.equals(en_sname))) {
+							// data modify update datetime to face_date_data
+							sql += ", face_date_data=" + date_updates;
+						}					
+												
 						sql += " WHERE (idcard = '" + idcard2 + "')";
 						resultQry = stmtUp.executeUpdate(sql);
 						if (resultQry != 0) {
