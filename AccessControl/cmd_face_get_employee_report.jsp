@@ -37,7 +37,7 @@
 		
 	</head>
 
-	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="min-width: 1400px; margin-top: -50px;" onLoad="sendRequest(); ShowCurrentTime(); updateClock();">
+	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="min-width: 1600px; margin-top: -50px;" onLoad="sendRequest(); ShowCurrentTime(); updateClock();">
 		
 		<div class="table-responsive" style="border: 0px !important; margin-bottom: -55px;" border="0">
 			<table style="min-width: 550px;" border="0" cellspacing="0" cellpadding="0">
@@ -55,8 +55,8 @@
 				<input name="lang" id="lang" type="hidden" value="<%= lang %>" />
 			</form>	
 		
-			<div style="overflow-y: auto; overflow-x: hidden; width: 1400px" border="0">
-				<table style="min-width: 1400px; margin-bottom: 0px;" class="table table-hover" align="center" id="table1" border="0">
+			<div style="overflow-y: auto; overflow-x: hidden; width: 1600px" border="0">
+				<table style="min-width: 1600px; margin-bottom: 0px;" class="table table-hover" align="center" id="table1" border="0">
 					<thead>
 						<td width="3%" align="center"> <b> <%= lb_no %> </b> </td>
 						<td width="9%" align="center"> <b> <%= lb_doorcode %> </b> </td>
@@ -64,12 +64,13 @@
 						<td width="7%" align="center">  <b> <%= lb_result %> </b> </td>
 						<td width="8%" align="center" > <b> <%= lb_empcode %> </b> </td>
 						<td width="12%" align="center" > <b> <%= lb_names %> </b> </td>
-						<td width="10%" align="center" > <b> <%= lb_serial_card %> </b> </td>
-						<td width="7%" align="center" > <b> User Type </b> </td>
+						<td width="8%" align="center" > <b> <%= lb_serial_card %> </b> </td>
+						<td width="6%" align="center" > <b> User Type </b> </td>
 						<td width="8%" align="center" > <b> Identify Mode </b> </td>
 						<td width="10%" align="center" > <b><%= lb_dateupdate %> </b> </td>
-						<td width="7%" align="center" > <b> Job Num </b> </td>
-						<td width="7%" align="center" > <b> <%= lb_pincode %> </b> </td>						
+						<td width="6%" align="center" > <b> Job Num </b> </td>
+						<td width="6%" align="center" > <b> <%= lb_pincode %> </b> </td>	
+						<td width="10%" align="center" > <b> <%= lb_emp_photo %> </b> </td>							
 					</thead>
 				</table>
 			</div>

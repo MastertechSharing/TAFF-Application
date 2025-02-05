@@ -297,7 +297,7 @@
 		
 		<script>
 			function checkLogin(){
-				$('#form1').attr('action', 'module/check_login.jsp?action=setmsg&username='+$('#username').val()+'&password='+$('#password').val());
+				$('#form1').attr('action', 'module/check_login.jsp?action=setmsg');
 				$('#form1').attr('target', 'iframe_login');
 				$('#form1').submit();
 				

@@ -135,7 +135,7 @@
 								<div class="row">
 									<h5 class="modal-title col-xs-3 col-md-3" style="margin-top: 5px;"> <div align="right"> <b> <%= lb_empcode %> : </b> </div> </h5>
 									<div class="modal-title col-xs-2 col-md-2"> 
-										<input type="text" class="form-control" id="emp_id" name="emp_id" autocomplete="new-password" maxlength="16" style="min-height: 32px !important;" onKeyPress="IsValidCharacters(); " onKeyDown="" onKeyUp="chkKeyBlacklist();" onChange="chkChangeBlacklist();">
+										<input type="text" class="form-control" id="emp_id" name="emp_id" maxlength="16" style="min-height: 32px !important;" onKeyPress="IsValidCharacters(); " onKeyDown="" onKeyUp="chkKeyBlacklist();" onChange="chkChangeBlacklist();">
 									</div>
 									<div class="modal-title col-xs-1 col-md-1">
 										<img  src="images/view.png" width="28" height="28" border="0" align="absmiddle" onClick="show_detail();" data-toggle="tooltip" data-placement="right" title="<%= lb_search %>"/>
@@ -144,7 +144,7 @@
 									<div class="modal-title col-xs-3 col-md-3">
 										<input type="text" class="form-control" id="emp_name" name="emp_name" style="min-height: 32px !important; background-color:#F0F0F0" readonly="readonly"/>										
 									</div>
-									<div class="modal-title col-xs-1 col-md-1"> </div> 
+									<div class="modal-title col-xs-1 col-md-1"> <input type="hidden" name="filename" id="filename" value=""> </div> 									
 								</div>
 							</div>
 						</div>
@@ -251,6 +251,7 @@
 		</div>
 		
 		<iframe src="" id="iframe_chkblacklist" name="iframe_chkblacklist" frameborder="0" height="0px" width="0px"> </iframe>
+		<iframe src="" id="check_file" name="check_file" frameborder="0" width="0px" height="0px" scrolling="yes"></iframe>
 
 		<%@ include file="../tools/modal_warning.jsp"%>
 		<%@ include file="../tools/modal_viewdetail.jsp"%>	
@@ -292,6 +293,10 @@
 			}
 			
 			function onSubmitGetSet(data_selected, lang, msg, msg2){
+				var emp_id = document.form1.emp_id.value+".jpg";
+				check_file.location = 'cmd_set_picture_checkfile.jsp?filename='+emp_id+'&';
+				setTimeout(function(){
+				
 				if("<%= numtaff %>" == 0){
 					ModalWarning_TextName(msg, "chkid");
 					return false;	
@@ -314,6 +319,7 @@
 						window.document.form1.submit();
 					}
 				}
+				}, 750);
 			}
 		</script>
 	

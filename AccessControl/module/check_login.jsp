@@ -54,13 +54,16 @@
 	String userpass = request.getParameter("password");
 	String exdate = "";	
 	String monitor_data = "0";	
-		
+%>
+	<input type="hidden" name="username" id="username" value="<%= username %>">
+	<input type="hidden" name="password" id="password" value="<%= userpass %>">
+<%		
 	if(action.equals("setmsg")){
 		
 		Thread.sleep(100);
 		out.println("<script> "
 				+ " 	parent.window.document.getElementById('msg_loading_login').innerHTML = '"+msg_process_deltrans+"'; "
-				+ "		document.form1.action = 'check_login.jsp?action=deltrans&username="+username+"&password="+userpass+"'; "
+				+ "		document.form1.action = 'check_login.jsp?action=deltrans'; "
 				+ "		document.form1.submit(); "
 				+ "  </script>");
 	
@@ -83,7 +86,7 @@
 		Thread.sleep(100);
 		out.println("<script> "
 				+ " 	parent.window.document.getElementById('msg_loading_login').innerHTML = '"+msg_process_login+"'; "
-				+ "		document.form1.action = 'check_login.jsp?action=login&username="+username+"&password="+userpass+"'; "
+				+ "		document.form1.action = 'check_login.jsp?action=login'; "
 				+ "		document.form1.submit(); "
 				+ "  </script>");
 				

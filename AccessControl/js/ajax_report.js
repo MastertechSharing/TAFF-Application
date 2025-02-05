@@ -1165,6 +1165,7 @@ function show_getfaceemployee(num,ip,door_id,desc,result,data){
 	var job_num = "-";
 	var pin = "-";	
 	var last_updated = "-";
+	var showPic = "-";
 	
 	if (result == "1"){
 		//{"reason":"","last_update_utc":"2025-01-16T03:43:51Z","message":"192.168.1.198: Get Employee ID 4410094",
@@ -1187,7 +1188,7 @@ function show_getfaceemployee(num,ip,door_id,desc,result,data){
 		pin = jsonData.pin;		
 		last_updated = jsonData.last_updated
 	}
-	
+		
 	var cell5 = document.createElement("td");
 	var cellText5 = document.createTextNode(employee_code);
 	var cell6 = document.createElement("td");
@@ -1204,6 +1205,8 @@ function show_getfaceemployee(num,ip,door_id,desc,result,data){
 	var cellText11 = document.createTextNode(job_num);		
 	var cell12 = document.createElement("td");
 	var cellText12 = document.createTextNode(pin);	
+	var cell13 = document.createElement("td");
+	var cellText13 = document.createTextNode(showPic);
 				
 	setstyletxt(cell1,"center");
 	setstyletxt(cell2,"center");
@@ -1217,6 +1220,7 @@ function show_getfaceemployee(num,ip,door_id,desc,result,data){
 	setstyletxt(cell10,"center");				
 	setstyletxt(cell11,"center");	
 	setstyletxt(cell12,"center");
+	setstyletxt(cell13,"center");
 		
 	cell1.appendChild(cellText1);
 	cell2.appendChild(cellText2);
@@ -1230,6 +1234,18 @@ function show_getfaceemployee(num,ip,door_id,desc,result,data){
 	cell10.appendChild(cellText10);				
 	cell11.appendChild(cellText11);		
 	cell12.appendChild(cellText12);	
+		
+	if(capture_jpeg_base64 != null){
+		//alert(capture_jpeg_base64);
+		showPic = "View";		
+		var linkpage = document.createElement('a');
+		linkpage.setAttribute('href', 'cmd_face_get_employee_view.jsp?'+checkModeData(ip, door_id)+'&idcard='+employee_code);
+		linkpage.onclick = openInNewWindow;
+		linkpage.innerHTML = showPic;
+		cell13.appendChild(linkpage);				
+	}else{		
+		cell13.appendChild(cellText13);	
+	}
 	
 	row.appendChild(cell1);
 	row.appendChild(cell2);
@@ -1243,6 +1259,7 @@ function show_getfaceemployee(num,ip,door_id,desc,result,data){
 	row.appendChild(cell10);				
 	row.appendChild(cell11);	
 	row.appendChild(cell12);
+	row.appendChild(cell13);
 	
 	tblBody.appendChild(row);
 	tbl.appendChild(tblBody);

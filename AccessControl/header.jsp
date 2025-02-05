@@ -901,6 +901,7 @@
 										<li> <a href="cmd_face_get_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_getemployee %> </a> </li>
 										<li> <a href="cmd_face_set_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setemployee %> </a> </li>
 										<li> <a href="cmd_face_del_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_delemployee %> </a> </li>
+										<!--<li> <a href="cmd_face_set_employees.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setemployee %> New </a> </li>-->
 										<!--<li> <a href="cmd_face_get_transaction.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_gettransaction %> </a> </li>-->
 									</ul>
 								</li>
@@ -1432,6 +1433,8 @@
 				title_menu = lb_face_delemployee;			
 			}else if(subtitle.equals("facegettransaction")){
 				title_menu = lb_face_gettransaction;			
+			}else if(subtitle.equals("facesetemployees")){
+				title_menu = lb_face_setemployee;
 			}
 		}
 		display_menu = "<i class='glyphicon glyphicon-wrench'></i> &nbsp; "+lb_config+

@@ -306,6 +306,7 @@
 										if(page_jsp.equals("cmd_face_get_employee.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_getemployee;
 										if(page_jsp.equals("cmd_face_set_employee.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_setemployee;
 										if(page_jsp.equals("cmd_face_del_employee.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_delemployee;
+										if(page_jsp.equals("cmd_face_set_employees.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_setemployee;
 										if(page_jsp.equals("cmd_face_get_transaction.jsp"))						page_jsp = "["+lb_config+"] "+lb_face_gettransaction;
 
 								//	System Info	====================================================================================================================================================================

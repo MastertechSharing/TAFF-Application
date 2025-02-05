@@ -179,6 +179,7 @@
 		if(page_jsp.equals("cmd_face_get_employee.jsp"))						update_page = true;
 		if(page_jsp.equals("cmd_face_set_employee.jsp"))						update_page = true;
 		if(page_jsp.equals("cmd_face_del_employee.jsp"))						update_page = true;		
+		if(page_jsp.equals("cmd_face_set_employees.jsp"))						update_page = true;	
 		if(page_jsp.equals("cmd_face_get_transaction.jsp"))						update_page = true;	
 
 //	System Info	===================================================================================

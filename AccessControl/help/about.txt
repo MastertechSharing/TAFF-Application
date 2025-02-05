@@ -1,5 +1,5 @@
 Version		: Access Control [Version 5.8]
-Last Update	: 21/01/2568
+Last Update	: 05/02/2568
 
 Update Version
 25/12/2555 : Access Control [Version 1.0]
@@ -172,9 +172,7 @@ Update Version
 	- Resolve Get ID Table Display Serial Card 14 Digits
 23/08/2567 : Access Controls [Version 5.7]
 	- Add menu report [115] - In-Out Transaction [Calculate Time]
-21/01/2568 : Access Controls [Version 5.8]
+05/02/2568 : Access Controls [Version 5.8]
 	- Add menu Data System / Reader [Face Scan]
 	- Add menu Connect HW / Face Scan for communication VF1000
 	- Resolve Data Employee Config Face Employee Information
-
-

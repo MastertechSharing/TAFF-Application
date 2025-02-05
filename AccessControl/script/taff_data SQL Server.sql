@@ -878,4 +878,6 @@ ALTER TABLE taff_data.dbo.dbdoor ADD hardware_model VARCHAR(20) DEFAULT '';
 ALTER TABLE taff_data.dbo.dbemployee ADD face_sn_card VARCHAR(20) DEFAULT '';
 ALTER TABLE taff_data.dbo.dbemployee ADD face_pincode VARCHAR(6) DEFAULT '';
 ALTER TABLE taff_data.dbo.dbemployee ADD face_identify_mode VARCHAR(1) DEFAULT '0';
-ALTER TABLE taff_data.dbo.dbemployee ADD face_date_data DATETIME DEFAULT getdate();
+ALTER TABLE taff_data.dbo.dbemployee ADD face_date_data DATETIME;
+ALTER TABLE taff_data.dbo.dbresult DROP COLUMN data_response;
+ALTER TABLE taff_data.dbo.dbresult ADD data_response TEXT;
