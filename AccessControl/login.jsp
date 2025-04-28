@@ -194,7 +194,7 @@
 								<i class="glyphicon glyphicon-warning-sign" name="glyphicon_loading_login" id="glyphicon_loading_login" style="display: none; font-size: 46px; color: #B8B72C; margin-top: -2px;" align="absmiddle"> </i>
 							</div>
 							<div class="col-xs-12 col-md-12" style="margin-bottom: 15px;"> 
-								<h4> <p name="msg_loading_login" id="msg_loading_login"> <%= lb_please_wait %> </p> </h4> 
+								<h4> <p name="msg_loading_login" id="msg_loading_login"> <%= msg_process_deltrans %> </p> </h4> 
 							</div>
 							<div class="col-xs-12 col-md-12" id="div_close" style="margin-top: 15px; margin-bottom: 15px; display: none;"> 
 								<div class="col-xs-3 col-md-3"> </div>
@@ -297,7 +297,7 @@
 		
 		<script>
 			function checkLogin(){
-				$('#form1').attr('action', 'module/check_login.jsp?action=setmsg');
+				$('#form1').attr('action', 'module/check_login.jsp');
 				$('#form1').attr('target', 'iframe_login');
 				$('#form1').submit();
 				

@@ -29,9 +29,9 @@
 			
 		String[] cols = null;
 		if(checkPermission(ses_per, "0")){
-			cols = new String[]{ "", "", "door_id", "ip_address", "door.th_desc", "door.en_desc", "locate_code" };
+			cols = new String[]{ "", "", "door_id", "ip_address", "th_desc", "en_desc", "locate_code" };
 		}else{
-			cols = new String[]{ "door_id", "ip_address", "door.th_desc", "door.en_desc", "locate_code", "", "" };
+			cols = new String[]{ "door_id", "ip_address", "th_desc", "en_desc", "locate_code", "", "" };
 		}
 		
 		int amount = 15;

@@ -899,9 +899,9 @@
 										<!--<li> <a href="cmd_face_set_infor.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setinfo %> </a> </li>-->
 										<li> <a href="cmd_face_get_employee_list.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_getemployeelist %> </a> </li>
 										<li> <a href="cmd_face_get_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_getemployee %> </a> </li>
-										<li> <a href="cmd_face_set_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setemployee %> </a> </li>
-										<li> <a href="cmd_face_del_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_delemployee %> </a> </li>
-										<!--<li> <a href="cmd_face_set_employees.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setemployee %> New </a> </li>-->
+										<li> <a href="cmd_face_set_employees.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setemployees %> </a> </li>
+										<!--<li> <a href="cmd_face_set_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_setemployee %> </a> </li>
+										<li> <a href="cmd_face_del_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_delemployee %> </a> </li>										
 										<!--<li> <a href="cmd_face_get_transaction.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_face_gettransaction %> </a> </li>-->
 									</ul>
 								</li>
@@ -1434,7 +1434,7 @@
 			}else if(subtitle.equals("facegettransaction")){
 				title_menu = lb_face_gettransaction;			
 			}else if(subtitle.equals("facesetemployees")){
-				title_menu = lb_face_setemployee;
+				title_menu = lb_face_setemployees;
 			}
 		}
 		display_menu = "<i class='glyphicon glyphicon-wrench'></i> &nbsp; "+lb_config+

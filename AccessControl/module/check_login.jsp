@@ -44,54 +44,31 @@
 	response.setHeader("Cache-Control","no-cache");
 	response.setHeader("Pragma","no-cache");
 	response.setDateHeader ("Expires", 0);
-		
-	String action = "";
-	if(request.getParameter("action") != null){
-		action = request.getParameter("action");
-	}
 	
 	String username = request.getParameter("username");
 	String userpass = request.getParameter("password");
 	String exdate = "";	
 	String monitor_data = "0";	
-%>
-	<input type="hidden" name="username" id="username" value="<%= username %>">
-	<input type="hidden" name="password" id="password" value="<%= userpass %>">
-<%		
-	if(action.equals("setmsg")){
-		
-		Thread.sleep(100);
-		out.println("<script> "
-				+ " 	parent.window.document.getElementById('msg_loading_login').innerHTML = '"+msg_process_deltrans+"'; "
-				+ "		document.form1.action = 'check_login.jsp?action=deltrans'; "
-				+ "		document.form1.submit(); "
-				+ "  </script>");
 	
-	}else if(action.equals("deltrans")){
-		
+	//if(action.equals("deltrans")){		
 		//	Delete Transaction & Generate Password	================================================================
 		int IntDays = getKeepDays(stmtQry);
 		String dates = decDayCalendar(getCurrentDateyyyyMMdd(), IntDays);
 		try{
-			stmtUp.executeUpdate("DELETE FROM dbtransaction WHERE (date_event < '"+dates+"')");
-			stmtUp.executeUpdate("DELETE FROM dbtransaction_ev WHERE (date_event < '"+dates+"')");
-			stmtUp.executeUpdate("DELETE FROM dbtrans_event WHERE (date_event < '"+dates+"')");
+			stmtUp.executeUpdate("DELETE FROM dbtransaction WHERE (date_event < '"+dates+"')");			
+			stmtUp.executeUpdate("DELETE FROM dbtransaction_ev WHERE (date_event < '"+dates+"')");			
+			stmtUp.executeUpdate("DELETE FROM dbtrans_event WHERE (date_event < '"+dates+"')");			
 			//	Create password if field password equals null or empty			
 			stmtUp.executeUpdate("UPDATE dbemployee SET pass_word = "+convertPassField("idcard", mode)+" WHERE (pass_word IS NULL OR pass_word = '')");
 		}catch(SQLException e){
 			out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
 		}
-		//	========================================================================================================
-		
+		//	========================================================================================================						
+	//}else if(action.equals("login")){		
 		Thread.sleep(100);
 		out.println("<script> "
-				+ " 	parent.window.document.getElementById('msg_loading_login').innerHTML = '"+msg_process_login+"'; "
-				+ "		document.form1.action = 'check_login.jsp?action=login'; "
-				+ "		document.form1.submit(); "
-				+ "  </script>");
-				
-	}else if(action.equals("login")){
-		
+				+ " 	parent.window.document.getElementById('msg_loading_login').innerHTML = '"+msg_process_login+"'; "				
+				+ "  </script>");	
 		String msg = "";
 		String users = "";
 		String userpw = "";
@@ -272,7 +249,7 @@
 					+ " 	}, 250); "
 					+ "  </script>");
 		}
-	}
+	//}
 	
 %>
 		</form>

@@ -3,7 +3,6 @@
 <%@ include file="../function/connect.jsp"%>
 <%@ include file="../function/session.jsp"%>
 <%@ include file="../function/language.jsp"%>
-<%@ include file="../function/datetime.jsp"%>
 <%@ include file="../function/utility.jsp"%>
 <% 
 	session.setAttribute("page_g", "database");

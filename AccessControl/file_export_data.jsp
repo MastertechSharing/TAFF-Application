@@ -240,7 +240,7 @@
 													  lb_expiredate+","+lb_seccode+","+lb_poscode+","+lb_groupcode+","+
 													  lb_typecode+","+lb_empcard+","+lb_serial_card+","+lb_use_mapcard+","+
 													  lb_nationality+","+lb_cardid+","+lb_phoneno+","+lb_email+","+lb_usebio+","+
-													  lb_starttime+","+lb_expiretime;		
+													  lb_starttime+","+lb_expiretime+",Face "+lb_serial_card+",Face "+lb_pincode+",Face Identify Mode";		
 											pw.println(new String(StrText.getBytes("tis-620")));
 											
 											rs = stmtQry.executeQuery("SELECT * FROM dbemployee ORDER BY idcard ASC");
@@ -253,8 +253,8 @@
 														  rs.getString("type_code")+","+rs.getString("emp_card")+","+rs.getString("sn_card")+","+
 														  rs.getString("use_map_card")+","+rs.getString("nationality")+","+rs.getString("card_id")+","+
 														  rs.getString("phone_no")+","+rs.getString("email")+","+rs.getString("use_finger")+","+
-														  rs.getString("st_time")+","+rs.getString("ex_time");
-														  // +","+rs.getString("face_sn_card")+","+rs.getString("face_pincode")+","+rs.getString("face_identify_mode");
+														  rs.getString("st_time")+","+rs.getString("ex_time")
+														  +","+rs.getString("face_sn_card")+","+rs.getString("face_pincode")+","+rs.getString("face_identify_mode");
 												pw.println(new String(StrText.getBytes("tis-620")));
 											}
 											
@@ -277,7 +277,8 @@
 													  lb_serial_card+","+lb_use_mapcard+","+lb_issue+","+
 													  lb_pincode+","+lb_startdate+","+lb_expiredate+","+
 													  lb_starttime+","+lb_expiretime+","+lb_groupcode+","+
-													  lb_seccode+","+lb_poscode+","+lb_typecode;
+													  lb_seccode+","+lb_poscode+","+lb_typecode+","+lb_cardid+
+													  ",Face "+lb_serial_card+",Face "+lb_pincode+",Face Identify Mode";
 											pw.println(new String(StrText.getBytes("tis-620")));
 											
 											String fname = "", sname = "";
@@ -296,7 +297,8 @@
 														  rs.getString("sn_card")+","+rs.getString("use_map_card")+","+rs.getString("issue")+","+
 														  rs.getString("pincode")+","+YMDTodate(rs.getString("st_date"))+","+YMDTodate(rs.getString("ex_date"))+","+
 														  rs.getString("st_time")+","+rs.getString("ex_time")+","+rs.getString("group_code")+","+
-														  rs.getString("sec_code")+","+rs.getString("pos_code")+","+ rs.getString("type_code")+","+ rs.getString("card_id");
+														  rs.getString("sec_code")+","+rs.getString("pos_code")+","+ rs.getString("type_code")+","+ rs.getString("card_id")
+														  +","+rs.getString("face_sn_card")+","+rs.getString("face_pincode")+","+rs.getString("face_identify_mode");
 												pw.println(new String(StrText.getBytes("tis-620")));
 											}
 											

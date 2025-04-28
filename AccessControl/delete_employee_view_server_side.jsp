@@ -29,9 +29,9 @@
 			
 		String[] cols = null;
 		if(lang.equals("th")){
-			cols = new String[]{ "", "emp.idcard", "emp.th_fname", "st_date", "ex_date", "emp.group_code", "emp.sec_code"};
+			cols = new String[]{ "", "idcard", "th_fname", "st_date", "ex_date", "group_code", "sec_code"};
 		}else{
-			cols = new String[]{ "", "emp.idcard", "emp.en_fname", "st_date", "ex_date", "emp.group_code", "emp.sec_code"};
+			cols = new String[]{ "", "idcard", "en_fname", "st_date", "ex_date", "group_code", "sec_code"};
 		}
 		
 		int amount = 15;

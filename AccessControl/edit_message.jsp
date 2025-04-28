@@ -310,17 +310,17 @@
 <%		}else if(action.equals("edit")){
 			
 			String idcard = request.getParameter("idcard"); 
-			String sql = " SELECT emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, message, message_date "
-					+ " FROM dbemployee emp WHERE idcard = '"+idcard+"' ";
+			String sql = " SELECT th_fname, th_sname, en_fname, en_sname, message, message_date "
+					+ " FROM dbemployee WHERE idcard = '"+idcard+"' ";
 			try{
 				ResultSet rs = stmtQry.executeQuery(sql);
 				while(rs.next()){
 					String idcard_link = "<b> <a href='#' onClick='show_detail2(\""+idcard+"\");' data-toggle='tooltip' data-placement='right' data-html='true' title='"+lb_viewdata+"'>" + idcard + "</a> </b>";
 					String fullname = "";
 					if(lang.equals("th")){
-						fullname = rs.getString("emp.th_fname")+"  "+rs.getString("emp.th_sname");
+						fullname = rs.getString("th_fname")+"  "+rs.getString("th_sname");
 					}else{
-						fullname = rs.getString("emp.en_fname")+"  "+rs.getString("emp.en_sname");
+						fullname = rs.getString("en_fname")+"  "+rs.getString("en_sname");
 					}
 					String message_detail = rs.getString("message");
 					String message_date = YMDTodate(rs.getString("message_date"));

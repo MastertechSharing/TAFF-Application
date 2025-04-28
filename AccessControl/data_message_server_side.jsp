@@ -29,9 +29,9 @@
 		
 		String[] cols = null;
 		if(checkPermission(ses_per, "0135")){
-			cols = new String[]{ "", "", "emp.idcard", "fullname", "emp.sec_code", "emp.message", "emp.message_date" };
+			cols = new String[]{ "", "", "idcard", "fullname", "sec_code", "message", "message_date" };
 		}else{
-			cols = new String[]{ "emp.idcard", "fullname", "emp.sec_code", "emp.message", "emp.message_date", "", "" };
+			cols = new String[]{ "idcard", "fullname", "sec_code", "message", "message_date", "", "" };
 		}
 		
 		int amount = 15;
@@ -128,7 +128,7 @@
 				int sEnd = Integer.parseInt(sStart) + Integer.parseInt(sAmount);				
 				sql = " SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir + " ) AS 'NumRow', "
 					+ " emp.idcard, emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, "
-					+ " emp.sec_code, emp.message, emp.message_date ";
+					+ " emp.sec_code, emp.message, FORMAT(message_date, 'yyyy-MM-dd') as message_date ";
 				if(lang.equals("th")){
 					sql += " , emp.th_fname+' '+emp.th_sname AS fullname, sec.th_desc AS sec_desc ";
 				}else{
@@ -141,18 +141,18 @@
 			
 			ResultSet rs = stmtQry.executeQuery(sql);
 			while (rs.next()) {		
-			 	String idcard = rs.getString("emp.idcard");
+			 	String idcard = rs.getString("idcard");
 				String emp_id_link = "<b> <a href='#' onClick='show_detail(\""+idcard+"\");' data-toggle='tooltip' data-placement='left' data-html='true' title='"+lb_viewdata+"'>" + idcard + "</a> </b>";
 				String fullname = rs.getString("fullname");
-				String sec_code = rs.getString("emp.sec_code");
+				String sec_code = rs.getString("sec_code");
 				String sec_link = "<b> <a href='#' onClick='show_detail2(\""+sec_code+"\");' data-toggle='tooltip' data-placement='left' data-html='true' title='"+lb_viewdata+"'>" + sec_code + "</a> </b> ";
 				if(rs.getString("sec_desc") != null && rs.getString("sec_desc") != ""){
 					sec_link += " - " + rs.getString("sec_desc");
 				}
-				String message = rs.getString("emp.message");
+				String message = rs.getString("message");
 				String message_date = "";
-				if(rs.getString("emp.message_date") != null){
-					message_date = rs.getString("emp.message_date");
+				if(rs.getString("message_date") != null){
+					message_date = rs.getString("message_date");
 				}
 				
 				JSONArray ja = new JSONArray();
@@ -183,7 +183,7 @@
 			response.setHeader("Cache-Control", "no-store");
 			out.print(result);
 			
-		}catch (SQLException e){
+		}catch (Exception e){
 			
 		}
 

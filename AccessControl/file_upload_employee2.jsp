@@ -60,11 +60,10 @@
 	int pass = 0;
 	int no_pass = 0;
 	int countall = 0;
+	String sql = "", sql_in = "", sql_up = "";
 	ArrayList msgerr = new ArrayList();
 	String[] data_arr;
-	String message = "";
-	String sql = "", sql_in = "", sql_up = "";
-	
+	String message = "";	
 	String fname = "";
 	String sname = "";
 	String use_finger = "";
@@ -83,6 +82,11 @@
 	String cardid = "";
 	String user_password = "";
 	String date_data = "";
+	
+	String face_sncard = "";
+	String face_pincode = "";
+	String face_identifymode = "";
+	
 	String chk_lang_fname = "";
 	String chk_lang_sname = "";
 	ResultSet myresult = null;
@@ -155,7 +159,7 @@
 						data_arr = (message+",#").split(",");
 						
 						boolean ckCode = chkPatternCode(data_arr[0].trim());
-						if(data_arr.length != 17 && data_arr.length != 18){
+						if(data_arr.length != 20 && data_arr.length != 18){
 							msgerr.add(message+" --> ("+lb_format_file_err+")");
 							no_pass++;
 						}else if(!ckCode || data_arr[0].length() > 16){
@@ -203,7 +207,17 @@
 								sec_code = data_arr[13].trim();
 								pos_code = data_arr[14].trim();
 								type_code = data_arr[15].trim();
+								cardid = data_arr[16].trim();
 								date_data = getCurrentDateTime();
+								if(data_arr.length == 20){	
+									face_sncard = data_arr[17].trim();
+									face_pincode = data_arr[18].trim();								
+									face_identifymode = data_arr[19].trim();	
+								}else if(data_arr.length == 21){	
+									face_sncard = data_arr[18].trim();
+									face_pincode = data_arr[19].trim();								
+									face_identifymode = data_arr[20].trim();
+								}
 								
 								if(!(issue.equals(""))){
 									if(issue.length() >= 1 || issue.length() <= 2){									
@@ -263,21 +277,21 @@
 								
 								user_password = getPassword(data_arr[0].toString(), stmtQry, mode);							
 								sql_in = "INSERT INTO dbemployee (idcard, "+chk_lang_fname+", "+chk_lang_sname+", use_finger, sn_card, use_map_card, issue, pincode, "
-										+ "st_date, ex_date, st_time, ex_time, group_code, sec_code, pos_code, type_code, pass_word, date_data) "
-										+ "VALUES ('"+data_arr[0]+"', '"+fname+"', '"+sname+"' ,'"+use_finger+"', '"+sn_card+"', '"+use_map_card+"', '"+issue+"', '"+pincode
-										+ "', '"+st_date+"', '"+ex_date+"', '"+st_time+"', '"+ex_time+"', '"+group_code+"', '"+sec_code+"', '"+pos_code+"', '"+type_code
-										+ "', '"+user_password+"', '"+date_data+"')";
+										+"st_date, ex_date, st_time, ex_time, group_code, sec_code, pos_code, type_code, pass_word, date_data, face_sn_card, face_pincode, face_identify_mode, face_date_data) "
+										+"VALUES ('"+data_arr[0]+"', '"+fname+"', '"+sname+"', '"+use_finger+"', '"+sn_card+"', '"+use_map_card+"', '"+issue+"', '"+pincode
+										+"', '"+st_date+"', '"+ex_date+"', '"+st_time+"', '"+ex_time+"', '"+group_code+"', '"+sec_code+"', '"+pos_code+"', '"+type_code
+										+"', '"+user_password+"', '"+date_data+"', '"+face_sncard+"', '"+face_pincode+"', '"+face_identifymode+"', '"+date_data+"')";
 								
-								sql_up = "UPDATE dbemployee SET "+chk_lang_fname+"='"+fname+"', "+chk_lang_sname+"='"+sname+"', "
-										+ "use_finger='"+use_finger+"', sn_card='"+sn_card+"', use_map_card='"+use_map_card+"', "
-										+ "issue='"+issue+"', pincode='"+pincode+"',st_date='"+st_date+"', ex_date='"+ex_date+"', "
-										+ "st_time='"+st_time+"', ex_time='"+ex_time+"', group_code='"+group_code+"', sec_code='"+sec_code+"', "
-										+ "pos_code='"+pos_code+"', type_code='"+type_code+"', pass_word='"+user_password+"', date_data='"+date_data+"' "
-										+ "WHERE (idcard = '"+data_arr[0]+"')";
+								sql_up = "UPDATE dbemployee SET "+chk_lang_fname+"='"+fname+"', "+chk_lang_sname+"='"+sname+"', use_finger='"+use_finger+"', sn_card='"+sn_card
+										+"', use_map_card='"+use_map_card+"', issue='"+issue+"', pincode='"+pincode+"', st_date='"+st_date+"', ex_date='"+ex_date
+										+"', st_time='"+st_time+"', ex_time='"+ex_time+"', group_code='"+group_code+"', sec_code='"+sec_code+"', pos_code='"+pos_code
+										+"', type_code='"+type_code+"', pass_word='"+user_password+"', date_data='"+date_data+"', face_sn_card='"+face_sncard
+										+"', face_pincode='"+face_pincode+"', face_identify_mode='"+face_identifymode+"', face_date_data='"+date_data
+										+"' WHERE (idcard = '"+data_arr[0]+"')";
 								
 								if(chk_dupcardid == false && chk_blacklist == false){
 									
-									if(data_arr.length == 17){				//	No Type Card ID		17Length
+									if(data_arr.length == 20){				//	No Type Card ID		20Length
 										
 										try{
 											resultQry = stmtUp.executeUpdate(sql_in);
@@ -296,7 +310,7 @@
 											}
 										}
 										
-									}else if(data_arr.length == 18){		//	 Type Card ID		18Length
+									}else if(data_arr.length == 21){		//	 Type Card ID		21Length
 										
 										cardid = data_arr[16].trim();
 										if(!(cardid.equals(""))){
@@ -498,6 +512,20 @@
 											<div class="col-md-2 col-xs-2"> &nbsp; </div>
 											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> <%= lb_cardid %> ( 13 <%= lb_letter %> <%= lb_orspace %> <%= lb_ex2 %> : XXXXXXXXXXXXX ) <i> *<%= lb_not_force %> </i> </label> 
 										</div>
+										
+										<div class="row">
+											<div class="col-md-2 col-xs-2"> &nbsp; </div>
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face <%= lb_serial_card %> ( <%= lb_numberic %> ), </label> 
+										</div>
+										<div class="row">
+											<div class="col-md-2 col-xs-2"> &nbsp; </div>
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face <%= lb_pincode %> ( <%= lb_numberic %> 6 <%= lb_letter %> <%= lb_orspace %> ), </label> 
+										</div>										
+										<div class="row">
+											<div class="col-md-2 col-xs-2"> &nbsp; </div>
+											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face Identify Mode ( 1 <%= lb_letter %> <%= lb_ex2 %> : 0 = Face, 1 = Card and Face, 2 = Card or Face, 3 = Card, 4 = ID and Face, 5 = ID or Face, 6 = ID and Card, 7 = ID or Card, 8 = Default Device, 9 = ID and Pin) </label> 
+										</div>
+										
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div> 
 											<div class="col-md-6 col-xs-6">

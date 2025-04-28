@@ -55,16 +55,15 @@
 		
 		<%@ include file="../tools/modal_warning.jsp"%>
 		<%@ include file="../tools/modal_result.jsp"%>
-		<%@ include file="../tools/modal_danger.jsp"%>
-		
+		<%@ include file="../tools/modal_danger.jsp"%>	
 <%	
 	int pass = 0;
 	int no_pass = 0;
 	int countall = 0;
+	String sql = "";
 	ArrayList msgerr = new ArrayList();
 	String[] data_arr;
-	String message = "";
-	String sql = "";
+	String message = "";	
 	String issue = "";
 	String pincode = "";
 	String st_date = "";
@@ -81,8 +80,7 @@
 	String email = "";
 	String use_finger = "";
 	String st_time = "";
-	String ex_time = "";
-	
+	String ex_time = "";	
 	String face_sncard = "";
 	String face_pincode = "";
 	String face_identifymode = "";
@@ -154,7 +152,7 @@
 						data_arr = (message+",#").split(",");
 						
 						boolean ckCode = chkPatternCode(data_arr[0].trim());
-						if(!ckCode || data_arr.length != 26 || data_arr[0].length() > 16 || data_arr[1].length() > 1 || data_arr[2].length() > 1 || data_arr[22].length() > 1){
+						if(!ckCode || data_arr.length != 29 || data_arr[0].length() > 16 || data_arr[1].length() > 1 || data_arr[2].length() > 1 || data_arr[22].length() > 1){
 							msgerr.add(message+" --> ("+lb_format_file_err+")");
 							no_pass++;
 						}else if((data_arr[9].length() != 10) || data_arr[10].length() != 10){
@@ -200,10 +198,9 @@
 								ex_time = data_arr[24].trim();
 								date_data = getCurrentDateTime();
 								
-								/*face_sncard = data_arr[25].trim();
+								face_sncard = data_arr[25].trim();
 								face_pincode = data_arr[26].trim();								
-								face_identifymode = data_arr[27].trim();
-								*/
+								face_identifymode = data_arr[27].trim();								
 								
 								if(!(issue.equals(""))){
 									if(issue.length() >= 1 || issue.length() <= 2){									
@@ -312,13 +309,14 @@
 									
 									user_password = getPassword(data_arr[0].toString(), stmtQry, mode);
 									sql = "INSERT INTO dbemployee (idcard, sex, prefix, th_fname, th_sname, en_fname, en_sname, "
-											+ "issue, pincode, st_date, ex_date, sec_code, pos_code, group_code, pass_word, date_data, "
-											+ "type_code, emp_card, sn_card, use_map_card, nationality, card_id, phone_no, email, use_finger, st_time, ex_time) "
-											+ "VALUES ('"+data_arr[0]+"','"+data_arr[1]+"','"+data_arr[2]+"' ,'"+data_arr[3]+"','"+data_arr[4]
-											+ "','"+data_arr[5]+"','"+data_arr[6]+"','"+issue+"','"+pincode+"','"+st_date+"','"+ex_date
-											+ "','"+sec_code+"','"+pos_code+"','"+group_code+"','"+user_password+"','"+date_data+"','"+type_code+"','"+data_arr[15]
-											+ "','"+sn_card+"','"+data_arr[17]+"','"+data_arr[18]+"','"+cardid+"','"+phone+"','"+email+"','"+use_finger
-											+ "','"+st_time+"','"+ex_time+"')";
+											+"issue, pincode, st_date, ex_date, sec_code, pos_code, group_code, pass_word, date_data, "
+											+"type_code, emp_card, sn_card, use_map_card, nationality, card_id, phone_no, email, use_finger, "
+											+"st_time, ex_time, face_sn_card, face_pincode, face_identify_mode, face_date_data) "
+											+"VALUES ('"+data_arr[0]+"', '"+data_arr[1]+"', '"+data_arr[2]+"', '"+data_arr[3]+"', '"+data_arr[4]
+											+"', '"+data_arr[5]+"', '"+data_arr[6]+"', '"+issue+"', '"+pincode+"', '"+st_date+"', '"+ex_date
+											+"', '"+sec_code+"', '"+pos_code+"', '"+group_code+"', '"+user_password+"', '"+date_data+"', '"+type_code+"', '"+data_arr[15]
+											+"', '"+sn_card+"', '"+data_arr[17]+"', '"+data_arr[18]+"', '"+cardid+"', '"+phone+"', '"+email+"', '"+use_finger
+											+"', '"+st_time+"', '"+ex_time+"', '"+face_sncard+"', '"+face_pincode+"', '"+face_identifymode+"', '"+date_data+"')";
 									try{
 										resultQry = stmtUp.executeUpdate(sql);
 										rc.WriteDataLogFile("["+ses_user+"] Insert idcard : " + data_arr[0] + " [dbemployee]");
@@ -335,14 +333,14 @@
 												}	rs.close();
 											}catch(SQLException e2){ }
 											
-											sql = "UPDATE dbemployee SET sex='"+data_arr[1]+"' ,prefix='"+data_arr[2]+"',"
-													+ "th_fname='"+data_arr[3]+"',th_sname='"+data_arr[4]+"',en_fname='"+data_arr[5]+"',"
-													+ "en_sname='"+data_arr[6]+"',issue='"+issue+"',pincode='"+pincode+"',"
-													+ "st_date='"+st_date+"',ex_date='"+ex_date+"',sec_code='"+sec_code+"',pos_code='"+pos_code+"',"
-													+ "group_code='"+group_code+"',date_data='"+date_data+"',type_code='"+type_code+"',emp_card='"+data_arr[15]+"',"
-													+ "sn_card='"+sn_card+"',use_map_card='"+data_arr[17]+"',nationality='"+data_arr[18]+"',card_id='"+cardid+"',"
-													+ "phone_no='"+phone+"',email='"+email+"',use_finger='"+use_finger+"',st_time='"+st_time+"',ex_time='"+ex_time+"' "
-													+ "WHERE (idcard = '"+data_arr[0]+"')";
+											sql = "UPDATE dbemployee SET sex='"+data_arr[1]+"', prefix='"+data_arr[2]+"', th_fname='"+data_arr[3]+"', th_sname='"+data_arr[4]
+													+"', en_fname='"+data_arr[5]+"', en_sname='"+data_arr[6]+"', issue='"+issue+"', pincode='"+pincode+"', st_date='"+st_date
+													+"', ex_date='"+ex_date+"', sec_code='"+sec_code+"', pos_code='"+pos_code+"', group_code='"+group_code+"', date_data='"+date_data
+													+"', type_code='"+type_code+"', emp_card='"+data_arr[15]+"', sn_card='"+sn_card+"', use_map_card='"+data_arr[17]
+													+"', nationality='"+data_arr[18]+"', card_id='"+cardid+"', phone_no='"+phone+"', email='"+email+"', use_finger='"+use_finger
+													+"', st_time='"+st_time+"', ex_time='"+ex_time+"', face_sn_card='"+face_sncard+"', face_pincode='"+face_pincode
+													+"', face_identify_mode='"+face_identifymode+"', face_date_data='"+date_data
+													+"' WHERE (idcard = '"+data_arr[0]+"')";
 											try{
 												stmtUp.executeUpdate(sql);
 												rc.WriteDataLogFile("["+ses_user+"] Update idcard : " + data_arr[0] + " [dbemployee]");
@@ -507,8 +505,7 @@
 											<div class="col-md-2 col-xs-2"> &nbsp; </div>
 											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> <%= lb_expiretime %> ( HH:MM ) </label> 
 										</div>
-										
-										<!--Face
+																				
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div>
 											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face <%= lb_serial_card %> ( <%= lb_numberic %> ), </label> 
@@ -520,8 +517,7 @@
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div>
 											<label class="col-md-10 col-xs-10" style="margin-top: 3px;"> Face Identify Mode ( 1 <%= lb_letter %> <%= lb_ex2 %> : 0 = Face, 1 = Card and Face, 2 = Card or Face, 3 = Card, 4 = ID and Face, 5 = ID or Face, 6 = ID and Card, 7 = ID or Card, 8 = Default Device, 9 = ID and Pin) </label> 
-										</div>
-										-->
+										</div>										
 										
 										<div class="row">
 											<div class="col-md-2 col-xs-2"> &nbsp; </div> 

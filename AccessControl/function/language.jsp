@@ -1143,6 +1143,7 @@
 	String lb_face_getemployee = "";
 	String lb_face_setemployee = "";
 	String lb_face_delemployee = "";
+	String lb_face_setemployees = "";
 	String lb_face_gettransaction = "";
 	
 	if(lang.equals("th")){
@@ -2258,6 +2259,7 @@
 		lb_face_getemployee = "อ่านข้อมูลพนักงาน";
 		lb_face_setemployee = "เพิ่มข้อมูลพนักงาน";
 		lb_face_delemployee = "ลบข้อมูลพนักงาน";
+		lb_face_setemployees = "อัพเดตข้อมูลพนักงาน";
 		lb_face_gettransaction = "ดาวน์โหลดข้อมูลการบันทึกเวลา";
 	
 	}else{
@@ -3377,6 +3379,7 @@
 		lb_face_getemployee = "Get Employee";
 		lb_face_setemployee = "Set Employee";
 		lb_face_delemployee = "Del Employee";
+		lb_face_setemployees = "Update Employee";
 		lb_face_gettransaction = "Download Transaction";
 
 	}

@@ -53,9 +53,9 @@
 			if(rs.next()){
 				String fullname = "";
 				if(lang.equals("th")){
-					fullname = rs.getString("emp.th_fname")+"  "+rs.getString("emp.th_sname");
+					fullname = rs.getString("th_fname")+"  "+rs.getString("th_sname");
 				}else{
-					fullname = rs.getString("emp.en_fname")+"  "+rs.getString("emp.en_sname");
+					fullname = rs.getString("en_fname")+"  "+rs.getString("en_sname");
 				}
 				String record_detail = rs.getString("record_detail");
 				String record_by = rs.getString("record_by");

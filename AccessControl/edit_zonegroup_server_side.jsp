@@ -29,9 +29,9 @@
 			
 		String[] cols = null;
 		if(checkPermission(ses_per, "0135")){
-			cols = new String[]{ "", "reader_no", "rd.th_desc", "rd.en_desc", "", "" };
+			cols = new String[]{ "", "reader_no", "th_desc", "en_desc", "", "" };
 		}else{
-			cols = new String[]{ "reader_no", "rd.th_desc", "rd.en_desc", "", "", "" };
+			cols = new String[]{ "reader_no", "th_desc", "en_desc", "", "", "" };
 		}
 		
 		int amount = 15;
@@ -186,7 +186,8 @@
 						+ " LEFT OUTER JOIN dbtimedesc td ON tz.time_id = td.time_id "
 						+ " WHERE zg.group_code = '"+group_code+"' "
 						+ " GROUP BY zg.time_code, zg.reader_no ");
-		*/	ResultSet rs = stmtQry.executeQuery(sql);
+		*/
+			ResultSet rs = stmtQry.executeQuery(sql);
 			while (rs.next()) {
 				
 				String reader_no = rs.getString("reader_no");

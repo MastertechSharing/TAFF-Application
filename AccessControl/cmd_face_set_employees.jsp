@@ -191,7 +191,7 @@
 							String chkbox_door_id = "";
 							int numtaff = 0, num_duplicateip = 0;
 							try{
-								ResultSet rs = stmtQry.executeQuery(selectDbDoorByHostByGroupUserByHWModel(ses_per, ses_group_user, ses_control_reader,""));
+								ResultSet rs = stmtQry.executeQuery(selectDbDoorByHostByGroupUserByHWModel(ses_per, ses_group_user, ses_control_reader,"VF1000"));								
 								while(rs.next()){ 
 									door_id = rs.getString("door_id");
 									door_id_link = "<b> <a href='#' onClick='show_door(\""+ door_id +"\");' data-toggle='tooltip' data-placement='left' title='"+lb_viewdata+"'>" + door_id + "</a> </b>";
@@ -256,8 +256,8 @@
 					</div>
 					<div class="col-xs-4" align="center"> 
 						<input type="hidden" name="sessions" value="<%= ses_user %>">
-						<input type="hidden" name="emp_ids">
-						<input type="hidden" name="command" value="F8">						
+						<input type="hidden" name="emp_ids">						
+						<input type="hidden" name="command" value="F8">														
 						<button class="btn btn-primary btn-sm max-height-26 button-shadow1 button-shadow2" name="btn_ok" id="btn_ok" onMouseOver="this.style.cursor='hand';"> &nbsp; &nbsp; &nbsp; <%= btn_ok %> &nbsp; &nbsp; &nbsp; </button> &nbsp;
 					</div>
 					<div class="col-xs-4" align="center"> </div>
@@ -324,7 +324,13 @@
 						window.document.form1.target = 'connect_hw';
 						window.document.form1.submit();
 					}
-				}
+				}	
+
+				//if(rdo == 2){
+					//document.form1.command.value = "F9";
+				//} else {
+					//document.form1.command.value = "F8";
+				//}				
 			}
 		</script>
 	

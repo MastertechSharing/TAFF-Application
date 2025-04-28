@@ -1,9 +1,8 @@
-﻿##TAFF_DATA DATABASE FOR ACCESSCONTROL (Update 11/06/2015)
+﻿-- TAFF_DATA DATABASE FOR ACCESSCONTROL (Update 21/02/2018)
 USE taff_data;
 
-## 1 CREATE TABLE ON TAFF_DATA (Update 11/06/2015)
-##DROP TABLE IF EXISTS taff_data.dbcompany;
-CREATE TABLE  taff_data.dbcompany (
+-- 1 CREATE TABLE ON TAFF_DATA (Update 21/02/2018)
+CREATE TABLE IF NOT EXISTS taff_data.dbcompany (
   com_code VARCHAR(1) NOT NULL,
   th_desc VARCHAR(100) DEFAULT '',
   en_desc VARCHAR(100) DEFAULT '',
@@ -11,6 +10,7 @@ CREATE TABLE  taff_data.dbcompany (
   en_addr VARCHAR(250) DEFAULT '',
   com_email VARCHAR(50) DEFAULT '',
   com_www VARCHAR(50) DEFAULT '',
+  
   time_in VARCHAR(5) NOT NULL DEFAULT '00:00',
   time_out VARCHAR(5) NOT NULL DEFAULT '23:59',
   hour_day VARCHAR(5) NOT NULL DEFAULT '24:00',
@@ -29,8 +29,7 @@ CREATE TABLE  taff_data.dbcompany (
   PRIMARY KEY (com_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbconfigcorp;
-CREATE TABLE  taff_data.dbconfigcorp (
+CREATE TABLE IF NOT EXISTS taff_data.dbconfigcorp (
   config_code VARCHAR(1) NOT NULL,
   card_pattern VARCHAR(16) DEFAULT '????????????????',
   display_digit VARCHAR(16) DEFAULT 'YYYYYYYYYYYYYYYY',
@@ -50,20 +49,17 @@ CREATE TABLE  taff_data.dbconfigcorp (
   PRIMARY KEY (config_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dblocation;
-CREATE TABLE  taff_data.dblocation (
+CREATE TABLE IF NOT EXISTS taff_data.dblocation (
   locate_code VARCHAR(6) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
-  en_desc VARCHAR(50) DEFAULT '',
-  server_code VARCHAR(6) NOT NULL DEFAULT '',
+  en_desc VARCHAR(50) DEFAULT '',  
   group_lock VARCHAR(1) DEFAULT '',
   group_unlock VARCHAR(1) DEFAULT '',
   group_alarm VARCHAR(1) DEFAULT '',
   PRIMARY KEY (locate_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbdoor;
-CREATE TABLE  taff_data.dbdoor (
+CREATE TABLE IF NOT EXISTS taff_data.dbdoor (
   door_id VARCHAR(4) NOT NULL,
   ip_address VARCHAR(15) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
@@ -87,12 +83,10 @@ CREATE TABLE  taff_data.dbdoor (
   group_door VARCHAR(2) DEFAULT '',
   print_event INT(11) unsigned DEFAULT '1',
   door_type VARCHAR(1) DEFAULT '0',
-  duplicate_ip VARCHAR(1) DEFAULT '0',
   PRIMARY KEY (door_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbreader;
-CREATE TABLE  taff_data.dbreader (
+CREATE TABLE IF NOT EXISTS taff_data.dbreader (
   reader_no VARCHAR(5) NOT NULL,
   door_id VARCHAR(4) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
@@ -161,12 +155,10 @@ CREATE TABLE  taff_data.dbreader (
   capt_preview VARCHAR(1) DEFAULT '1',
   mifare_std VARCHAR(1) DEFAULT '0',
   mifare_uid VARCHAR(1) DEFAULT '0',
-  status_io VARCHAR(1) DEFAULT 'I',
   PRIMARY KEY (reader_no)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbevent;
-CREATE TABLE  taff_data.dbevent (
+CREATE TABLE IF NOT EXISTS taff_data.dbevent (
   event_code VARCHAR(2) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
   en_desc VARCHAR(50) DEFAULT '',
@@ -193,16 +185,14 @@ CREATE TABLE  taff_data.dbevent (
   PRIMARY KEY (event_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbholiday;
-CREATE TABLE  taff_data.dbholiday (
+CREATE TABLE IF NOT EXISTS taff_data.dbholiday (
   holi_date DATE NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
   en_desc VARCHAR(50) DEFAULT '',
   PRIMARY KEY (holi_date)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbtimedesc;
-CREATE TABLE  taff_data.dbtimedesc (
+CREATE TABLE IF NOT EXISTS taff_data.dbtimedesc (
   time_id VARCHAR(2) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
   en_desc VARCHAR(50) DEFAULT '',
@@ -224,24 +214,21 @@ CREATE TABLE  taff_data.dbtimedesc (
   PRIMARY KEY (time_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbtimezone;
-CREATE TABLE  taff_data.dbtimezone (
+CREATE TABLE IF NOT EXISTS taff_data.dbtimezone (
   time_code VARCHAR(2) NOT NULL,
   day_type VARCHAR(1) NOT NULL,
   time_id VARCHAR(2) DEFAULT '',
   PRIMARY KEY (time_code,day_type)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbtimezonedesc;
-CREATE TABLE  taff_data.dbtimezonedesc (
+CREATE TABLE IF NOT EXISTS taff_data.dbtimezonedesc (
   time_code VARCHAR(2) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
   en_desc VARCHAR(50) DEFAULT '',
   PRIMARY KEY (time_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbunlock;
-CREATE TABLE  taff_data.dbunlock (
+CREATE TABLE IF NOT EXISTS taff_data.dbunlock (
   day_type VARCHAR(1) NOT NULL,
   time1 VARCHAR(8) DEFAULT '',
   time2 VARCHAR(8) DEFAULT '',
@@ -253,8 +240,7 @@ CREATE TABLE  taff_data.dbunlock (
   PRIMARY KEY (day_type)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dblock;
-CREATE TABLE  taff_data.dblock (
+CREATE TABLE IF NOT EXISTS taff_data.dblock (
   day_type VARCHAR(1) NOT NULL,
   time1 VARCHAR(8) DEFAULT '',
   time2 VARCHAR(8) DEFAULT '',
@@ -264,8 +250,7 @@ CREATE TABLE  taff_data.dblock (
   PRIMARY KEY (day_type)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbtimeon_out4;
-CREATE TABLE  taff_data.dbtimeon_out4 (
+CREATE TABLE IF NOT EXISTS taff_data.dbtimeon_out4 (
   day_type VARCHAR(1) NOT NULL,
   time1 VARCHAR(13) DEFAULT '',
   time2 VARCHAR(13) DEFAULT '',
@@ -300,16 +285,14 @@ CREATE TABLE  taff_data.dbtimeon_out4 (
   PRIMARY KEY (day_type)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbdepart;
-CREATE TABLE  taff_data.dbdepart (
+CREATE TABLE IF NOT EXISTS taff_data.dbdepart (
   dep_code VARCHAR(6) NOT NULL,
   th_desc VARCHAR(100) DEFAULT '',
   en_desc VARCHAR(100) DEFAULT '',
   PRIMARY KEY (dep_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbsection;
-CREATE TABLE  taff_data.dbsection (
+CREATE TABLE IF NOT EXISTS taff_data.dbsection (
   sec_code VARCHAR(6) NOT NULL,
   th_desc VARCHAR(100) DEFAULT '',
   en_desc VARCHAR(100) DEFAULT '',
@@ -317,41 +300,35 @@ CREATE TABLE  taff_data.dbsection (
   PRIMARY KEY (sec_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbposition;
-CREATE TABLE  taff_data.dbposition (
+CREATE TABLE IF NOT EXISTS taff_data.dbposition (
   pos_code VARCHAR(6) NOT NULL,
   th_desc VARCHAR(100) DEFAULT '',
   en_desc VARCHAR(100) DEFAULT '',
   PRIMARY KEY (pos_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbtype;
-CREATE TABLE  taff_data.dbtype (
+CREATE TABLE IF NOT EXISTS taff_data.dbtype (
   type_code VARCHAR(6) NOT NULL,
   th_desc VARCHAR(100) DEFAULT '',
   en_desc VARCHAR(100) DEFAULT '',
   PRIMARY KEY (type_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbgroup;
-CREATE TABLE  taff_data.dbgroup (
+CREATE TABLE IF NOT EXISTS taff_data.dbgroup (
   group_code VARCHAR(16) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
   en_desc VARCHAR(50) DEFAULT '',
-  group_user VARCHAR(3) DEFAULT '',
   PRIMARY KEY (group_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbzone_group;
-CREATE TABLE  taff_data.dbzone_group (
+CREATE TABLE IF NOT EXISTS taff_data.dbzone_group (
   group_code VARCHAR(16) NOT NULL,
   reader_no VARCHAR(5) NOT NULL,
   time_code VARCHAR(2) DEFAULT '',
   PRIMARY KEY (group_code,reader_no) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbemployee;
-CREATE TABLE  taff_data.dbemployee (
+CREATE TABLE IF NOT EXISTS taff_data.dbemployee (
   idcard VARCHAR(16) NOT NULL,
   sex INT(10) unsigned DEFAULT '0',
   prefix INT(10) unsigned DEFAULT '0',
@@ -385,18 +362,11 @@ CREATE TABLE  taff_data.dbemployee (
   phone_no VARCHAR(15) DEFAULT '',
   email VARCHAR(50) DEFAULT '',
   template VARCHAR(1) DEFAULT '0',
-  photo VARCHAR(1) DEFAULT '0',
-  message VARCHAR(40) DEFAULT '',
-  message_date DATE DEFAULT NULL,
-  current_level VARCHAR(1) DEFAULT '0',
-  current_io VARCHAR(1) DEFAULT 'O',
-  current_rd VARCHAR(5) DEFAULT '',
-  group_rd VARCHAR(2) DEFAULT '',
+  photo VARCHAR(1) DEFAULT '0', 
   PRIMARY KEY (idcard)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbusers;
-CREATE TABLE  taff_data.dbusers (
+CREATE TABLE IF NOT EXISTS taff_data.dbusers (
   user_name VARCHAR(15) NOT NULL,
   pass_word VARCHAR(45) NOT NULL,
   user_right INT(10) unsigned NOT NULL DEFAULT '0',
@@ -405,37 +375,132 @@ CREATE TABLE  taff_data.dbusers (
   user_status INT(10) unsigned DEFAULT NULL,
   user_admin VARCHAR(1) DEFAULT '0',
   dep_code VARCHAR(6) NOT NULL,
-  sec_code VARCHAR(6) DEFAULT '',
-  group_user VARCHAR(3) DEFAULT '',
-  control_reader TEXT NOT NULL,
-  monitor_location TEXT NOT NULL,
-  monitor_data VARCHAR(1) DEFAULT '0',  
+  sec_code VARCHAR(6) DEFAULT '',  
+  monitor_location TEXT NOT NULL,  
   PRIMARY KEY (user_name)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbreport;
-CREATE TABLE  taff_data.dbreport (
+CREATE TABLE IF NOT EXISTS taff_data.dbreport (
   rep_code VARCHAR(6) NOT NULL,
   th_desc VARCHAR(100) DEFAULT '',
   en_desc VARCHAR(100) DEFAULT '',
   PRIMARY KEY (rep_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbresult;
-CREATE TABLE  taff_data.dbresult (
+CREATE TABLE IF NOT EXISTS taff_data.dbserver_config (
+  server_code VARCHAR(6) NOT NULL,
+  server_ip VARCHAR(15) NOT NULL,
+  path_output TEXT NOT NULL,  
+  PRIMARY KEY (server_code)
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.dbstatus_door (
+  door_id VARCHAR(4) NOT NULL,
+  comm_code VARCHAR(2) DEFAULT '',
+  ip_address VARCHAR(45) NOT NULL,
+  status_no VARCHAR(1) DEFAULT '',
+  date_time VARCHAR(19) DEFAULT'',
+  PRIMARY KEY (door_id,comm_code)
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.dbqprocess (
+  door_id VARCHAR(4) NOT NULL,
+  act_request VARCHAR(1) NOT NULL,
+  act_time VARCHAR(17) DEFAULT '',
+  act_running VARCHAR(1) DEFAULT '',
+  ip_address VARCHAR(15) DEFAULT '',
+  PRIMARY KEY (door_id,act_request) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.dbtrans_event (
+  date_event DATE NOT NULL,
+  time_event VARCHAR(8) NOT NULL,
+  reader_no VARCHAR(5) NOT NULL,
+  event_code VARCHAR(2) NOT NULL,
+  workday DATETIME NOT NULL,
+  ip_address VARCHAR(15) DEFAULT '',
+  duty VARCHAR(1) DEFAULT '',
+  data_seq VARCHAR(4) DEFAULT '',
+  data_blank VARCHAR(6) DEFAULT '',
+  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (date_event,time_event,reader_no,event_code) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.dbtransaction (
+  date_event DATE NOT NULL,
+  time_event VARCHAR(8) NOT NULL,
+  reader_no VARCHAR(5) NOT NULL,
+  event_code VARCHAR(2) NOT NULL,
+  idcard VARCHAR(16) NOT NULL,
+  workday DATETIME NOT NULL,
+  ip_address VARCHAR(15) DEFAULT '',
+  duty VARCHAR(1) DEFAULT '',
+  data_seq VARCHAR(4) DEFAULT '',
+  data_blank VARCHAR(6) DEFAULT '',
+  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
+  PRIMARY KEY (date_event,time_event,reader_no,event_code,idcard) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.dbtransaction_ev (
+  date_event DATE NOT NULL,
+  time_event VARCHAR(8) NOT NULL,
+  reader_no VARCHAR(5) NOT NULL,
+  event_code VARCHAR(2) NOT NULL,
+  idcard VARCHAR(16) NOT NULL, 
+  workday DATETIME NOT NULL,
+  ip_address VARCHAR(15) DEFAULT '',
+  duty VARCHAR(1) DEFAULT '',
+  data_seq VARCHAR(4) DEFAULT '',
+  data_blank VARCHAR(6) DEFAULT '',
+  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (date_event,time_event,reader_no,event_code,idcard) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.dbnote (
+  datetime_note DATETIME NOT NULL,
+  desc_note VARCHAR(100) DEFAULT '',
+  user_add VARCHAR(16) DEFAULT '',
+  datetime_add DATETIME NOT NULL,
+  user_edit VARCHAR(16) DEFAULT '',
+  datetime_edit DATETIME NOT NULL,  
+  PRIMARY KEY (datetime_note)
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.proc_auto_idtables (
+  idcard VARCHAR(16) NOT NULL,
+  status_no VARCHAR(1) NOT NULL,
+  auto_date DATE NOT NULL,
+  PRIMARY KEY (idcard,status_no,auto_date)
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS taff_data.dbblacklist (
+  idcard VARCHAR(16) NOT NULL,
+  record_date DATE NOT NULL,
+  record_by VARCHAR(16) DEFAULT '',
+  record_detail VARCHAR(250) DEFAULT '',
+  cancel_date DATE DEFAULT NULL,
+  cancel_by VARCHAR(16) DEFAULT '',
+  cancel_detail VARCHAR(250) DEFAULT '',	
+  cancel_status VARCHAR(1) DEFAULT '0',  
+  PRIMARY KEY (idcard,record_date)
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
+
+-- 2 DROP AND CREATE TABLE ON TAFF_DATA (Update 11/06/2015)
+DROP TABLE IF EXISTS taff_data.dbresult;
+CREATE TABLE IF NOT EXISTS taff_data.dbresult (
   running_code VARCHAR(27) NOT NULL,
   door_id VARCHAR(4) NOT NULL DEFAULT '',
   ip_address VARCHAR(15) DEFAULT '',
   act_request VARCHAR(2) DEFAULT '',
   act_response VARCHAR(2) DEFAULT '',
   data_request VARCHAR(50) DEFAULT '',
-  data_response VARCHAR(140) DEFAULT '',
+  data_response TEXT,
   datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (running_code,ip_address)
+  PRIMARY KEY (running_code,door_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbserver;
-CREATE TABLE  taff_data.dbserver (
+DROP TABLE IF EXISTS taff_data.dbserver;
+CREATE TABLE IF NOT EXISTS taff_data.dbserver (
   server_host VARCHAR(15) NOT NULL,
   time_opensw VARCHAR(20) DEFAULT '',
   time_closesw VARCHAR(20) DEFAULT '',
@@ -455,21 +520,8 @@ CREATE TABLE  taff_data.dbserver (
   PRIMARY KEY (server_host)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbserver_config;
-CREATE TABLE taff_data.dbserver_config (
-  server_code VARCHAR(6) NOT NULL,
-  server_ip VARCHAR(15) NOT NULL,
-  path_output TEXT NOT NULL,
-  reader_no VARCHAR(5) DEFAULT '',
-  event_code VARCHAR(2) DEFAULT '',
-  access_token VARCHAR(1000) DEFAULT '',
-  company_uuid VARCHAR(32) DEFAULT '',
-  start_trans_id INT DEFAULT '0',
-  PRIMARY KEY (server_code)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-##DROP TABLE IF EXISTS taff_data.dbsession;
-CREATE TABLE  taff_data.dbsession (
+DROP TABLE IF EXISTS taff_data.dbsession;
+CREATE TABLE IF NOT EXISTS taff_data.dbsession (
   ses_user_id VARCHAR(40) NOT NULL,
   ses_time BIGINT(20) DEFAULT NULL,
   ses_user_name VARCHAR(15) DEFAULT '',
@@ -479,90 +531,52 @@ CREATE TABLE  taff_data.dbsession (
   PRIMARY KEY (ses_user_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-##DROP TABLE IF EXISTS taff_data.dbstatus_door;
-CREATE TABLE  taff_data.dbstatus_door (
-  door_id VARCHAR(4) NOT NULL,
-  comm_code VARCHAR(2) DEFAULT '',
-  ip_address VARCHAR(45) NOT NULL,
-  status_no VARCHAR(1) DEFAULT '',
-  date_time VARCHAR(19) DEFAULT'',
-  PRIMARY KEY (door_id,comm_code)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-##DROP TABLE IF EXISTS taff_data.dbqprocess;
-CREATE TABLE  taff_data.dbqprocess (
-  door_id VARCHAR(4) NOT NULL,
-  act_request VARCHAR(1) NOT NULL,
-  act_time VARCHAR(17) DEFAULT '',
-  act_running VARCHAR(1) DEFAULT '',
-  ip_address VARCHAR(15) DEFAULT '',
-  PRIMARY KEY (door_id,act_request) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-##DROP TABLE IF EXISTS taff_data.dbtrans_event;
-CREATE TABLE  taff_data.dbtrans_event (
-  date_event DATE NOT NULL,
-  time_event VARCHAR(8) NOT NULL,
-  reader_no VARCHAR(5) NOT NULL,
-  event_code VARCHAR(2) NOT NULL,
-  workday DATETIME NOT NULL,
-  ip_address VARCHAR(15) DEFAULT '',
-  duty VARCHAR(1) DEFAULT '',
-  data_seq VARCHAR(4) DEFAULT '',
-  data_blank VARCHAR(6) DEFAULT '',
-  work_code VARCHAR(2) DEFAULT '',
-  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (date_event,time_event,reader_no,event_code) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-##DROP TABLE IF EXISTS taff_data.dbtransaction;
-CREATE TABLE  taff_data.dbtransaction (
-  date_event DATE NOT NULL,
-  time_event VARCHAR(8) NOT NULL,
-  reader_no VARCHAR(5) NOT NULL,
-  event_code VARCHAR(2) NOT NULL,
-  idcard VARCHAR(16) NOT NULL,
-  workday DATETIME  NOT NULL,
-  ip_address VARCHAR(15) DEFAULT '',
-  duty VARCHAR(1) DEFAULT '',
-  data_seq VARCHAR(4) DEFAULT '',
-  data_blank VARCHAR(6) DEFAULT '',
-  work_code VARCHAR(2) DEFAULT '',
-  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  
-  PRIMARY KEY (date_event,time_event,reader_no,event_code,idcard) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-##DROP TABLE IF EXISTS taff_data.dbtransaction_ev;
-CREATE TABLE  taff_data.dbtransaction_ev (
-  date_event DATE NOT NULL,
-  time_event VARCHAR(8) NOT NULL,
-  reader_no VARCHAR(5) NOT NULL,
-  event_code VARCHAR(2) NOT NULL,
-  idcard VARCHAR(16) NOT NULL, 
-  workday DATETIME NOT NULL,
-  ip_address VARCHAR(15) DEFAULT '',
-  duty VARCHAR(1) DEFAULT '',
-  data_seq VARCHAR(4) DEFAULT '',
-  data_blank VARCHAR(6) DEFAULT '',
-  work_code VARCHAR(2) DEFAULT '',
-  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (date_event,time_event,reader_no,event_code,idcard) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-##DROP TABLE IF EXISTS taff_data.dbnote;
-CREATE TABLE  taff_data.dbnote (
-  datetime_note DATETIME NOT NULL,
-  desc_note VARCHAR(100) DEFAULT '',
-  user_add VARCHAR(16) DEFAULT '',
-  datetime_add DATETIME NOT NULL,
-  user_edit VARCHAR(16) DEFAULT '',
-  datetime_edit DATETIME NOT NULL,  
-  PRIMARY KEY (datetime_note)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-## 2 INSERT AND UPDATE DATA INTO TABLE (Update 11/06/2015)
+-- 3 INSERT DATA INTO TABLE (Update 21/02/2018)
+INSERT INTO taff_data.dbusers (user_name,pass_word,user_right,st_date,ex_date,user_status,user_admin,dep_code,sec_code,monitor_location)  
+VALUES ('admin',PASSWORD('admin'),'0',CURRENT_DATE(),CURRENT_DATE()+INTERVAL 1 YEAR,'0','1','','','');
 INSERT INTO taff_data.dbcompany (com_code) VALUES('0');
 INSERT INTO taff_data.dbconfigcorp (config_code) VALUES('0');
+INSERT INTO taff_data.dbdepart (dep_code, th_desc, en_desc) VALUES('000001', 'ค่าเริ่มต้น', 'Default');
+INSERT INTO taff_data.dbsection (sec_code, th_desc, en_desc, dep_code) VALUES('000001', 'ค่าเริ่มต้น', 'Default', '000001');
+INSERT INTO taff_data.dbposition (pos_code, th_desc, en_desc) VALUES('000001', 'พนักงาน', 'Employee');
+INSERT INTO taff_data.dbtype (type_code, th_desc, en_desc) VALUES('000001', 'พนักงานประจำ', 'Full Time');
+INSERT INTO taff_data.dbgroup (group_code, th_desc, en_desc) VALUES('000000', 'ไม่มีสิทธิ์เข้า', 'No Access');
+INSERT INTO taff_data.dbgroup (group_code, th_desc, en_desc) VALUES('000001', 'มีสิทธิ์เข้าได้ทุกประตู ตลอด 24 ชั่วโมง', '24 Hours All Access');
+INSERT INTO taff_data.dbgroup (group_code, th_desc, en_desc) VALUES('groupblacklist', 'พนักงานติดบัญชีดำ', 'Employee Blacklisted');
+INSERT INTO taff_data.dbtimedesc (time_id, th_desc, en_desc, time1, pin_flag1, fp_flag1) VALUES('01', '24 ชั่วโมง', '24 Hours', '00002359', '1', '1');
+INSERT INTO taff_data.dbtimezonedesc (time_code, th_desc, en_desc) VALUES('01', 'มีสิทธิ์เข้าได้ทุกประตู ตลอด 24 ชั่วโมง', '24 Hours All Access');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '1', '01');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '2', '01');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '3', '01');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '4', '01');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '5', '01');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '6', '01');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '7', '01');
+INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '8', '01');
+INSERT INTO taff_data.dblock (day_type) VALUES('1');
+INSERT INTO taff_data.dblock (day_type) VALUES('2');
+INSERT INTO taff_data.dblock (day_type) VALUES('3');
+INSERT INTO taff_data.dblock (day_type) VALUES('4');
+INSERT INTO taff_data.dblock (day_type) VALUES('5');
+INSERT INTO taff_data.dblock (day_type) VALUES('6');
+INSERT INTO taff_data.dblock (day_type) VALUES('7');
+INSERT INTO taff_data.dblock (day_type) VALUES('8');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('1');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('2');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('3');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('4');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('5');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('6');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('7');
+INSERT INTO taff_data.dbunlock (day_type) VALUES('8');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('1');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('2');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('3');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('4');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('5');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('6');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('7');
+INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('8');
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('01', 'ผ่านโดยการวางบัตร', 'Success by card', '1000100000');
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('02', 'ผ่านโดยการวางนิ้ว', 'Success by finger', '1000100000');
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('03', 'ผ่านโดยการกดรหัส', 'Success by keyboard', '1000100000');
@@ -613,194 +627,46 @@ INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES (
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('48', 'ปุ่ม Door Bell บน Reader ถูกกด', 'Door bell button press', '0000100000');
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('49', 'ปุ่มฉุกเฉิน บน Reader ถูกกด', 'Emergency button press', '0000100000');
 INSERT INTO taff_data.dbevent (event_code, th_desc, en_desc, event_act) VALUES ('50', 'เครื่องถูกถอดออกจากที่ติดตั้ง', 'Tamper switch on', '0000100000');
+
+-- 4 UPDATE DATA INTO TABLE (Update 21/02/2018)
 UPDATE taff_data.dbevent SET software_act = '0000011000' WHERE (event_code <= '08') AND (software_act = '0000000000');
-UPDATE taff_data.dbevent SET software_act = '0000001000' WHERE (event_code = '06' || event_code > '08') AND (software_act = '0000000000');
-INSERT INTO taff_data.dbdepart (dep_code, th_desc, en_desc) VALUES('000001', 'ค่าเริ่มต้น', 'Default');
-INSERT INTO taff_data.dbsection (sec_code, th_desc, en_desc, dep_code) VALUES('000001', 'ค่าเริ่มต้น', 'Default', '000001');
-INSERT INTO taff_data.dbposition (pos_code, th_desc, en_desc) VALUES('000001', 'พนักงาน', 'Employee');
-INSERT INTO taff_data.dbtype (type_code, th_desc, en_desc) VALUES('000001', 'พนักงานประจำ', 'Full Time');
-INSERT INTO taff_data.dbgroup (group_code, th_desc, en_desc) VALUES('000000', 'ไม่มีสิทธิ์เข้า', 'No Access');
-INSERT INTO taff_data.dbgroup (group_code, th_desc, en_desc) VALUES('000001', 'มีสิทธิ์เข้าได้ทุกประตู ตลอด 24 ชั่วโมง', '24 Hours All Access');
-INSERT INTO taff_data.dbtimedesc (time_id, th_desc, en_desc, time1, pin_flag1, fp_flag1) VALUES('01', '24 ชั่วโมง', '24 Hours', '00002359', '1', '1');
-INSERT INTO taff_data.dbtimezonedesc (time_code, th_desc, en_desc) VALUES('01', 'มีสิทธิ์เข้าได้ทุกประตู ตลอด 24 ชั่วโมง', '24 Hours All Access');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '1', '01');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '2', '01');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '3', '01');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '4', '01');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '5', '01');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '6', '01');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '7', '01');
-INSERT INTO taff_data.dbtimezone (time_code, day_type, time_id) VALUES('01', '8', '01');
-INSERT INTO taff_data.dblock (day_type) VALUES('1');
-INSERT INTO taff_data.dblock (day_type) VALUES('2');
-INSERT INTO taff_data.dblock (day_type) VALUES('3');
-INSERT INTO taff_data.dblock (day_type) VALUES('4');
-INSERT INTO taff_data.dblock (day_type) VALUES('5');
-INSERT INTO taff_data.dblock (day_type) VALUES('6');
-INSERT INTO taff_data.dblock (day_type) VALUES('7');
-INSERT INTO taff_data.dblock (day_type) VALUES('8');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('1');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('2');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('3');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('4');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('5');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('6');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('7');
-INSERT INTO taff_data.dbunlock (day_type) VALUES('8');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('1');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('2');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('3');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('4');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('5');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('6');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('7');
-INSERT INTO taff_data.dbtimeon_out4 (day_type) VALUES('8');
-INSERT INTO taff_data.dbusers (user_name,pass_word,user_right,st_date,ex_date,user_status,user_admin,dep_code,sec_code,group_user,control_reader,monitor_location,monitor_data)  
-VALUES ('admin',PASSWORD('admin'),'0',CURRENT_DATE(),CURRENT_DATE()+INTERVAL 1 YEAR,'0','1','','','','','','0');
-
-## 3 ALTER TABLE ON TAFF_DATA (Update 17/05/2016)
-ALTER TABLE taff_data.dbemployee MODIFY sn_card VARCHAR(14) DEFAULT '';
-
-## 4 ALTER TABLE ON TAFF_DATA (Update 14/07/2016)
-ALTER TABLE taff_data.dbreader ADD fing_security VARCHAR(1) DEFAULT '6';
-ALTER TABLE taff_data.dbreader ADD rd2mode VARCHAR(1) DEFAULT '0';
-ALTER TABLE taff_data.dbreader ADD rd2duty VARCHAR(1) DEFAULT 'O';
-ALTER TABLE taff_data.dbreader ADD vdo_volume VARCHAR(1) DEFAULT '5';
-ALTER TABLE taff_data.dbreader ADD screen_server VARCHAR(1) DEFAULT '1';
-ALTER TABLE taff_data.dbreader ADD camera VARCHAR(1) DEFAULT '1';
-ALTER TABLE taff_data.dbreader ADD capt_preview VARCHAR(1) DEFAULT '1';
-
-## 5 ALTER TABLE ON TAFF_DATA (Update 02/02/2017)
-ALTER TABLE taff_data.dbevent ADD group_img INT(1) DEFAULT '0';
-UPDATE taff_data.dbevent SET group_img = '0' WHERE (event_code <= '05' || event_code = '07' || event_code = '26' || event_code = '28' || event_code = '30' || event_code = '32' 
-    || event_code = '33' || event_code = '36' || event_code = '38' || event_code = '40' || event_code = '41' || event_code = '44' || event_code = '46' || event_code = '47');
-UPDATE taff_data.dbevent SET group_img = '1' WHERE (event_code = '31' || event_code = '34');	
-UPDATE taff_data.dbevent SET group_img = '2' WHERE (event_code = '35' || event_code = '37' || event_code = '39' || event_code = '43' || event_code = '45');	
-UPDATE taff_data.dbevent SET group_img = '3' WHERE (event_code = '06' || (event_code >= '08' AND event_code <= '24'));
-UPDATE taff_data.dbevent SET group_img = '4' WHERE (event_code = '25' || event_code = '27');
-UPDATE taff_data.dbevent SET group_img = '5' WHERE (event_code = '29' || event_code = '48' || event_code = '49');
+UPDATE taff_data.dbevent SET software_act = '0000001000' WHERE (event_code = '06' OR event_code > '08') AND (software_act = '0000000000');
+UPDATE taff_data.dbevent SET th_desc = 'ติดบัญชีดำ', en_desc = 'Error blacklist', event_act = '0000100000' WHERE (event_code = '06');
+UPDATE taff_data.dbevent SET th_desc = 'ผ่านโดยบาร์โค้ด', en_desc = 'Success by barcode', event_act = '1000100000' WHERE (event_code = '07');
+UPDATE taff_data.dbevent SET th_desc = '', en_desc = '', event_act = '0000100000' WHERE (event_code = '08');
+UPDATE taff_data.dbevent SET group_img = '0' WHERE (event_code <= '05' OR event_code = '07' OR event_code = '26' OR event_code = '28' OR event_code = '30' OR event_code = '32' 
+    OR event_code = '33' OR event_code = '36' OR event_code = '38' OR event_code = '40' OR event_code = '41' OR event_code = '44' OR event_code = '46' OR event_code = '47');
+UPDATE taff_data.dbevent SET group_img = '1' WHERE (event_code = '31' OR event_code = '34');	
+UPDATE taff_data.dbevent SET group_img = '2' WHERE (event_code = '35' OR event_code = '37' OR event_code = '39' OR event_code = '43' OR event_code = '45');	
+UPDATE taff_data.dbevent SET group_img = '3' WHERE (event_code = '06' OR (event_code >= '08' AND event_code <= '24'));
+UPDATE taff_data.dbevent SET group_img = '4' WHERE (event_code = '25' OR event_code = '27');
+UPDATE taff_data.dbevent SET group_img = '5' WHERE (event_code = '29' OR event_code = '48' OR event_code = '49');
 UPDATE taff_data.dbevent SET group_img = '6' WHERE (event_code = '42');
 UPDATE taff_data.dbevent SET group_img = '7' WHERE (event_code = '50');
 
-## 6 ALTER TABLE ON TAFF_DATA (Update 03/02/2017)
-ALTER TABLE taff_data.dbreader ADD mifare_std VARCHAR(1) DEFAULT '0';
-ALTER TABLE taff_data.dbreader ADD mifare_uid VARCHAR(1) DEFAULT '0';
-
-## 7 ALTER TABLE ON TAFF_DATA (Update 2/05/2017)
-ALTER TABLE taff_data.dblocation ADD group_lock VARCHAR(1) DEFAULT '';
-ALTER TABLE taff_data.dblocation ADD group_unlock VARCHAR(1) DEFAULT '';
-ALTER TABLE taff_data.dblocation ADD group_alarm VARCHAR(1) DEFAULT '';
-
-## 8 ALTER TABLE ON TAFF_DATA (Update 31/05/2017)
-ALTER TABLE taff_data.dbusers ADD monitor_location TEXT NOT NULL;
-
-## 9 ALTER TABLE ON TAFF_DATA (Update 25/08/2017)
-ALTER TABLE taff_data.dbusers ADD sec_code VARCHAR(6) DEFAULT '';
-
-## 10 ALTER TABLE ON TAFF_DATA (Update 31/10/2017)
-ALTER TABLE taff_data.dbdoor ADD door_type VARCHAR(1) DEFAULT '0';
-
-##DROP TABLE IF EXISTS taff_data.proc_auto_idtables;
-CREATE TABLE  taff_data.proc_auto_idtables (
-  idcard VARCHAR(16) NOT NULL,
-  status_no VARCHAR(1) NOT NULL,
-  auto_date DATE NOT NULL,
-  PRIMARY KEY (idcard,status_no,auto_date)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-## 11 ALTER TABLE ON TAFF_DATA (Update 1/11/2017)
-ALTER TABLE taff_data.dbsession ADD page_jsp VARCHAR(50) DEFAULT '';
-ALTER TABLE taff_data.dbsession ADD browser_info VARCHAR(50) DEFAULT '';
-ALTER TABLE taff_data.dbsession ADD ip_address VARCHAR(15) DEFAULT '';
-
-## 12 ALTER TABLE ON TAFF_DATA (Update 1/12/2017)
-ALTER TABLE taff_data.dbemployee ADD template VARCHAR(1) DEFAULT '0';
-ALTER TABLE taff_data.dbemployee ADD photo VARCHAR(1) DEFAULT '0';
-
-## 13 ALTER TABLE ON TAFF_DATA (Update 24/01/2018)
-##DROP TABLE IF EXISTS taff_data.dbblacklist;
-CREATE TABLE  taff_data.dbblacklist (
-  idcard VARCHAR(16) NOT NULL,
-  record_date DATE NOT NULL,
-  record_by VARCHAR(16) DEFAULT '',
-  record_detail VARCHAR(250) DEFAULT '',
-  cancel_date DATE DEFAULT NULL,
-  cancel_by VARCHAR(16) DEFAULT '',
-  cancel_detail VARCHAR(250) DEFAULT '',	
-  cancel_status VARCHAR(1) DEFAULT '0',
-  fullname VARCHAR(80) DEFAULT '',
-  card_id VARCHAR(13) DEFAULT '',
-  PRIMARY KEY (idcard,record_date)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-## 14 ALTER TABLE ON TAFF_DATA (Update 21/02/2018)
-UPDATE taff_data.dbevent SET th_desc = 'ติดบัญชีดำ', en_desc = 'Error blacklist' WHERE (event_code = '06');
-UPDATE taff_data.dbevent SET th_desc = 'ผ่านโดยบาร์โค้ด', en_desc = 'Success by barcode', event_act = '1000100000' WHERE (event_code = '07');
-UPDATE taff_data.dbevent SET th_desc = '', en_desc = '', event_act = '0000100000' WHERE (event_code = '08');
-ALTER TABLE taff_data.dbemployee ADD message VARCHAR(40) DEFAULT '';
-ALTER TABLE taff_data.dbemployee ADD message_date DATE DEFAULT NULL;
+-- 5 ALTER TABLE ON TAFF_DATA (Update 05/11/2018)
 ALTER TABLE taff_data.dbblacklist ADD fullname VARCHAR(80) DEFAULT '';
 ALTER TABLE taff_data.dbblacklist ADD card_id VARCHAR(13) DEFAULT '';
-
-## 15 ALTER TABLE ON TAFF_DATA (Update 05/11/2018)
+ALTER TABLE taff_data.dbemployee ADD message VARCHAR(40) DEFAULT '';
+ALTER TABLE taff_data.dbemployee ADD message_date DATE DEFAULT NULL;
 ALTER TABLE taff_data.dbemployee MODIFY group_code VARCHAR(16);
 ALTER TABLE taff_data.dbgroup MODIFY group_code VARCHAR(16);
 ALTER TABLE taff_data.dbzone_group MODIFY group_code VARCHAR(16);
 
-## 16 DROP AND CREATE TABLE ON TAFF_DATA (Update 27/12/2018)
-DROP TABLE IF EXISTS taff_data.dbresult;
-CREATE TABLE  taff_data.dbresult (
-  running_code VARCHAR(27) NOT NULL,
-  door_id VARCHAR(4) NOT NULL DEFAULT '',
-  ip_address VARCHAR(15) DEFAULT '',
-  act_request VARCHAR(2) DEFAULT '',
-  act_response VARCHAR(2) DEFAULT '',
-  data_request VARCHAR(50) DEFAULT '',
-  data_response VARCHAR(140) DEFAULT '',
-  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (running_code,door_id)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-## 17 ALTER TABLE ON TAFF_DATA (Update 17/01/2019)
+-- 6 ALTER TABLE ON TAFF_DATA (Update 10/06/2019)
 ALTER TABLE taff_data.dbusers ADD monitor_data VARCHAR(1) DEFAULT '0';
 UPDATE taff_data.dbusers SET monitor_data = '1' WHERE user_name = 'admin';
-
-## 18 ALTER TABLE ON TAFF_DATA (Update 12/02/2019)
 ALTER TABLE taff_data.dbreader ADD status_io VARCHAR(1) DEFAULT 'I';
 ALTER TABLE taff_data.dbemployee ADD current_level VARCHAR(1) DEFAULT '0';
 ALTER TABLE taff_data.dbemployee ADD current_io VARCHAR(1) DEFAULT 'O';
 ALTER TABLE taff_data.dbemployee ADD current_rd VARCHAR(5) DEFAULT '';
 ALTER TABLE taff_data.dbemployee ADD group_rd VARCHAR(2) DEFAULT '';
-
-## 19 INSERT INTO TABLE ON TAFF_DATA DEFAULT VALUES (Update 08/05/2019)
-INSERT INTO taff_data.dbgroup (group_code, th_desc, en_desc) VALUES('groupblacklist', 'พนักงานติดบัญชีดำ', 'Employee Blacklisted');
-
-## 20 ALTER TABLE AND ON TAFF_DATA (Update 16/05/2019)
 ALTER TABLE taff_data.dblocation ADD server_code VARCHAR(6) NOT NULL DEFAULT '';
-
-##DROP TABLE IF EXISTS taff_data.dbserver_config;
-CREATE TABLE taff_data.dbserver_config (
-  server_code VARCHAR(6) NOT NULL,
-  server_ip VARCHAR(15) NOT NULL,
-  path_output TEXT NOT NULL,
-  reader_no VARCHAR(5) DEFAULT '',
-  event_code VARCHAR(2) DEFAULT '',
-  access_token VARCHAR(1000) DEFAULT '',
-  company_uuid VARCHAR(32) DEFAULT '',
-  start_trans_id INT DEFAULT '0',
-  PRIMARY KEY (server_code)
-) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
-
-## 21 ALTER TABLE ON TAFF_DATA (Update 10/06/2019)
 ALTER TABLE taff_data.dbdoor ADD duplicate_ip VARCHAR(1) DEFAULT '0';
 
-## 22 ALTER TABLE ON TAFF_DATA (Update 05/07/2019)
-ALTER TABLE taff_data.dbtransaction ENGINE = InnoDB;
-ALTER TABLE taff_data.dbtransaction_ev ENGINE = InnoDB;
-ALTER TABLE taff_data.dbtrans_event ENGINE = InnoDB;
-
+-- 7 ALTER TABLE ON TAFF_DATA (Update 22/07/2019)
 DROP TABLE IF EXISTS taff_data.dbqprocess;
-CREATE TABLE  taff_data.dbqprocess (
+CREATE TABLE IF NOT EXISTS taff_data.dbqprocess (
   door_id VARCHAR(4) NOT NULL,
   act_request VARCHAR(1) NOT NULL,
   act_time VARCHAR(17) DEFAULT '',
@@ -809,42 +675,45 @@ CREATE TABLE  taff_data.dbqprocess (
   PRIMARY KEY (door_id,act_request) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-## 23 ALTER TABLE ON TAFF_DATA (Update 22/07/2019)
+ALTER TABLE taff_data.dbtrans_event ENGINE = InnoDB;
+ALTER TABLE taff_data.dbtransaction ENGINE = InnoDB;
+ALTER TABLE taff_data.dbtransaction_ev ENGINE = InnoDB;
 ALTER TABLE taff_data.dbusers ADD group_user VARCHAR(3) DEFAULT '';
 ALTER TABLE taff_data.dbusers ADD control_reader TEXT NOT NULL;
 ALTER TABLE taff_data.dbgroup ADD group_user VARCHAR(3) DEFAULT '';
 
-## 24 ALTER TABLE ON TAFF_DATA (Update 24/04/2020)
+-- 8 ALTER TABLE ON TAFF_DATA (Update 24/04/2020)
 ALTER TABLE taff_data.dbserver_config ADD reader_no VARCHAR(5) DEFAULT '';
 ALTER TABLE taff_data.dbserver_config ADD event_code VARCHAR(2) DEFAULT '';
 
-## 25 ALTER TABLE ON TAFF_DATA (Update 01/10/2020)
+-- 9 ALTER TABLE ON TAFF_DATA (Update 01/10/2020)
 ALTER TABLE taff_data.dbserver_config ADD access_token VARCHAR(1000) DEFAULT '';
 ALTER TABLE taff_data.dbserver_config ADD company_uuid VARCHAR(32) DEFAULT '';
 ALTER TABLE taff_data.dbserver_config ADD start_trans_id INT(10) unsigned DEFAULT '0';
 
-DROP TABLE IF EXISTS taff_data.dbworkcode;
-CREATE TABLE  taff_data.dbworkcode (
+CREATE TABLE IF NOT EXISTS taff_data.dbworkcode (
   work_code VARCHAR(2) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
-  en_desc VARCHAR(50) DEFAULT '',
+  en_desc VARCHAR(50) DEFAULT '',  
   PRIMARY KEY (work_code)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
+ALTER TABLE taff_data.dbtrans_event ADD work_code VARCHAR(2) DEFAULT '';
 ALTER TABLE taff_data.dbtransaction ADD work_code VARCHAR(2) DEFAULT '';
 ALTER TABLE taff_data.dbtransaction_ev ADD work_code VARCHAR(2) DEFAULT '';
 
-## 26 ALTER TABLE ON TAFF_DATA (Update 26/04/2021)
+-- 10 ALTER TABLE ON TAFF_DATA (Update 26/04/2021)
 ALTER TABLE taff_data.dbtransaction ADD temperature VARCHAR(4) DEFAULT '';
 ALTER TABLE taff_data.dbtransaction_ev ADD temperature VARCHAR(4) DEFAULT '';
 
-## 27 ALTER TABLE ON TAFF_DATA (Update 09/08/2021)
+-- 11 ALTER TABLE ON TAFF_DATA (Update 14/10/2021)
 ALTER TABLE taff_data.dbtransaction ADD wearmask VARCHAR(1) DEFAULT '';
 ALTER TABLE taff_data.dbtransaction_ev ADD wearmask VARCHAR(1) DEFAULT '';
 ALTER TABLE taff_data.dbserver_config ADD path_output_std TEXT NOT NULL;
+ALTER TABLE taff_data.dbserver_config ADD taff_id VARCHAR(4) DEFAULT '';
+ALTER TABLE taff_data.dbserver_config ADD start_trans_id_temp INT(10) unsigned DEFAULT '0';
 
-##DROP TABLE IF EXISTS taff_data.dbmapserial;
-CREATE TABLE  taff_data.dbmapserial (
+CREATE TABLE IF NOT EXISTS taff_data.dbmapserial (
   serial_no VARCHAR(20) NOT NULL,
   taff_id VARCHAR(4) NOT NULL,
   th_desc VARCHAR(50) DEFAULT '',
@@ -852,12 +721,7 @@ CREATE TABLE  taff_data.dbmapserial (
   PRIMARY KEY (serial_no)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-## 28 ALTER TABLE ON TAFF_DATA (Update 14/10/2021)
-ALTER TABLE taff_data.dbserver_config ADD taff_id VARCHAR(4) DEFAULT '';
-ALTER TABLE taff_data.dbserver_config ADD start_trans_id_temp INT(10) unsigned DEFAULT '0';
-
-##DROP TABLE IF EXISTS taff_data.dbmapduty;
-CREATE TABLE  taff_data.dbmapduty (
+CREATE TABLE IF NOT EXISTS taff_data.dbmapduty (
   duty_in VARCHAR(1) NOT NULL,
   duty_out VARCHAR(1) DEFAULT '',
   th_desc VARCHAR(50) DEFAULT '',
@@ -865,23 +729,32 @@ CREATE TABLE  taff_data.dbmapduty (
   PRIMARY KEY (duty_in)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;
 
-## 29 ALTER TABLE ON TAFF_DATA (Update 01/11/2021)
+-- 12 ALTER TABLE ON TAFF_DATA (Update 22/12/2021)
 ALTER TABLE taff_data.dbdoor ADD serial_no VARCHAR(20) DEFAULT '';
-
-## 30 ALTER TABLE ON TAFF_DATA (Update 22/12/2021)
 ALTER TABLE taff_data.dbworkcode ADD map_output VARCHAR(3) DEFAULT '';
 
-## 31 ALTER TABLE ON TAFF_DATA (Update 30/09/2022)
+-- 13 ALTER TABLE ON TAFF_DATA (Update 30/09/2022)
 ALTER TABLE taff_data.dbdoor ADD time_increased_text INT(10) DEFAULT '0';
 
-## 32 ALTER TABLE ON TAFF_DATA (Update 24/11/2023)
+-- 14 ALTER TABLE ON TAFF_DATA (Update 24/11/2023)
 ALTER TABLE taff_data.dbserver_config ADD branch_code VARCHAR(6) DEFAULT '';
 
-## 33 ALTER TABLE ON TAFF_DATA (Update 10/01/2025)
+-- 15 ALTER TABLE ON TAFF_DATA (Update 15/01/2025)
 ALTER TABLE taff_data.dbdoor ADD hardware_model VARCHAR(20) DEFAULT '';
 ALTER TABLE taff_data.dbemployee ADD face_sn_card VARCHAR(20) DEFAULT '';
 ALTER TABLE taff_data.dbemployee ADD face_pincode VARCHAR(6) DEFAULT '';
 ALTER TABLE taff_data.dbemployee ADD face_identify_mode VARCHAR(1) DEFAULT '0';
 ALTER TABLE taff_data.dbemployee ADD face_date_data DATETIME;
-ALTER TABLE taff_data.dbresult DROP COLUMN data_response;
-ALTER TABLE taff_data.dbresult ADD data_response TEXT;
+
+DROP TABLE IF EXISTS taff_data.dbresult;
+CREATE TABLE IF NOT EXISTS taff_data.dbresult (
+  running_code VARCHAR(27) NOT NULL,
+  door_id VARCHAR(4) NOT NULL DEFAULT '',
+  ip_address VARCHAR(15) DEFAULT '',
+  act_request VARCHAR(2) DEFAULT '',
+  act_response VARCHAR(2) DEFAULT '',
+  data_request VARCHAR(50) DEFAULT '',
+  data_response TEXT,
+  datetime_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (running_code,door_id)
+) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;

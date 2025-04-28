@@ -29,9 +29,9 @@
 		
 		String[] cols = null;
 		if(checkPermission(ses_per, "03")){
-			cols = new String[]{ "", "", "bl.idcard", "fullname", "emp.sec_code", "bl.record_detail", "bl.record_date", "bl.record_by", "bl.cancel_status" };
+			cols = new String[]{ "", "", "idcard", "fullname", "sec_code", "record_detail", "record_date", "record_by", "cancel_status" };
 		}else{
-			cols = new String[]{ "bl.idcard", "fullname", "emp.sec_code", "bl.record_detail", "bl.record_date", "bl.record_by", "bl.cancel_status", "", "" };
+			cols = new String[]{ "idcard", "fullname", "sec_code", "record_detail", "record_date", "record_by", "cancel_status", "", "" };
 		}
 		
 		int amount = 15;
@@ -162,7 +162,7 @@
 				
 				sql = " SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir + " ) AS 'NumRow', "
 					+ " bl.idcard, emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, "
-					+ " emp.sec_code, bl.record_detail, bl.record_date, bl.record_by, bl.cancel_status, bl.fullname ";
+					+ " emp.sec_code, bl.record_detail, FORMAT(record_date, 'yyyy-MM-dd') as record_date, bl.record_by, bl.cancel_status, bl.fullname ";
 				if(lang.equals("th")){
 					sql += " , emp.th_fname+' '+emp.th_sname AS emp_name, sec.th_desc AS sec_desc ";
 				}else{
@@ -250,7 +250,7 @@
 			response.setHeader("Cache-Control", "no-store");
 			out.print(result);
 			
-		}catch (SQLException e){
+		}catch (Exception e){
 			
 		}
 		

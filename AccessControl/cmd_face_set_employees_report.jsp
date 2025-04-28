@@ -61,7 +61,7 @@
 					<td width="20%" align="center"> <b> <%= lb_doorcode %> </b> </td>
 					<td width="35%" align="center"> <b> <%= lb_description %> </b> </td>
 					<td width="15%" align="center"> <b> <%= lb_result %> </b> </td>
-					<td width="25%" align="center" > <b> <%= lb_numofid %> </b> </td>
+					<td width="25%" align="center" > <b> <%= lb_numofid %> </b> </td>					
 				</thead>
 			</table>
 		</div>

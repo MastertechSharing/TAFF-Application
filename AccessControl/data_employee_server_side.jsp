@@ -29,9 +29,9 @@
 		
 		String[] cols = null;
 		if(checkPermission(ses_per, "0135")){
-			cols = new String[]{ "", "", "", "emp.photo", "emp.template", "emp.idcard", "th_fullname", "en_fullname", "emp.sec_code", "emp.date_data" };
+			cols = new String[]{ "", "", "", "photo", "template", "idcard", "th_fullname", "en_fullname", "sec_code", "date_data" };
 		}else{
-			cols = new String[]{ "emp.photo", "emp.template", "emp.idcard", "th_fullname", "en_fullname", "emp.sec_code", "emp.date_data", "", "", "" };
+			cols = new String[]{ "photo", "template", "idcard", "th_fullname", "en_fullname", "sec_code", "date_data", "", "", "" };
 		}
 		
 		int amount = 15;
@@ -78,7 +78,8 @@
 			if (!sdir.equals("asc")){
 				dir = "desc";
 			}
-		}
+		}		
+		
 		try{
 			String sqlWhere = "";				
 			String sqlcount = " SELECT COUNT(*) AS count_row ";
@@ -119,7 +120,7 @@
 			}	
 			rs1.close();
 			int totalAfterFilter = total;		
-				
+			
 			String colName = cols[col];
 			String sql = "", searchTerm = "", searchSQL = "";	
 			if(request.getParameter("sSearch") != null){
@@ -178,25 +179,25 @@
 				sql += "WHERE NumRow BETWEEN " + (row_start +1) + " AND " + sEnd;				
 			}
 			
-			ResultSet rs = stmtQry.executeQuery(sql);
+			ResultSet rs = stmtQry.executeQuery(sql);			
 			while (rs.next()) {				
-				String idcard = rs.getString("emp.idcard");
+				String idcard = rs.getString("idcard");				
 				String emp_id_link = "<b> <a href='#' onClick='show_detail(\""+idcard+"\");' data-toggle='tooltip' data-placement='left' data-html='true' title='"+lb_viewdata+"'>" + idcard + "</a> </b>";
 				String th_name = rs.getString("th_fullname");//rs.getString("emp.th_fname")+" "+rs.getString("emp.th_sname");
 				String en_name = rs.getString("en_fullname");//rs.getString("emp.en_fname")+" "+rs.getString("emp.en_sname");				
-				String date_data = YMDTodate(rs.getString("emp.date_data"))+" "+rs.getString("emp.date_data").substring(11, 19);
+				String date_data = YMDTodate(rs.getString("date_data"))+" "+rs.getString("date_data").substring(11, 19);
 				
-				String sec_code = rs.getString("emp.sec_code");
+				String sec_code = rs.getString("sec_code");
 				String sec_link = "<b> <a href='#' onClick='show_detail2(\""+sec_code+"\");' data-toggle='tooltip' data-placement='left' data-html='true' title='"+lb_viewdata+"'>" + sec_code + "</a> </b> ";
 				if(rs.getString("sec_desc") != null && rs.getString("sec_desc") != ""){
 					sec_link += " - " + rs.getString("sec_desc");
-				}
+				}				
 				
 				String img_jpg = "camera.png", img_tlp = "finger_tab.png";
-				if(rs.getString("emp.photo").equals("0")){
+				if(rs.getString("photo").equals("0")){
 					img_jpg = "camera_bw.png";
 				}
-				if(rs.getString("emp.template").equals("0")){
+				if(rs.getString("template").equals("0")){
 					img_tlp = "finger_tab_bw.png";
 				}
 				
@@ -244,7 +245,7 @@
 			response.setHeader("Cache-Control", "no-store");
 			out.print(result);
 		
-		}catch (SQLException e){
+		}catch (Exception e){
 			
 		}
 		

@@ -263,7 +263,7 @@
 			if(data.equals("["+lb_config+"] "+lb_face_getemployee))										out.println(" <script> window.parent.location.href = '../cmd_face_get_employee.jsp'; </script> ");
 			if(data.equals("["+lb_config+"] "+lb_face_setemployee))										out.println(" <script> window.parent.location.href = '../cmd_face_set_employee.jsp'; </script> ");
 			if(data.equals("["+lb_config+"] "+lb_face_delemployee))										out.println(" <script> window.parent.location.href = '../cmd_face_del_employee.jsp'; </script> ");
-			if(data.equals("["+lb_config+"] "+lb_face_setemployee))										out.println(" <script> window.parent.location.href = '../cmd_face_set_employees.jsp'; </script> ");
+			if(data.equals("["+lb_config+"] "+lb_face_setemployees))									out.println(" <script> window.parent.location.href = '../cmd_face_set_employees.jsp'; </script> ");
 			if(data.equals("["+lb_config+"] "+lb_face_gettransaction))									out.println(" <script> window.parent.location.href = '../cmd_face_get_transaction.jsp'; </script> ");
 	
 	//	System Info	====================================================================================================================================================================
