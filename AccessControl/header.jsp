@@ -939,6 +939,7 @@
 										<li> <a href="file_upload_group.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_group %> </a> </li>
 										<li> <a href="file_upload_employee.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_employee %> </a> </li>
 										<li> <a href="file_upload_employee2.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_employee %> [<%= lb_master_data %>] </a> </li>
+										<li> <a href="file_upload_photos.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_emp_photo %> </a> </li>
 										<li class="divider"> </li>
 									<%	if(checkPermission(ses_per, "03")){	%>
 										<li> <a href="file_upload_blacklist.jsp"> <i class="glyphicon glyphicon-menu-right"></i> <%= lb_blacklist %> </a> </li>
@@ -1471,6 +1472,8 @@
 				title_menu = lb_employee;
 			}else if(subtitle.equals("employee2")){
 				title_menu = lb_employee+" ["+lb_master_data+"]";
+			}else if(subtitle.equals("photos")){
+				title_menu = lb_emp_photo;
 			}else if(subtitle.equals("blacklist")){
 				title_menu = lb_blacklist;
 			}else if(subtitle.equals("message")){

@@ -397,7 +397,10 @@
 	public String convertPassField(String pw, int dbType) {
 		String result = "";
 		if (dbType == 0) {
-			result = " PASSWORD("+pw+") ";
+			//mySQL5
+			result = " PASSWORD("+pw+") "; 
+			//mySQL8
+			//result = " CONCAT('*',UPPER(SHA1(UNHEX(SHA1("+pw+")) ";
 		} else if (dbType == 1) {
 			result = " CONVERT(VARCHAR(45), HASHBYTES('SHA', "+pw+"), 1) ";
 		}
@@ -407,7 +410,10 @@
 	public String convertPassValue(String pw, int dbType) {
 		String result = "";
 		if (dbType == 0) {
+			//mySQL5
 			result = " PASSWORD('"+pw+"') ";
+			//mySQL8
+			//result = " CONCAT('*',UPPER(SHA1(UNHEX(SHA1('"+pw+"')) ";
 		} else if (dbType == 1) {
 			result = " CONVERT(VARCHAR(45), HASHBYTES('SHA', '"+pw+"'), 1) ";
 		}
@@ -1008,4 +1014,41 @@
 				+ day_work + "','" + time_event + "','" + door_desc + "')";
 		return result;
 	}	
+	
+	public String createIntegrationAPI() {		
+		String result = "CREATE TABLE INTEGRATION_API (DATETIMESTAMP TEXT NOT NULL, "
+				+ "COMMAND_ID TEXT NOT NULL, DATA_REQUEST TEXT NOT NULL, "
+				+ "RESPONSE_JSON TEXT, OPTIONS TEXT, SOFTWARE_MODEL CHAR(20), "
+				+ "PRIMARY KEY (COMMAND_ID, DATA_REQUEST))";			
+		return result;
+	}
+
+	public String insertIntegrationAPI(String datetime, String command_id, String data_req, String res_json, 
+			String optios, String sw_model) {
+		String result = "INSERT INTO INTEGRATION_API (DATETIMESTAMP, COMMAND_ID, DATA_REQUEST, "
+				+ "RESPONSE_JSON, OPTIONS, SOFTWARE_MODEL) VALUES ('" + datetime + "', '"
+				+ command_id + "', '" + data_req + "', '" + res_json + "', '" + optios + "', '" 
+				+ sw_model + "')";			
+		return result;
+	}
+
+	public String updateIntegrationAPI(String command_id, String data_req, String res_json) {
+		String result = "UPDATE INTEGRATION_API SET RESPONSE_JSON = '" + res_json
+				+ "' WHERE (COMMAND_ID = '" + command_id + "') AND (DATA_REQUEST = '" + data_req + "')";			
+		return result;
+	}
+
+	public String updateCommandIntegrationAPI(String command_id, String data_req, String command,
+			String hw_model) {
+		String result = "UPDATE INTEGRATION_API SET COMMAND_ID = '" + command + "', HARDWARE_MODEL = '" 
+				+ hw_model + "' WHERE (COMMAND_ID = '" + command_id + "') AND (DATA_REQUEST = '"
+				+ data_req + "')";			
+		return result;
+	}
+	
+	public String deleteIntegrationAPI(String command_id, String data_req) {
+		String result = "DELETE FROM INTEGRATION_API WHERE (COMMAND_ID = '" + command_id
+				+ "') AND (DATA_REQUEST = '" + data_req + "')";			
+		return result;
+	}
 %>

@@ -521,6 +521,7 @@
 	String lb_strquestion = "";
 	String lb_no_update = "";	
 	String lb_emp_photo = "";
+	String lb_browse_photo = "";
 	String lb_take_photo = "";
 	String lb_save_photo = "";
 	String lb_delete_photo = "";
@@ -1621,7 +1622,8 @@
 		lb_strquestion = "ต้องการแก้ไขสิทธิ์การเข้าออกประตูหรือไม่";
 		lb_no_update = "ไม่แก้ไข";	
 		lb_emp_photo = "รูปพนักงาน";
-		lb_take_photo = "ถ่ายรูป";
+		lb_browse_photo = "โหลดรูป";
+		lb_take_photo = "ถ่ายรูป";		
 		lb_save_photo = "บันทึกรูป";
 		lb_delete_photo = "ลบรูป";
 		lb_define_door = "กำหนดประตู";
@@ -2741,7 +2743,8 @@
 		lb_strquestion = "Do you want to edit privileges";
 		lb_no_update = "No Update";	
 		lb_emp_photo = "Employee Photo";
-		lb_take_photo = "Take Photo";
+		lb_browse_photo = "Browse Photo";
+		lb_take_photo = "Take Photo";		
 		lb_save_photo = "Save";
 		lb_delete_photo = "Delete";
 		lb_define_door = "Define Door";

@@ -196,6 +196,13 @@
 		}
 		try {
 			resultQry = stmtUp.executeUpdate("DELETE FROM dbemployee "+sql);
+			
+			String dt = getCurrentDateTimeMsLog();			
+			String swModel = "TAFFServer67";
+			String cmd = "850";
+			String req = cmd + "_" + getCurrentDtBase() + "_" + idcard;							
+			resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
+			
 			if (resultQry != 0) { 
 				resultQry = stmtUp.executeUpdate("DELETE FROM dbtransaction "+sql);
 				resultQry = stmtUp.executeUpdate("DELETE FROM dbtransaction_ev "+sql);
@@ -480,8 +487,12 @@
 											//	Copy file from photos/tmpCapture to photos/ && delete file tmp
 											try {
 												File tmpFile = new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg");
-												File newFile = new File(getServletContext().getRealPath("/") + "photos\\"+idcard+".jpg");
+												File newFile = new File(getServletContext().getRealPath("/") + "photos\\"+idcard+".jpg");												
 												FileUtils.copyFile(tmpFile, newFile);
+												
+												//File newFileP = new File(path_EmpPhotos + "photos\\"+idcard+".jpg");
+												//FileUtils.copyFile(tmpFile, newFileP);
+												
 												//	delete file tmpCapture
 												new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg").delete();
 											} catch (Exception ef) { }
@@ -495,6 +506,17 @@
 											}
 									
 											rc.WriteDataLogFile("[" + ses_user + "] Add idcard : " + idcard + " [dbemployee]");
+											
+											String dt = getCurrentDateTimeMsLog();
+											String swModel = "TAFFServer67";
+											String cmd = "851";											
+											String req = cmd + "_" + getCurrentDtBase() + "_" + idcard;											
+											resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
+																						
+											cmd = "855";											
+											req = cmd + "_" + getCurrentDtBase() + "_" + idcard;											
+											resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
+											
 											if (group_code.equals("99")) {
 												sql = " INSERT INTO dbgroup (group_code, th_desc, en_desc) "
 													+ " VALUES ('" + groupCodeAdd + "', 'กลุ่มที่กำหนดเฉพาะแต่ละบุคคล', 'Specifically defined group')";
@@ -638,6 +660,16 @@
 						if (resultQry != 0) {
 							rc.WriteDataLogFile("[" + ses_user + "] Edit idcard : " + idcard2 + " [dbemployee]");
 							
+							String dt = getCurrentDateTimeMsLog();
+							String swModel = "TAFFServer67";
+							String cmd = "852";
+							String req = cmd + "_" + getCurrentDtBase() + "_" + idcard;							
+							resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
+														
+							cmd = "855";											
+							req = cmd + "_" + getCurrentDtBase() + "_" + idcard;											
+							resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));										
+							
 							//	Check File Photo & Template
 							if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){
 								stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '1' WHERE idcard = '"+idcard+"' ");
@@ -711,6 +743,17 @@
 								
 								rc.WriteDataLogFile("[" + ses_user + "] Edit idcard : " + idcard2
 										+ " to idcard : " + idcard + " [dbemployee]");
+										
+								String dt = getCurrentDateTimeMsLog();
+								String swModel = "TAFFServer67";
+								String cmd = "852";
+								String req = cmd + "_" + getCurrentDtBase() + "_" + idcard;							
+								resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", idcard2, swModel));
+															
+								cmd = "855";											
+								req = cmd + "_" + getCurrentDtBase() + "_" + idcard;											
+								resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));									
+							
 								if (group_code.equals("99")) {
 									try{
 										resultQry = stmtUp.executeUpdate(insertDbGroup(groupCodeAdd));
@@ -740,6 +783,7 @@
 					} else {
 						out.println("<script>ModalDanger_NoTimeout('" + msg_dupemp + "');</script>");
 					}
+					
 				}
 			}catch(SQLException e){
 				out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");

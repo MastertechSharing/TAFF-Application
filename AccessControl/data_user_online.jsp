@@ -324,6 +324,7 @@
 										if(page_jsp.equals("file_upload_group.jsp"))							page_jsp = "["+lb_special+"] "+lb_group+" ["+lb_import+"]";
 										if(page_jsp.equals("file_upload_employee.jsp"))							page_jsp = "["+lb_special+"] "+lb_employee+" ["+lb_import+"]";
 										if(page_jsp.equals("file_upload_employee2.jsp"))						page_jsp = "["+lb_special+"] "+lb_employee+" ["+lb_master_data+"] ["+lb_import+"]";
+										if(page_jsp.equals("file_upload_photos.jsp"))							page_jsp = "["+lb_special+"] "+lb_emp_photo+" ["+lb_import+"]";
 										if(page_jsp.equals("file_upload_blacklist.jsp"))						page_jsp = "["+lb_special+"] "+lb_blacklist+" ["+lb_import+"]";
 										if(page_jsp.equals("file_upload_message.jsp"))							page_jsp = "["+lb_special+"] "+lb_message+" ["+lb_import+"]";
 										if(page_jsp.equals("file_upload_auto_idtable.jsp"))						page_jsp = "["+lb_special+"] "+lb_auto_idtable+" ["+lb_import+"]";

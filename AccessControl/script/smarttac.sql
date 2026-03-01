@@ -1,6 +1,5 @@
-## For Smarttac Only
-## 1
-## DROP AND CREATE TABLE ON TAFF_DATA DATABASE FOR ACCESSCONTROL (Update 30/03/2012) 
+-- MySQL For Smarttac Only
+-- 1 DROP AND CREATE TABLE ON TAFF_DATA DATABASE FOR ACCESSCONTROL (Update 30/03/2012) 
 DROP TABLE IF EXISTS taff_data.dbsession;
 CREATE TABLE  taff_data.dbsession (
   ses_user_id VARCHAR(40) NOT NULL,

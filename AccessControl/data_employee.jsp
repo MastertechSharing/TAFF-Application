@@ -248,7 +248,7 @@
 									<td width="3%" align="center"> </td>
 									<td width="3%" align="center"> </td>
 									<td width="3%" align="center"> </td>
-									<td width="3%" align="center"> </td>
+									<td width="3%" align="center"> </td>																
 							<%	}	%>
 									<td width="13%" align="center"> <b> <%= lb_empcode %> <b> </td>
 									<td width="18%" align="center"> <b> <%= lb_thname_sname %><b> </td>
@@ -350,6 +350,30 @@
 		</div>
 		
 		<%@ include file="tools/modal_result.jsp"%>
+		<div class="modal fade bs-example-modal-lg" id="myModalBrowse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" onClick="setblankCap();">&times;</button>
+						<h4 class="modal-title"> <span id="text_browse"> </span> <%= lb_empcode %> : <span id="text_browse"> </span> <span id="text_browse_id"> </span> </h4>
+					</div>
+					<div class="modal-body" align="center">
+						<div class="table-responsive" style="border: 0px !important;" border="0">
+							<iframe src="" id="browse_photos" name="browse_photos" frameborder="0" height="556px" style="min-width: 800px;"></iframe>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-8 col-xs-8" align="left">
+							<button type="button" class="btn btn-primary btn-sm button-shadow1 button-shadow2" onClick="btnCap('<%= lb_emp_photo %>');"> &nbsp; <%= lb_emp_photo %> &nbsp; </button> &nbsp;
+							<button type="button" class="btn btn-primary btn-sm button-shadow1 button-shadow2" onClick="btnSendPic('<%= lb_cmd63 %>');"> &nbsp; <%= lb_cmd63 %> &nbsp; </button>
+						</div>
+						<div class="col-md-4 col-xs-4">
+							<button type="button" class="btn btn-default btn-sm button-shadow1 button-shadow2" data-dismiss="modal" onClick="setblankCap();"> <%= btn_close %> </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		<div class="modal fade bs-example-modal-lg" id="myModalCapture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-toggle="modal" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog modal-lg" role="document">
@@ -487,6 +511,13 @@
 		
 		var idcard_select = '';
 		
+		function browsePhotos(sText, idcard){
+			idcard_select = idcard;
+			document.getElementById("text_browse").innerHTML = sText;
+			document.getElementById("text_browse_id").innerHTML = idcard;
+			browse_photos.location = 'browse_photos.jsp?action=edit&idcard='+idcard;			
+			$('#myModalBrowse').modal('show');
+		}
 		function cameraCapture(sText, idcard){
 			idcard_select = idcard;
 			document.getElementById("text_camera").innerHTML = sText;
@@ -527,6 +558,26 @@
 			location.href = 'module/act_employee.jsp?action=check_file';
 		}
 		
+		function checkInputFile(text){
+				var path = document.fupload.files;	
+				//	Checking file type
+				var re_text = /\.jpg|\.JPG/i;
+				var filename = path.value;	
+				if(filename != null){								
+				   if(filename.search(re_text) != -1){		
+						var id =  document.getElementById("idcard").value;	
+						document.fupload.action = 'module/upload_file.jsp?type=photos&idname='+id+'.jpg';
+						document.fupload.target = 'iframe_target';
+						document.fupload.submit();	
+						ImgLoad();
+					}else{						
+						ModalWarning_TextName(text, '');
+						document.fupload.reset();
+						return false;
+					}	   
+				}
+			}
+			
 		document.onreadystatechange = function () {
 			if (document.readyState === "complete") {
 				setTimeout(function(){

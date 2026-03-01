@@ -286,7 +286,7 @@
 				//	Checking file type
 				var re_text = /\.jpg|\.JPG/i;
 				var filename = path.value;	
-				if(filename != null){			
+				if(filename != null){								
 				   if(filename.search(re_text) != -1){					
 						document.fupload.action = 'module/upload_file.jsp?type=slide';
 						document.fupload.target = 'iframe_target';

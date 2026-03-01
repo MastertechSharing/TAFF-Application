@@ -31,7 +31,8 @@
 	String path_EmpPic = rc.getPathEmpPic();
 	String path_Video = rc.getPathVideo();
 	String path_ImgSlide = rc.getPathImgSlide();
-	String path_AccSound = rc.getPathSound();		
+	String path_AccSound = rc.getPathSound();	
+	String path_EmpPhotos = rc.getPathEmpPhotos();
 	
 	int ssTimeOut = rc.getSessionTimeOut();
 	
@@ -81,7 +82,7 @@
 		response.sendRedirect("../try_catch.jsp?error=" + e.getMessage());	
 	}
 	
-	String title = rc.displayVersionSW(sizeSW, "5.8");
+	String title = rc.displayVersionSW(sizeSW, "5.9");
 	session.setAttribute("sw_title", title);
 	session.setAttribute("sw_version", version);
 	NumberFormat nf1 = NumberFormat.getInstance();	

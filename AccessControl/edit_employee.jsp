@@ -51,6 +51,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
 		<script src="js/locales/bootstrap-datetimepicker.th.js" charset="UTF-8"></script>
+		<script src="js/bootstrap-filestyle.min.js"></script>
 		
 		<!-- Latest compiled and minified CSS -->
 		<link href="css/bootstrap-select.min.css" rel="stylesheet">
@@ -66,7 +67,13 @@
 			
 			$(function(){
 				$('[data-toggle="tooltip"]').tooltip()
-			})
+			})			
+			
+			$(document).ready(
+				function(){
+					$("input:eq(1)").addClass("max-height-34");
+				}
+			)
 			
 			function chkSncard(sText, elementid){	
 				if(form1.use_map_card.checked == true){
@@ -80,20 +87,23 @@
 			}
 			
 			function ImgLoad(){
+				setTimeout(function(){
 				var myobj = document.getElementById("img_emp");				
 				if(myobj != null){  
 					var id =  document.getElementById("idcard").value;	
+					var timestamp = new Date().getTime();
 					var oImg = new Image();			
-					oImg.src = "photos/"+id+".jpg";
-					oImg.onload = function(){ myobj.src = oImg.src; }
+					oImg.src = "photos/"+id+".jpg?t=" + timestamp;
+					oImg.onload = function(){ myobj.src = oImg.src }
 					oImg.onerror = function(){ 					
-						oImg.src = "photos/"+id+".JPG"; 						
+						oImg.src = "photos/"+id+".JPG?t=" + timestamp;					
 						oImg.onerror = function(){ 
 							oImg.src = "photos/person.png";
 						}
-					}					
+					}						
 				}
-			}
+				}, 1200);
+			}			
 			
 			function Rotate() {
 				document.getElementById("resize_small").style.display = "none";
@@ -111,7 +121,7 @@
 			
 			function ShowFullImage(){
 				document.getElementById("resize_full").style.display = "none";
-				$('#img_emp').animate({height: '170px', width: '170px'}, 'slow');	//	100px
+				$('#img_emp').animate({height: '140px', width: '140px'}, 'slow');	//	100px
 				document.getElementById("resize_small").style.display = "";
 			}
 			
@@ -331,22 +341,32 @@
 		<div class="body-display">
 			<div class="container">
 				
-				<form id="form1" name="form1" method="post">
+				<!--<form id="fupload" name="fupload" method="post" enctype="multipart/form-data">	
+				<div class="modal-title col-xs-6 col-md-6" style="margin-top: 6px;"> 
+									<input type="file" name="files" id="files" class="filestyle" data-buttonBefore="true" data-buttonText="&nbsp; .jpg" data-buttonName="btn-primary" data-input = "false" data-size="xs" onChange="checkInputFile('<%= lb_msg_jpg %>')" accept="image/jpeg">
+								</div>
+								<div class="modal-title col-xs-3 col-md-3">
+									<!-- <a onclick="clearFileInputField('uploadFile_div')" href="javascript:noAction();">Clear</a> -->
+								<!--	<iframe id="iframe_target" name="iframe_target" src="about: blank" style="width: 0; height: 0; border: 0px;"></iframe> 
+								-->
+				<!--				</div>	
+				</form>
+				-->
+				<form id="form1" name="form1" method="post">						
 				
 <% 		if(action.equals("add")){	
 			
 			//	Delete tmp photo
+			new File(getServletContext().getRealPath("/") + "photos\\tmpBrowse\\BrowseBy-"+username+".jpg").delete();
 			new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg").delete();
-%>
-				
+%>				
 				<div class="row">
 				
 					<div class="col-md-6" style="border: 0px !important; margin-bottom: 15px; margin-left: 0px; margin-right: 0px;">
 						<div class="bs-callout bs-callout-info"> 
 							<div class="row alert-message-info" style="height: 32px; margin-left: -10px; margin-top: -10px; margin-right: -10px; margin-bottom: 10px;">
 								<label class="control-label" style="margin-left: 5%; margin-top: 5px;"> <i class="glyphicon glyphicon-list-alt" > </i> &nbsp; <b> ID Card & Grant Information </b> </label>
-							</div>
-						
+							</div>						
 							<div class="row form-group">
 								<label class="control-label label-text-1 col-md-4"> <%= lb_emp_photo %> : </label>
 								<div class="col-md-5">
@@ -354,9 +374,13 @@
 									<span id="resize_full" class="glyphicon glyphicon-resize-full" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowFullImage();" data-toggle="tooltip" data-placement="right" title="Full size"> </span> 
 									<span id="resize_small" class="glyphicon glyphicon-resize-small" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowSmallImage();" data-toggle="tooltip" data-placement="left" title="Small size"> </span>
 								</div>
-								<label class="control-label col-md-3" style="padding-right: 10px;">
+								<div class="col-md-3" style="margin-top: 6px;" >									
+									<i class="glyphicon glyphicon-folder-open" style="cursor: pointer; cursor: hand;" onClick="browsePhotos('add', '');"> </i> &nbsp; <span onClick="browsePhotos('add', '');"> <%= lb_browse_photo %> </span>
+									<!--
+									<p>
 									<i class="glyphicon glyphicon-camera" style="cursor: pointer; cursor: hand;" onClick="cameraCapture('add', '');"> </i> &nbsp; <span onClick="cameraCapture('add', '');"> <%= lb_take_photo %> </span>
-								</label>
+									-->
+								</div>							
 							</div>
 							<div class="row form-group">
 								<label class="control-label label-text-1 col-md-4"> <%= lb_empcode %> : </label>
@@ -784,9 +808,13 @@
 									<span id="resize_full" class="glyphicon glyphicon-resize-full" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowFullImage();" data-toggle="tooltip" data-placement="right" title="Full size"> </span> 
 									<span id="resize_small" class="glyphicon glyphicon-resize-small" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowSmallImage();" data-toggle="tooltip" data-placement="left" title="Small size"> </span>
 								</div>
-								<label class="control-label col-md-3" style="padding-right: 10px;">
+								<div class="col-md-3">								
+									<i class="glyphicon glyphicon-folder-open" style="cursor: pointer; cursor: hand;" onClick="browsePhotos('edit', '<%= idcard %>');"> </i> &nbsp; <span onClick="browsePhotos('edit', '<%= idcard %>');"> <%= lb_browse_photo %> </span>									
+									<!--
+									<p>
 									<i class="glyphicon glyphicon-camera" style="cursor: pointer; cursor: hand;" onClick="cameraCapture('edit', '<%= idcard %>');"> </i> &nbsp; <span onClick="cameraCapture('edit', '<%= idcard %>');"> <%= lb_take_photo %> </span>
-								</label>
+									-->
+								</div>
 							</div>
 							<div class="row form-group">
 								<label class="control-label label-text-1 col-md-4"> <%= lb_empcode %> : </label>
@@ -1233,16 +1261,17 @@
 			</div>
 		</div>
 		
-		<div class="modal fade bs-example-modal-lg" id="myModalCapture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+		
+		<div class="modal fade bs-example-modal-lg" id="myModalBrowse" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-toggle="modal" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" onClick="set_blank();">&times;</button>
-						<h4 class="modal-title"> <%= lb_take_photo %> </h4>
+						<h4 class="modal-title"> <%= lb_browse_photo %> </h4>
 					</div>
 					<div class="modal-body" align="center">
-						<div class="table-responsive" style="border: 0px !important;" border="0">
-							<iframe src="" id="camera_capture" name="camera_capture" frameborder="0" height="430px" style="min-width: 850px;"></iframe>
+						<div class="table-responsive" style="border: 0px !important;" border="0">						
+							<iframe src="" id="browse_photos" name="browse_photos" frameborder="0" height="556px" style="min-width: 800px;"></iframe>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -1252,16 +1281,40 @@
 			</div>
 		</div>
 		
+		<div class="modal fade bs-example-modal-lg" id="myModalCapture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" onClick="set_blank();">&times;</button>
+						<h4 class="modal-title"> <%= lb_take_photo %> </h4>
+					</div>
+					<div class="modal-body" align="center">
+						<div class="table-responsive" style="border: 0px !important;" border="0">
+							<iframe src="" id="camera_capture" name="camera_capture" frameborder="0" height="430px" style="min-width: 850px;"></iframe>						
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-sm button-shadow1 button-shadow2" data-dismiss="modal" onClick="set_blank();"> <%= btn_close %> </button>
+					</div>
+				</div>
+			</div>
+		</div>		
 		<%	}	%>
 		
 		<script language="javascript">
+			function browsePhotos(action, idcard){				
+				browse_photos.location = 'browse_photos.jsp?action='+action+'&idcard='+idcard;
+				$('#myModalBrowse').modal('show');
+			}
+			
 			function cameraCapture(action, idcard){
 				camera_capture.location = 'camera_capture.jsp?action='+action+'&idcard='+idcard;
 				$('#myModalCapture').modal('show');
 			}
 			
 			function set_blank(action, idcard){
-				camera_capture.location = 'about:blank';
+				browse_photos.location = 'about:blank';
+				camera_capture.location = 'about:blank';				
 			}
 			
 			function upperCase(obj){

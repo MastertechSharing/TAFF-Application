@@ -18,6 +18,11 @@
 		SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("us", "us"));
 		return simpleFormat.format(new Date());
 	}
+	
+	public String getCurrentDateTimeMsLog() {
+		SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", new Locale("us", "us"));
+		return simpleFormat.format(new Date());
+	}
 
 	public String getCurrentDate() {
 		SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("us", "us"));
@@ -36,6 +41,11 @@
 
 	public String getCurrentTimeShort() {
 		SimpleDateFormat simpleFormat = new SimpleDateFormat("HH:mm", new Locale("us", "us"));
+		return simpleFormat.format(new Date());
+	}
+	
+	public static String getCurrentDtBase() {
+		SimpleDateFormat simpleFormat = new SimpleDateFormat("yyyyMMddHHmmss", new Locale("us", "us"));
 		return simpleFormat.format(new Date());
 	}
 

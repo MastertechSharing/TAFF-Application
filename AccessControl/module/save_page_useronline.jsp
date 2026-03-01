@@ -197,6 +197,7 @@
 		if(page_jsp.equals("file_upload_group.jsp"))							update_page = true;
 		if(page_jsp.equals("file_upload_employee.jsp"))							update_page = true;
 		if(page_jsp.equals("file_upload_employee2.jsp"))						update_page = true;
+		if(page_jsp.equals("file_upload_photos.jsp"))							update_page = true;
 		if(page_jsp.equals("file_upload_blacklist.jsp"))						update_page = true;
 		if(page_jsp.equals("file_upload_message.jsp"))							update_page = true;
 		if(page_jsp.equals("file_upload_auto_idtable.jsp"))						update_page = true;

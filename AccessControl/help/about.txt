@@ -1,5 +1,5 @@
-Version		: Access Control [Version 5.8]
-Last Update	: 25/04/2568
+Version		: Access Control [Version 5.9]
+Last Update	: 27/02/2569
 
 Update Version
 25/12/2555 : Access Control [Version 1.0]
@@ -175,4 +175,7 @@ Update Version
 25/04/2568 : Access Controls [Version 5.8]
 	- Add menu Data System / Reader [Face Scan]
 	- Add menu Connect HW / Face Scan for communication VF1000
-	- Resolve Data Employee Config Face Employee Information
+	- Resolve Data Employee Config Face Employee Information 
+27/02/2569 : Access Controls [Version 5.9]
+	- Add menu Import Data [TXT] / Employee Photos
+	- Resolve a camera issue, select images from a folder instead of taking photos.

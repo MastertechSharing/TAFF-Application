@@ -39,11 +39,24 @@
 		
 		String fileSave = "";
 		String typeFile = "";
+		String NewFileName = "";
 		if(!(request.getParameter("type") == null || request.getParameter("type").equals("")
 			|| request.getParameter("type").equals("null"))){
 			typeFile = request.getParameter("type");
 		}
-		if(typeFile.equals("screen")){
+		
+		if(!(request.getParameter("idname") == null || request.getParameter("idname").equals("")
+			|| request.getParameter("idname").equals("null"))){
+			NewFileName = request.getParameter("idname")+".jpg";
+		}else{
+			NewFileName = fileName;
+		}
+		
+		if(typeFile.equals("photos")){			
+			if(lastName.equals("jpg") || lastName.equals("JPG") || lastName.equals("jpeg") || lastName.equals("JPEG")){
+				fileSave = path_EmpPhotos+NewFileName;
+			}
+		}else if(typeFile.equals("screen")){
 			if(lastName.equals("bmp") || lastName.equals("BMP")){
 				fileSave = path_data+"PIC.BMP";
 			}

@@ -286,6 +286,7 @@
 			if(data.equals("["+lb_special+"] "+lb_group+" ["+lb_import+"]"))							out.println(" <script> window.parent.location.href = '../file_upload_group.jsp'; </script> ");
 			if(data.equals("["+lb_special+"] "+lb_employee+" ["+lb_import+"]"))							out.println(" <script> window.parent.location.href = '../file_upload_employee.jsp'; </script> ");
 			if(data.equals("["+lb_special+"] "+lb_employee+" ["+lb_master_data+"] ["+lb_import+"]"))	out.println(" <script> window.parent.location.href = '../file_upload_employee2.jsp'; </script> ");
+			if(data.equals("["+lb_special+"] "+lb_emp_photo+" ["+lb_import+"]"))						out.println(" <script> window.parent.location.href = '../file_upload_photos.jsp'; </script> ");
 		if(checkPermission(ses_per, "03")){
 			if(data.equals("["+lb_special+"] "+lb_blacklist+" ["+lb_import+"]"))						out.println(" <script> window.parent.location.href = '../file_upload_blacklist.jsp'; </script> ");
 		}
@@ -301,7 +302,7 @@
 		}
 			if(data.equals("["+lb_special+"] "+lb_group+" ["+lb_export+"]"))							out.println(" <script> window.parent.location.href = '../file_export_data.jsp?file=group'; </script> ");
 			if(data.equals("["+lb_special+"] "+lb_employee+" ["+lb_export+"]"))							out.println(" <script> window.parent.location.href = '../file_export_data.jsp?file=employee'; </script> ");
-			if(data.equals("["+lb_special+"] "+lb_employee+" ["+lb_master_data+"] ["+lb_export+"]"))	out.println(" <script> window.parent.location.href = '../file_export_data.jsp?file=employee2'; </script> ");
+			if(data.equals("["+lb_special+"] "+lb_employee+" ["+lb_master_data+"] ["+lb_export+"]"))	out.println(" <script> window.parent.location.href = '../file_export_data.jsp?file=employee2'; </script> ");			
 		}
 		
 		//	Process Files
