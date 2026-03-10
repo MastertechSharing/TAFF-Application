@@ -4,7 +4,7 @@ USE taff_data;
 
 -- 1 INSERT DATA INTO TABLE (Update 21/02/2018)
 INSERT INTO taff_data.dbusers (user_name,pass_word,user_right,st_date,ex_date,user_status,user_admin,dep_code,sec_code,monitor_location,monitor_data,control_reader)  
-VALUES ('admin',CONCAT('*',UPPER(SHA1(UNHEX(SHA1('admin')),'0',CURRENT_DATE(),CURRENT_DATE()+INTERVAL 1 YEAR,'0','1','','','','1','');
+VALUES ('admin',CONCAT('*', UPPER(CAST(SHA1(UNHEX(SHA1('admin'))) AS CHAR))),'0',CURRENT_DATE(),CURRENT_DATE()+INTERVAL 1 YEAR,'0','1','','','','1','');
 INSERT INTO taff_data.dbcompany (com_code) VALUES('0');
 INSERT INTO taff_data.dbconfigcorp (config_code) VALUES('0');
 INSERT INTO taff_data.dbdepart (dep_code, th_desc, en_desc) VALUES('000001', 'ค่าเริ่มต้น', 'Default');
