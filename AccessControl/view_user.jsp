@@ -3,6 +3,7 @@
 <%@ include file="../function/connect.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/datetime.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <%@ include file="../function/displaydata.jsp"%>
 <html lang="en">
 	<head>
@@ -111,20 +112,14 @@
 		String col_line = "col-xs-12";
 		String set_hr = " <div class='row'> <hr class='"+col_line+"' style='height: 6px; margin-top: 8px; margin-bottom: 4px;' /> </div> ";
 		
-		String sql = "";
-		if(mode == 0){
-			sql = "SELECT DATE_FORMAT(st_date,'%d/%m/%Y') AS stdate_show, "
-					+ "DATE_FORMAT(ex_date,'%d/%m/%Y') AS exdate_show, ";
-		}else if(mode == 1){
-			sql = "SELECT CONVERT(varchar(10),st_date,103) AS stdate_show, "
-					+ "CONVERT(varchar(10),ex_date,103) AS exdate_show, ";
-		}
+		String sql = "SELECT "+convertDate103("st_date","st_date_show",db_type)+", "
+				+convertDate103("ex_date","ex_date_show",db_type)+", ";			
 		if(lang.equals("th")){
 			sql += "dep.th_desc AS dep_desc, sec.th_desc AS sec_desc, ";
 		}else{
 			sql += "dep.en_desc AS dep_desc, sec.en_desc AS sec_desc, ";
 		}
-		sql = sql + " u.* "
+		sql += " u.* "
 				+ "FROM dbusers u "
 				+ "LEFT OUTER JOIN dbdepart dep ON (dep.dep_code = u.dep_code) "
 				+ "LEFT OUTER JOIN dbsection sec ON (sec.sec_code = u.sec_code) "
@@ -136,8 +131,8 @@
 				chk_dbusers = true;
 				user_name = rs.getString("user_name");
 				String user_right = displayUser(rs.getString("user_right"));
-				String st_date = rs.getString("stdate_show");
-				String ex_date = rs.getString("exdate_show");
+				String st_date = rs.getString("st_date_show");
+				String ex_date = rs.getString("ex_date_show");
 				String dep_code = rs.getString("dep_code");
 				String sec_code = ""; 
 				String dep_code_desc = "-";

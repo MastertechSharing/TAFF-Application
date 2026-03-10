@@ -118,9 +118,9 @@
 	String sql = "";
 	if (action.equals("clearall")) {
 		try {
-			String convert_pass = convertPassField("idcard", mode);
+			String convert_pass = convertPassField("idcard", db_type);
 			if (ses_per == 1) {
-				if (mode == 0) {
+				if (db_type == 0) {
 					sql = "UPDATE dbemployee emp " 
 							+ "INNER JOIN dbsection sec ON (sec.sec_code = emp.sec_code) "
 							+ "INNER JOIN dbdepart dep ON (dep.dep_code = sec.dep_code) "
@@ -149,7 +149,7 @@
 		}
 	} else if (action.equals("clear")) {
 		try {
-			sql = "UPDATE dbemployee SET pass_word = "+convertPassValue(idcard, mode)+" WHERE (idcard = '" + idcard + "')";
+			sql = "UPDATE dbemployee SET pass_word = "+convertPassValue(idcard, db_type)+" WHERE (idcard = '" + idcard + "')";
 			resultQry = stmtUp.executeUpdate(sql);
 			if (resultQry != 0) {
 				session.setAttribute("session_alert", msg_clearPwSuccess);
@@ -405,9 +405,9 @@
 		if (request.getParameter("use_finger") != null) { use_finger = "1"; }
 		String usemapcard = "0";
 		if (request.getParameter("use_map_card") != null) { usemapcard = "1"; }
-		String user_password = getPassword(idcard,stmtQry,mode);
+		String user_password = getPassword(idcard,stmtQry,db_type);
 		String date_updates = "";
-		if (mode == 0) {
+		if (db_type == 0) {
 			date_updates = "'" + getCurrentDateTime() + "'";
 		} else {
 			date_updates = "CONVERT(datetime,'" + getCurrentDateTime() + "',120)";

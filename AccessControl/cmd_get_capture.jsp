@@ -52,12 +52,7 @@
 		
 		<script>
 			document.onkeydown = searchKeyPress_tool;
-			
-			function add_value_selectID(p_id, p_name, post_file) {
-				alert('aa');
-				  
-			}
-			
+
 			$(document).ready(function() {
 				var table = $('#data_table').DataTable({
 					"initComplete": function (settings) {

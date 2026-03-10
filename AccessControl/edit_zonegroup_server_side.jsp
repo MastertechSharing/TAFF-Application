@@ -144,9 +144,9 @@
 		//	check show all record
 		if (sAmount != null) {
 			if (Integer.parseInt(sAmount) < 0){
-				if(mode == 0){
+				if(db_type == 0){
 					amount = total;
-				}else if(mode == 1){
+				}else if(db_type == 1){
 					sEnd = total;
 				}
 			}
@@ -159,7 +159,7 @@
 				searchSQL = " AND ((rd.reader_no LIKE '%"+searchTerm+"%') OR (rd.th_desc LIKE '%"+searchTerm+"%') OR (rd.en_desc LIKE '%"+searchTerm+"%')) ";
 			}
 			
-			if(mode == 0){
+			if(db_type == 0){
 				sql = " SELECT rd.reader_no, rd.th_desc AS rd_th_desc, rd.en_desc AS rd_en_desc "
 					+ " FROM dbreader rd "
 					+	where_is_not_null
@@ -167,7 +167,7 @@
 					+	where_exists
 					+	searchSQL
 					+ " ORDER BY " + colName + " " + dir + " LIMIT " + row_start + ", " + amount;
-			}else if(mode == 1){
+			}else if(db_type == 1){
 				sql = " SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir + " ) AS 'NumRow', "
 					+ " rd.reader_no, rd.th_desc AS rd_th_desc, rd.en_desc AS rd_en_desc "
 					+ " FROM dbreader rd "

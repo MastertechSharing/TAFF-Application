@@ -10,6 +10,26 @@
 		return rc.getServerIPAddress();
 	}
 	
+	public String convertDateEvent(int dbType){
+		String result = "";
+		if(dbType == 0){
+			result = "DATE_FORMAT(trs.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(trs.date_event) AS day_work, ";				
+		} else if (dbType == 1) {
+			result = "CONVERT(varchar(10),trs.date_event,103) AS date_work, DATEPART(dw, trs.date_event) AS day_work, ";
+		}
+		return result;
+	}
+	
+	public String convertDate103(String fieldName, String fieldNameAs, int dbType){
+		String result = "";
+		if (dbType == 0) {
+			result = "DATE_FORMAT("+fieldName+",'%d/%m/%Y') AS "+fieldNameAs;
+		} else if (dbType == 1) {
+			result = "CONVERT(varchar(10), "+fieldName+", 103) AS "+fieldNameAs;
+		}
+		return result;
+	}
+	
 	public String selectSectionByUser(String username){
 		return "SELECT sec.* FROM dbsection sec "
 				+ "LEFT OUTER JOIN dbdepart dep ON (sec.dep_code = dep.dep_code) "
@@ -19,13 +39,13 @@
 	}
 
 	public String selectCheckEmployeesOfUserSupervisor(String username, String idcard){
-		return "SELECT count(idcard) AS c_idcard FROM dbemployee emp "
+		return "SELECT COUNT(idcard) AS c_idcard FROM dbemployee emp "
 				+ "LEFT OUTER JOIN dbusers users ON (users.sec_code = emp.sec_code) "
 				+ "WHERE (users.user_name = '"+username+"') AND (emp.idcard = '"+idcard+"') ";
 	}
 	
 	public String selectCheckEmployeesOfUserManager(String username, String idcard){
-		return "SELECT count(idcard) AS c_idcard FROM dbemployee emp "
+		return "SELECT COUNT(idcard) AS c_idcard FROM dbemployee emp "
 				+ "LEFT OUTER JOIN dbsection sec ON (sec.sec_code = emp.sec_code) "
 				+ "LEFT OUTER JOIN dbusers users ON (users.dep_code = sec.dep_code) "
 				+ "WHERE (users.user_name = '"+username+"') AND (emp.idcard = '"+idcard+"') ";
@@ -36,11 +56,9 @@
 	}
 	
 	public String whereReaderList(int ses_per, String group_user, String control_reader){
-		String result = "";
-		
+		String result = "";		
 		if(ses_per == 1 || ses_per == 2 || ses_per == 5 || ses_per == 6){
-			if(!group_user.equals("")){
-				
+			if(!group_user.equals("")){				
 				String where_reader_list = "";
 				String[] control_reader_arr = new String[0];
 				control_reader_arr = control_reader.split(",");
@@ -52,13 +70,10 @@
 				}
 				if(!where_reader_list.equals("")){
 					where_reader_list = " AND ( " + where_reader_list + " ) ";
-				}
-				
-				result += where_reader_list;
-				
+				}				
+				result += where_reader_list;				
 			}
-		}
-		
+		}		
 		return result;
 	}
 	

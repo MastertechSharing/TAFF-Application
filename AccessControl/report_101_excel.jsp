@@ -113,19 +113,18 @@
 			
 			String TempName = "tmp"+report_id+"_"+getIP(request.getRemoteAddr());
 			try{
-				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,mode));
+				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,db_type));
 			}catch(SQLException e){
 				out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
 			}				
 			
 			String sql = "SELECT trs.*, ";
-			if(mode == 0){
-				sql = sql + "date_format(trs.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(trs.date_event) AS day_work, "
-						+ "date_format(trs.datetime_update,'%d/%m/%Y %T') AS dt_update, ";
+			sql = sql + convertDateEvent(db_type);
+			if(db_type == 0){
+				sql = sql + "date_format(trs.datetime_update,'%d/%m/%Y %T') AS dt_update, ";
 			}else{		
-				sql = sql + "convert(varchar(10),trs.date_event,103) AS date_work, DATEPART(dw,trs.date_event) AS day_work, "
-						+ "(convert(varchar(10),trs.datetime_update,103)+' '+convert(varchar(8),trs.datetime_update,108)) AS dt_update, ";	
+				sql = sql + "(convert(varchar(10),trs.datetime_update,103)+' '+convert(varchar(8),trs.datetime_update,108)) AS dt_update, ";	
 			}
 			if(lang.equals("th")){
 				sql = sql + "rd.th_desc AS rd_desc, emp.th_fname AS fname, emp.th_sname AS sname, sec.th_desc AS sec_desc, ";

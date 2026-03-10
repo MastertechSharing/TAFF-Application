@@ -65,16 +65,16 @@
 		}			
 		String TempName = "tmp"+repid+"_"+getIP(request.getRemoteAddr());	
 		try{		
-			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,"1000",mode));			
+			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,"1000",db_type));			
 		}catch(SQLException e){}	
 		
 		String sql = ""; 				
 		if((ses_per == 0) || (ses_per == 1)){
-			if(mode == 0){
+			if(db_type == 0){
 				sql = "SELECT *, substring(datetime_note,1,19) AS dtnote FROM dbnote "+
 					"WHERE (substring(datetime_note,1,10) BETWEEN '"+date1+"' AND '"+date2+"') ";			 
-			}else if(mode == 1){
+			}else if(db_type == 1){
 				sql = "SELECT *, datetime_note AS dtnote FROM dbnote "+
 					"WHERE (datetime_note BETWEEN '"+date1+"' AND '"+date2+"') ";		
 			}
@@ -93,9 +93,9 @@
 			rs = stmtQry.executeQuery(sql);
 			while(rs.next()){
 				row_count++;
-				if(mode == 0){
+				if(db_type == 0){
 					dtNote = rs.getString("dtnote");
-				}else if(mode == 1){
+				}else if(db_type == 1){
 					dtNote = rs.getString("dtnote").substring(0, 19);
 				}
 				descNote = rs.getString("desc_note").trim();

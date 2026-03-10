@@ -142,7 +142,7 @@
 				}					
 			}	
 			
-			if(mode == 0){				
+			if(db_type == 0){				
 				sql = "SELECT emp.idcard, emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, emp.date_data, "
 						+ "emp.sec_code, emp.photo, emp.template "
 						+ ", CONCAT(emp.th_fname, ' ', emp.th_sname) AS th_fullname "
@@ -158,7 +158,7 @@
 					sql += ", idcard asc ";
 				}
 				sql += " LIMIT " + row_start + ", " + amount;				
-			}else if(mode == 1){
+			}else if(db_type == 1){
 				int sEnd = Integer.parseInt(sStart) + Integer.parseInt(sAmount);				
 				sql = " SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir ;
 				if(colName.equals("photo") || colName.equals("template")){
@@ -188,7 +188,7 @@
 				String date_data = YMDTodate(rs.getString("date_data"))+" "+rs.getString("date_data").substring(11, 19);
 				
 				String sec_code = rs.getString("sec_code");
-				String sec_link = "<b> <a href='#' onClick='show_detail2(\""+sec_code+"\");' data-toggle='tooltip' data-placement='left' data-html='true' title='"+lb_viewdata+"'>" + sec_code + "</a> </b> ";
+				String sec_link = "<b> <a href='#' onClick='show_section(\""+sec_code+"\");' data-toggle='tooltip' data-placement='left' data-html='true' title='"+lb_viewdata+"'>" + sec_code + "</a> </b> ";
 				if(rs.getString("sec_desc") != null && rs.getString("sec_desc") != ""){
 					sec_link += " - " + rs.getString("sec_desc");
 				}				

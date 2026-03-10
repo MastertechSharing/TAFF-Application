@@ -4,7 +4,7 @@
 <%@ include file="../function/session.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/displaydata.jsp"%>
-<%@ include file="../function/utility.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <% 
 	session.setAttribute("page_g", "setting");
 	session.setAttribute("subpage", "config");
@@ -213,27 +213,21 @@
 									sql += "users.dep_code, dep.th_desc AS depart_desc,";
 								}else{
 									sql += "users.dep_code, dep.en_desc AS depart_desc,";
-								}	
-								if(mode == 0){
-									sql += "DATE_FORMAT(st_date,'%d/%m/%Y') AS stdate_show,"
-											+ "DATE_FORMAT(ex_date,'%d/%m/%Y') AS exdate_show,";
-								}else if(mode == 1){
-									sql += "CONVERT(varchar(10),users.st_date,103) AS stdate_show,"
-										 +"CONVERT(varchar(10),users.ex_date,103) AS exdate_show, ";		
 								}								
+								sql += convertDate103("st_date","st_date_show",db_type)+",";
+								sql += convertDate103("ex_date","ex_date_show",db_type)+",";
 								sql += "users.user_right, dep.dep_code AS depart_code, users.st_date,"
 									 +"users.ex_date FROM dbusers users "
 									 +"LEFT OUTER JOIN dbdepart dep ON (dep.dep_code = users.dep_code) "
-									 +"WHERE (user_admin != 1)";
-							
+									 +"WHERE (user_admin != 1)";							
 							try{		
 								ResultSet rs = stmtQry.executeQuery(sql);	
 								while(rs.next()){	
 									String depart_desc = "";									
 									String depart_desc_link = "";
 									String user_name = rs.getString("user_name");				
-									String st_date = rs.getString("stdate_show");
-									String ex_date = rs.getString("exdate_show");
+									String st_date = rs.getString("st_date_show");
+									String ex_date = rs.getString("ex_date_show");
 									String user_right = rs.getString("user_right");
 									user_right = displayUser(user_right);			
 									if((rs.getString("dep_code") == (null)) || (rs.getString("dep_code").equals("null"))){

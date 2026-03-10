@@ -12,7 +12,7 @@
 	String db_username = rc.getBaseUser();
 	String db_password = rc.getBasePass();		
 	String hostIPAddr = rc.getServerIPAddress();
-	int mode = rc.getBaseType();
+	int db_type = rc.getBaseType();
 	int port3 = rc.getServerPort() + 3;
 	int port4 = rc.getServerPort() + 4;
 	String network_feature = Integer.toString(rc.getNetworkFeature());	
@@ -37,12 +37,20 @@
 	int ssTimeOut = rc.getSessionTimeOut();
 	
 	String className = "", URL = "";	
-	if (mode == 0) { 		// ===== // [ MySQL ]
+	if (db_type == 0) { 		// ===== // [ MySQL ]
 		className = db_driver;//"com.mysql.jdbc.Driver";
 		URL = "jdbc:mysql://" + db_host + "/" + db_database + "?useUnicode=true&characterEncoding=TIS620&autoReconnect=true";
-	} else if (mode == 1) { // ===== // [ SQL Server 2008 R2 ]
+	} else if (db_type == 1) { // ===== // [ SQL Server ]
+		//sqljdbc4-3.0.jar support SQL Server 2005, 2008, 2008 R2, 2012 
+		//mssql-jdbc-12.8.1.jre8 support SQL Server 2016 or later.
+		//String url = "jdbc:sqlserver://" + db_host +":1433;DatabaseName=" + db_database;            
+            //";user="+ db_username;
+            //";password=" + db_password;
+            //";encrypt=true;trustServerCertificate=true;"; 
+			// Accept certificate of server (if using a self-signed certificate)
+			
 		className = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		URL = "jdbc:sqlserver://" + db_host + ";DatabaseName=" + db_database;		
+		URL = "jdbc:sqlserver://" + db_host + ";DatabaseName=" + db_database;						
 	}
 	
 	try {
@@ -62,7 +70,7 @@
 	Statement stmtUp = con.createStatement();
 	Statement stmtTmp = con.createStatement();
 	Statement stmtSes = con.createStatement();
-	if (mode == 1) {
+	if (db_type == 1) {
 		stmtQry = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		stmtUp = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		stmtTmp = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);

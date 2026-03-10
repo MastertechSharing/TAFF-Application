@@ -319,13 +319,8 @@
 											
 											StrText = lb_holiday+","+lb_thdesc+","+lb_endesc;		
 											pw.println(new String(StrText.getBytes("tis-620")));	
-											String sql = "";
-											if(mode == 0){
-												sql = "SELECT DATE_FORMAT(holi_date,'%d/%m/%Y') AS holi_date ";
-											}else{
-												sql = "SELECT CONVERT(varchar(10), holi_date, 103) AS holi_date ";
-											}
-											sql += ", th_desc, en_desc FROM dbholiday ORDER BY holi_date asc";
+											String sql = "SELECT "+ convertDate103("holi_date","holi_date",db_type)
+												+ ", th_desc, en_desc FROM dbholiday ORDER BY holi_date ASC";												
 											rs = stmtQry.executeQuery(sql);
 											while(rs.next()){
 												StrText = rs.getString("holi_date")+","+rs.getString("th_desc")+","+rs.getString("en_desc");

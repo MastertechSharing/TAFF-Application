@@ -11,7 +11,7 @@
 	String userpw = "";
 	
 	if (!(username.equals("") && userpass.equals(""))) {
-		userpass = getPassword(userpass,stmtQry,mode);
+		userpass = getPassword(userpass, stmtQry, db_type);
 		ResultSet rs = stmtSes.executeQuery(selectDbUser(username, userpass));
 		while (rs.next()) {
 			users = rs.getString("user_name");

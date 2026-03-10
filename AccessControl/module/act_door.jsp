@@ -283,10 +283,10 @@
 							}
 						}
 						
-						stmtUp.executeUpdate(updateDbTransaction("dbtransaction", door_id, door_id2, ip_address, ip_address2, mode));
-						stmtUp.executeUpdate(updateDbTransaction("dbtrans_event", door_id, door_id2, ip_address, ip_address2, mode));
-						stmtUp.executeUpdate(updateDbReader(door_id, door_id2, mode));
-						stmtUp.executeUpdate(updateDbZonegroup(door_id, door_id2, mode));
+						stmtUp.executeUpdate(updateDbTransaction("dbtransaction", door_id, door_id2, ip_address, ip_address2, db_type));
+						stmtUp.executeUpdate(updateDbTransaction("dbtrans_event", door_id, door_id2, ip_address, ip_address2, db_type));
+						stmtUp.executeUpdate(updateDbReader(door_id, door_id2, db_type));
+						stmtUp.executeUpdate(updateDbZonegroup(door_id, door_id2, db_type));
 						stmtUp.executeUpdate(updateDbStatusID(door_id, door_id2, ip_address, date_updates));
 						stmtUp.executeUpdate(updateTable("dbserver_config","taff_id",door_id,door_id2));
 						

@@ -138,11 +138,11 @@
 			String TempName = "tmpraw_"+ip_string;
 			String TempNotFound = "tmpnotfound_"+ip_string;
 			try{				
-				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,"raw",mode));
+				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,"raw",db_type));
 				
-				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempNotFound,mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database, TempNotFound, "notfound", mode));				
+				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempNotFound,db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database, TempNotFound, "notfound", db_type));				
 			}catch(SQLException e){
 				
 			}
@@ -221,10 +221,10 @@
 										String date_event = dates.substring(0,4)+"-"+dates.substring(4,6)+"-"+dates.substring(6,8);
 										String time_event = times.substring(0,2)+":"+times.substring(2,4)+":"+times.substring(4,6);										
 										String workday = date_event+" "+time_event;
-										if(mode == 0){
+										if(db_type == 0){
 											workday = "'"+workday+"'";
 										}
-										if(mode == 1){
+										if(db_type == 1){
 											workday = "CONVERT(datetime, '"+workday+".000', 121)";
 										}										
 										

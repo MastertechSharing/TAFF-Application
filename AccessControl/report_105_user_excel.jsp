@@ -110,8 +110,8 @@
 	
 	String TempName = "tmp"+report_id+"_"+getIP(request.getRemoteAddr());
 	try{
-		stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-		stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,mode));
+		stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+		stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,db_type));
 	}catch(SQLException e){
 		out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
 	}
@@ -133,15 +133,13 @@
 	getrdf = Integer.toString(rs.getInt("readerf"));
 	rs.close();	
 		
-		String sql = "";
-		if(mode == 0){
-			sql = "SELECT MIN(CONCAT(trs.time_event,' [ ',trs.duty,' ] ',trs.reader_no)) AS min_time, "
-					+ "MAX(CONCAT(trs.time_event,' [ ',trs.duty,' ] ',trs.reader_no)) AS max_time, "
-					+ "DATE_FORMAT(trs.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(trs.date_event) AS day_work ";
+		String sql = "SELECT " + convertDateEvent(db_type);
+		if(db_type == 0){
+			sql = sql + "MIN(CONCAT(trs.time_event,' [ ',trs.duty,' ] ',trs.reader_no)) AS min_time, "
+					+ "MAX(CONCAT(trs.time_event,' [ ',trs.duty,' ] ',trs.reader_no)) AS max_time ";
 		}else{
-			sql = "SELECT MIN(trs.time_event+' [ '+trs.duty+' ] '+trs.reader_no) AS min_time, "
-					+ "MAX(trs.time_event+' [ '+trs.duty+' ] '+trs.reader_no) AS max_time, "
-					+ "CONVERT(varchar(10),trs.date_event,103) AS date_work, DATEPART(dw, trs.date_event) AS day_work ";
+			sql = sql + "MIN(trs.time_event+' [ '+trs.duty+' ] '+trs.reader_no) AS min_time, "
+					+ "MAX(trs.time_event+' [ '+trs.duty+' ] '+trs.reader_no) AS max_time ";
 		}
 		sql = sql + "FROM dbtransaction trs LEFT JOIN dbreader rd ON (rd.reader_no = trs.reader_no) "
 				+ "WHERE (trs.idcard = '"+emp_id+"') AND (year(trs.date_event) = '"+year+"') "

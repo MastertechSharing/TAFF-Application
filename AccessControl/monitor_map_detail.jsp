@@ -107,7 +107,7 @@
 					<tbody>
 					<%	
 						String sql = "";
-						if(mode == 0){
+						if(db_type == 0){
 							sql = sql + " SELECT t.idcard, date_event, time_event,t.reader_no,t.event_code, ";
 							sql = sql + " CONCAT(e.th_fname,' ',e.th_sname) AS th_name,"
 								+ " CONCAT(e.en_fname,' ',e.en_sname) AS en_name,";										   
@@ -122,7 +122,7 @@
 								+ "LEFT JOIN dbevent ev on (ev.event_code = t.event_code) "
 								+ "WHERE (SUBSTRING(t.reader_no,1,4) = '"+door_id+"') "
 								+ "ORDER BY t.workday desc, t.idcard " ;
-						if(mode == 0){
+						if(db_type == 0){
 							sql = sql + " LIMIT 1000 ";
 						}
 						

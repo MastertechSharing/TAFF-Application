@@ -143,11 +143,7 @@
 		}
 		
 		String sql = "SELECT COUNT(*) AS count_rec, trs.idcard, SUBSTRING(trs.reader_no, 5, 1) AS reader_duty, ";
-		if(mode == 0){
-			sql = sql + "date_format(trs.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(trs.date_event) AS day_work, "; 
-		}else{
-			sql = sql + "convert(varchar(10),trs.date_event,103) AS date_work, DATEPART(dw, trs.date_event) AS day_work, ";			
-		}
+		sql = sql + convertDateEvent(db_type);
 		if(lang.equals("th")){
 			sql = sql + "door.th_desc AS door_desc, ";
 		}else{

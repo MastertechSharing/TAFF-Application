@@ -114,18 +114,14 @@
 		
 		String TempName = "tmp"+report_id+"_"+getIP(request.getRemoteAddr());	
 		try{
-			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,mode));		
+			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,db_type));		
 		}catch(SQLException e1){
 			out.println("<span class='err_exp'> SQL Exception :"+e1.getMessage()+"</span>");
 		}		
 		
 		String sql = "SELECT trs.*, ";
-		if(mode == 0){
-			sql = sql + "date_format(trs.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(trs.date_event) AS day_work, ";
-		}else{
-			sql = sql + "convert(varchar(10),trs.date_event,103) AS date_work, DATEPART(dw, trs.date_event) AS day_work, ";
-		}
+		sql = sql + convertDateEvent(db_type);
 		sql = sql + " rd."+lang+"_desc AS reader_desc, ev."+lang+"_desc AS event_desc "
 				+ "FROM dbtransaction trs "
 				+ "LEFT OUTER JOIN dbreader rd ON trs.reader_no = rd.reader_no "

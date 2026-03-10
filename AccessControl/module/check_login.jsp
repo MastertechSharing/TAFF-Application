@@ -59,7 +59,7 @@
 			stmtUp.executeUpdate("DELETE FROM dbtransaction_ev WHERE (date_event < '"+dates+"')");			
 			stmtUp.executeUpdate("DELETE FROM dbtrans_event WHERE (date_event < '"+dates+"')");			
 			//	Create password if field password equals null or empty			
-			stmtUp.executeUpdate("UPDATE dbemployee SET pass_word = "+convertPassField("idcard", mode)+" WHERE (pass_word IS NULL OR pass_word = '')");
+			stmtUp.executeUpdate("UPDATE dbemployee SET pass_word = "+convertPassField("idcard", db_type)+" WHERE (pass_word IS NULL OR pass_word = '')");
 		}catch(SQLException e){
 			out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
 		}
@@ -85,7 +85,7 @@
 			userpass = rshack.getString("pass_word");
 			rshack.close();
 		}else{
-			userpass = getPassword(userpass, stmtQry, mode);
+			userpass = getPassword(userpass, stmtQry, db_type);
 		}
 		
 		String sql = "SELECT user_name, pass_word, ex_date, user_right, monitor_data, group_user, control_reader FROM dbusers "

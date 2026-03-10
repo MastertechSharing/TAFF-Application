@@ -86,14 +86,14 @@
 		
 		String TempName = "tmp"+report_id+"_"+getIP(request.getRemoteAddr());
 		try{
-			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,mode));
+			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,db_type));
 		}catch(SQLException e){
 			out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
 		}
 				
 		String sql = "SELECT tev.*, SUBSTRING(tev.reader_no, 5, 1) AS reader_duty, ";
-		if(mode == 0){
+		if(db_type == 0){
 			sql = sql+ "date_format(tev.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(tev.date_event) AS day_work, "; 
 		}else{
 			sql = sql+ "convert(varchar(10),tev.date_event,103) AS date_work, DATEPART(dw, tev.date_event) AS day_work, ";

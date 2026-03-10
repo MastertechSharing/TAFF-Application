@@ -4,6 +4,7 @@
 <%@ include file="../function/session.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/datetime.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 
 <html lang="en">
 	<head>
@@ -153,12 +154,8 @@
 				head_desc = lb_endesc;
 			}
 		}else if(ac.equals("holiday")){			
-			if(mode == 0){
-				sql = "SELECT date_format(holi_date,'%d/%m/%Y') AS code, ";
-			}else if(mode == 1){
-				sql = "SELECT convert(varchar, holi_date, 103) AS code, ";
-			}
-			sql += "holi_date, th_desc, en_desc FROM dbholiday ";
+			sql = "SELECT "+ convertDate103("holi_date","code",db_type)
+			+ ", holi_date, th_desc, en_desc FROM dbholiday ";			
 			if(!(keyword.equals(""))){
 				sql += "WHERE (holi_date like '%"+keyword+"%') ";				
 				if(lang.equals("th")){

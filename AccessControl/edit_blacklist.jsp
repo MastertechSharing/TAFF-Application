@@ -421,7 +421,7 @@
 								<div class="col-xs-7 col-md-7" style="margin-bottom: 30px; text-align: left;">
 									<select class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="12" data-container="body" name="set_group_code" id="set_group_code" onChange="setGroup();">
 						<%				String sql_group = " SELECT distinct(group_code), "+lang+"_desc AS group_desc ";
-										if(mode == 0){
+										if(db_type == 0){
 											sql_group += " FROM dbgroup WHERE (LENGTH(group_code) <= 6) ORDER BY group_code ASC ";
 										}else{
 											sql_group += " FROM dbgroup WHERE (LEN(group_code) <= 6) ORDER BY group_code ASC ";

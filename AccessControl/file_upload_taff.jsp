@@ -185,17 +185,17 @@
 			String TempreportNotFound = "tmpnotfound_"+ip_string;
 		
 			try{
-				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDatabase, mode));
-				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDataFormat, mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDatabase, "taf", mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDataFormat, "format", mode));
+				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDatabase, db_type));
+				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDataFormat, db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDatabase, "taf", db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDataFormat, "format", db_type));
 				
-				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempreportNotFound, mode));
-				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempSuccess, mode));
-				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempFail, mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database, TempreportNotFound, "notfound", mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database, TempSuccess, "upsuccess", mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database, TempFail, "upfail", mode));
+				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempreportNotFound, db_type));
+				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempSuccess, db_type));
+				stmtUp.executeUpdate(dropTableTmpReport(db_database, TempFail, db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database, TempreportNotFound, "notfound", db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database, TempSuccess, "upsuccess", db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database, TempFail, "upfail", db_type));
 			}catch(SQLException e){
 				
 			}
@@ -317,10 +317,10 @@
 											String date_event = dates.substring(0,4)+"-"+dates.substring(4,6)+"-"+dates.substring(6,8);
 											String time_event = times.substring(0,2)+":"+times.substring(2,4)+":"+times.substring(4,6);
 											String workday = date_event+" "+time_event;
-											if(mode == 0){
+											if(db_type == 0){
 												workday = "'"+workday+"'";
 											}
-											if(mode == 1){
+											if(db_type == 1){
 												workday = "CONVERT(datetime, '"+workday+".000', 121)";
 											}
 											

@@ -130,13 +130,13 @@
 						+ " AND (rd.door_id = door.door_id) AND (rd.reader_no = '"+reader_no+"') ) " ;
 			}
 			
-			if(mode == 0){
+			if(db_type == 0){
 				sql = " SELECT "+select_idcard+", emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, emp.date_data, "
 						+ " emp.sec_code, sec.th_desc AS sec_th_desc, sec.en_desc AS sec_en_desc " ;
 				sql	+= fromWhere;
 				sql += searchSQL;
 				sql += " ORDER BY " + colName + " " + dir + " LIMIT " + row_start + ", " + amount;
-			}else if(mode == 1){
+			}else if(db_type == 1){
 				int sEnd = Integer.parseInt(sStart) + Integer.parseInt(sAmount);
 				
 				sql = " SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir + " ) AS 'NumRow', ";	

@@ -238,7 +238,7 @@
 				whereSearch += ") ";
 			}
 			
-			if(mode == 0){		
+			if(db_type == 0){		
 				sql = "SELECT emp.idcard, emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, emp.st_date, emp.ex_date, "
 					+ "emp.group_code AS groupcode, gr.th_desc AS grthdesc, gr.en_desc AS grendesc, "
 					+ "emp.sec_code AS seccode, sec.th_desc AS sthdesc, sec.en_desc AS sendesc "
@@ -248,7 +248,7 @@
 				sql += "WHERE (idcard != '****************') ";
 				sql += whereParam + whereSearch;
 				sql += "ORDER BY " + colName + " " + dir + " LIMIT " + row_start + ", " + amount;
-			}else if(mode == 1){
+			}else if(db_type == 1){
 				int sEnd = Integer.parseInt(sStart) + Integer.parseInt(sAmount);
 				
 				sql = "SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir + " ) AS 'NumRow', ";

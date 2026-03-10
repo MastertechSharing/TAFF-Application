@@ -3,6 +3,7 @@
 <%@ include file="../function/connect.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/datetime.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <%@ include file="../function/displaydata.jsp"%>
 <html lang="en">
 	<head>
@@ -33,11 +34,7 @@
 				border-left-width: 5px;
 				border-radius: 3px;
 			}
-			.ellipsis_string {
-			  white-space: nowrap;
-			  overflow: hidden;
-			  text-overflow: ellipsis;
-			}
+			
 		</style>
 		
 		<script>
@@ -49,11 +46,12 @@
 				var myobj = document.getElementById("img_emp");				
 				if(myobj != null){  
 					var id =  document.getElementById("idcard").value;
+					var timestamp = new Date().getTime();
 					var oImg = new Image();
-					oImg.src = "photos/"+id+".jpg";	 		 	
+					oImg.src = "photos/"+id+".jpg?t=" + timestamp;		 	
 					oImg.onload = function(){ myobj.src = oImg.src; }											
 					oImg.onerror = function(){ 					
-						oImg.src = "photos/"+id+".JPG"; 
+						oImg.src = "photos/"+id+".JPG?t=" + timestamp; 
 						oImg.onerror = function(){ 
 							oImg.src = "photos/person.png";
 						}
@@ -62,7 +60,7 @@
 			}
 			
 			function Rotate() {
-				document.getElementById("resize_small").style.display = "none";
+				document.getElementById("resize_full").style.display = "none";
 			
 				// Code for Safari
 				document.getElementById("resize_full").style.WebkitTransform = "rotate(90deg)"; 
@@ -77,13 +75,13 @@
 			
 			function ShowFullImage(){
 				document.getElementById("resize_full").style.display = "none";
-				$('#img_emp').animate({height: '180px', width: '180px'}, 'slow');	//	100px
+				$('#img_emp').animate({height: '144px', width: '144px'}, 'slow');	//	100px
 				document.getElementById("resize_small").style.display = "";
 			}
 			
 			function ShowSmallImage(){
 				document.getElementById("resize_small").style.display = "none";
-				$('#img_emp').animate({height: '24px', width: '24px'}, 'slow');
+				$('#img_emp').animate({height: '32px', width: '32px'}, 'slow');
 				document.getElementById("resize_full").style.display = "";
 			}
 		</script>
@@ -99,42 +97,47 @@
 		String col2 = "col-xs-7 col-md-7";
 		String col_line = "col-xs-12";
 		String set_hr = " <div class='row'> <hr class='"+col_line+"' style='width: 86%; height: 6px; margin-top: 8px; margin-bottom: 4px; margin-left: 3%;' /> </div> ";
-		String sql = "";
-		if(mode == 0){
-			sql = "SELECT *, DATE_FORMAT(st_date,'%d/%m/%Y') AS stdate_show, "
-				 +"DATE_FORMAT(ex_date,'%d/%m/%Y') AS exdate_show ";			
-		}else if(mode == 1){
-			sql = "SELECT *, CONVERT(varchar(10),st_date,103) AS stdate_show, "
-				 +"CONVERT(varchar(10),ex_date,103) AS exdate_show ";			
-		}
+		String sql = "SELECT *, ";
+		sql += convertDate103("st_date","st_date_show",db_type)+", ";
+		sql += convertDate103("ex_date","ex_date_show",db_type)+" ";			
 		sql += "FROM dbemployee WHERE (idcard = '"+idcard+"') ";
 		try{
 			ResultSet rs = stmtQry.executeQuery(sql);
 			if(rs.next()){
-				String use_finger = rs.getString("use_finger");
-				String usemapcard = rs.getString("use_map_card");
-				String mapcard = rs.getString("sn_card"); 
-				String sex = rs.getString("sex");
-				String st_date = rs.getString("stdate_show");
-				String ex_date = rs.getString("exdate_show");	
+				String stdate = rs.getString("st_date_show");
+				String exdate = rs.getString("ex_date_show");
 				String seccode_emp = rs.getString("sec_code");
 				String poscode_emp = rs.getString("pos_code");
 				String typecode_emp = rs.getString("type_code");
 				String groupcode_emp = rs.getString("group_code");
-				
-				//	ex : xxxxxxxxxx		==>>   xxx-xxx-xxxx
+				String use_finger = rs.getString("use_finger");
+				String sex = rs.getString("sex");
+				String sttime = rs.getString("st_time");
+				String extime = rs.getString("ex_time");
+				String usemapcard = rs.getString("use_map_card");
+				String mapcard = rs.getString("sn_card");
 				String phoneno = rs.getString("phone_no");
+				String email = rs.getString("email");
+				String nationality = rs.getString("nationality");
+				String card_id = rs.getString("card_id");
+				String emp_card = rs.getString("emp_card");
+				
+				//	ex : xxxxxxxxxx		==>>   xxx-xxx-xxxx				
 				if(!(phoneno.equals("") || phoneno.equals("null"))){									
 					phoneno = displayFormatPhone(phoneno);
 				}
 				
-				//	ex : xxxxxxxxxxxxx	==>>   x-xxxx-xxxxx-xx-x	
-				String card_id = rs.getString("card_id"); 
+				//	ex : xxxxxxxxxxxxx	==>>   x-xxxx-xxxxx-xx-x					
 				if(!(card_id.equals("") || card_id.equals("null"))){				
 					card_id = displayFormatPublicId(card_id);
-				}					
+				}
+				
+				String facesncard = rs.getString("face_sn_card");
+				String facepincode = rs.getString("face_pincode");
+				String faceidentifymode = rs.getString("face_identify_mode");				
 %>
-		<div class="bodycontainer scrollable" style="overflow-x: hidden; overflow-y: auto;">
+		<div class="body-display" style="overflow-x: hidden; overflow-y: hidden;">
+		
 			<div class="row">
 				
 				<div class="col-xs-6 col-md-6" style="border: 0px !important; margin-bottom: 15px; margin-left: 0px; margin-right: 0px;">
@@ -146,7 +149,7 @@
 						<div class="row">
 							<h5 class="modal-title col-xs-5 col-md-5"> <div align="right"> <b> Photo : </b> </div> </h5>
 							<div class="modal-title col-xs-7 col-md-7" style="margin-top: -3px;">
-								<img id="img_emp" class="img-rounded" width="24" height="24"> &nbsp; 
+								<img id="img_emp" class="img-rounded" width="144" height="144"> &nbsp; 
 								<span id="resize_full" class="glyphicon glyphicon-resize-full" style="cursor: pointer; vertical-align: top; cursor: hand;" onClick="ShowFullImage();" data-toggle="tooltip" data-placement="right" title="Full size"> </span> 
 								<span id="resize_small" class="glyphicon glyphicon-resize-small" style="cursor: pointer; vertical-align: top; cursor: hand;" onClick="ShowSmallImage();" data-toggle="tooltip" data-placement="left" title="Small size"> </span>
 								<input name="idcard" type="hidden" id="idcard" value="<%=idcard %>">
@@ -196,7 +199,7 @@
 						<div class="row">
 							<h5 class="modal-title <%= col1 %>" > <div align="right"> <b> <%= lb_startdate %> : </b> </div> </h5>
 							<h5 class="modal-title <%= col2 %>" > 
-								<%= st_date %> &nbsp; &nbsp;
+								<%= stdate %> &nbsp; &nbsp;
 								<b> <%= lb_time %> </b> &nbsp; <%= rs.getString("st_time") %> 
 							</h5>
 						</div>
@@ -204,7 +207,7 @@
 						<div class="row">
 							<h5 class="modal-title <%= col1 %>" > <div align="right"> <b> <%= lb_expiredate %> : </b> </div> </h5>
 							<h5 class="modal-title <%= col2 %>" > 
-								<%= ex_date %> &nbsp; &nbsp;
+								<%= exdate %> &nbsp; &nbsp;
 								<b> <%= lb_time %> </b> &nbsp; <%= rs.getString("ex_time") %> 
 							</h5>
 						</div>
@@ -381,10 +384,52 @@
 							<h5 class="modal-title <%= col2 %>"> <%= rs.getString("email") %> &nbsp; </h5>
 						</div>
 					</div>
-				</div>
+				</div>				
+			</div>	
 			
+			<div class="row" style="border: 0px !important; margin-top: -15px; margin-bottom: -15px; margin-left: 0px; margin-right: 0px;" border="0">
+					<div class="bs-callout bs-callout-info">
+						<div class="row alert-message-info" style="height: 32px; margin-left: -10px; margin-top: -10px; margin-right: -10px; margin-bottom: 10px;"> 
+							<label class="control-label" style="margin-left: 2%; margin-top: 5px;"> <i class="glyphicon glyphicon-cog" > </i> &nbsp; <b> Face Employee Information </b> </label>
+						  </div> 
+						
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> <%= lb_serial_card %> : </label>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="face_sncard" name="face_sncard" value="<%= facesncard %>" maxlength="20" placeholder="<%= lb_serial_card %>" onKeyPress="IsValidCharacter()">
+								<input type="hidden" name="txtface_sncard" id="txtface_sncard" value="<%= facesncard %>">
+							</div>
+						</div> 
+						
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> <%= lb_pincode %> : </label>
+							<div class="col-md-5">
+								<input type="text" class="form-control" id="face_pincode" name="face_pincode" value="<%= facepincode %>" maxlength="6" placeholder="<%= lb_pincode %>" onKeyPress="IsValidNumber()">								
+								<input type="hidden" name="txtface_pincode" id="txtface_pincode" value="<%= facepincode %>">
+							</div>
+						</div>
+	
+						<div class="row form-group">
+							<label class="control-label label-text-1 col-md-4"> Identify Mode : </label>
+							<div class="col-md-5">
+								<select class="form-control selectpicker" data-width="100%" data-size="10" name="face_identifymode" id="face_identifymode">
+									<option value="0" <%= checkDataSelected(faceidentifymode, "0") %>> <%= displayFaceIdentifyMode("0") %> </option>
+									<option value="1" <%= checkDataSelected(faceidentifymode, "1") %>> <%= displayFaceIdentifyMode("1") %> </option>
+									<option value="2" <%= checkDataSelected(faceidentifymode, "2") %>> <%= displayFaceIdentifyMode("2") %> </option>
+									<option value="3" <%= checkDataSelected(faceidentifymode, "3") %>> <%= displayFaceIdentifyMode("3") %> </option>
+									<option value="4" <%= checkDataSelected(faceidentifymode, "4") %>> <%= displayFaceIdentifyMode("4") %> </option>
+									<option value="5" <%= checkDataSelected(faceidentifymode, "5") %>> <%= displayFaceIdentifyMode("5") %> </option>
+									<option value="6" <%= checkDataSelected(faceidentifymode, "6") %>> <%= displayFaceIdentifyMode("6") %> </option>
+									<option value="7" <%= checkDataSelected(faceidentifymode, "7") %>> <%= displayFaceIdentifyMode("7") %> </option>
+									<option value="8" <%= checkDataSelected(faceidentifymode, "8") %>> <%= displayFaceIdentifyMode("8") %> </option>
+									<option value="9" <%= checkDataSelected(faceidentifymode, "9") %>> <%= displayFaceIdentifyMode("9") %> </option>
+								</select>	
+								<input name="txtface_identifymode" type="hidden" id="txtface_identifymode" value="<%= faceidentifymode %>">								
+							</div>							
+						</div> 							
+					</div> 
+				</div> 
 			</div>
-
 <%			}else{	%>
 		<div class="alert alert-warning" role="alert">
 			<center> <strong> <%= lb_nodata %> <%= lb_empcode %> <%= idcard %> </strong> </center>

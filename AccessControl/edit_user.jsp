@@ -4,7 +4,7 @@
 <%@ include file="../function/session.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/datetime.jsp"%>
-<%@ include file="../function/utility.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <%@ include file="../function/displaydata.jsp"%>
 <% 
 	session.setAttribute("page_g", "setting");
@@ -443,22 +443,17 @@
 <%	}else if(action.equals("edit")){
 		String user_right = "", dep_code = "", sec_code = "", stdate = "", exdate = "", monitor_data = "", group_user = "";
 		String[] control_reader = new String[0];
-		String sql = "";
-		if(mode == 0){
-			sql = "SELECT u.*, DATE_FORMAT(st_date,'%d/%m/%Y') AS stdate_show, "
-					+ "DATE_FORMAT(ex_date,'%d/%m/%Y') AS exdate_show ";
-		}else if(mode == 1){
-			sql = "SELECT u.*, CONVERT(varchar(10),st_date,103) AS stdate_show,"
-					+ "CONVERT(varchar(10),ex_date,103) AS exdate_show ";
-		}
+		String sql = "SELECT u.*,";
+		sql += convertDate103("st_date","st_date_show",db_type)+",";
+		sql += convertDate103("ex_date","ex_date_show",db_type)+" ";		
 		sql += "FROM dbusers u "
 			+ "WHERE (u.user_name = '"+request.getParameter("user_name")+"') ";
 		try{
 			ResultSet rs = stmtQry.executeQuery(sql);		
 			while(rs.next()){ 
 				user_right = rs.getString("user_right");
-				stdate = rs.getString("stdate_show");
-				exdate = rs.getString("exdate_show");
+				stdate = rs.getString("st_date_show");
+				exdate = rs.getString("ex_date_show");
 				dep_code = rs.getString("dep_code");
 				sec_code = rs.getString("sec_code");
 				check_sec_code = sec_code;	

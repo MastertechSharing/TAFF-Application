@@ -4,7 +4,7 @@
 <%@ include file="../function/session.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/datetime.jsp"%>
-<%@ include file="../function/utility.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <% 
 	session.setAttribute("page_g", "database");
 	session.setAttribute("subpage", "abouttime");
@@ -145,21 +145,14 @@
 						</div> 
 					
 <% 		}else if(action.equals("edit")){			
-			String sql = "";
-			String holi_date = request.getParameter("holi_date");		
-			if(mode == 0){
-				sql = "SELECT DATE_FORMAT(holi_date,'%d/%m/%Y') AS holi_date ";
-			}else{
-				sql = "SELECT CONVERT(varchar(10), holi_date, 103) AS holi_date ";
-			}
-			sql += ", th_desc, en_desc FROM dbholiday WHERE (holi_date = '"+holi_date+"')";
-			
+			String holi_date = request.getParameter("holi_date");				
+			String sql = "SELECT "+ convertDate103("holi_date","holi_date",db_type)
+						+ ", th_desc, en_desc FROM dbholiday WHERE (holi_date = '"+holi_date+"')";			
 			try{
 				ResultSet rs = stmtQry.executeQuery(sql);
 				while(rs.next()){	
 					holi_date = rs.getString("holi_date");
 %>
-
 					<div class="row form-group">
 						<label class="control-label label-text-1 col-md-2"> <%= lb_date %> : </label>
 						<div class="col-md-4">

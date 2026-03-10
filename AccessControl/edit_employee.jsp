@@ -4,7 +4,7 @@
 <%@ include file="../function/session.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/datetime.jsp"%>
-<%@ include file="../function/utility.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <%@ include file="../function/displaydata.jsp"%>
 <% 
 	session.setAttribute("page_g", "database");
@@ -483,7 +483,7 @@
 										}else{
 											sql_group = sql_group + "en_desc AS group_desc ";
 										}
-										if(mode == 0){
+										if(db_type == 0){
 											sql_group = sql_group + "FROM dbgroup WHERE (LENGTH(group_code) <= 6) " + where_group_user + " ORDER BY group_code ASC";
 										}else{
 											sql_group = sql_group + "FROM dbgroup WHERE (LEN(group_code) <= 6) " + where_group_user + " ORDER BY group_code ASC";
@@ -751,20 +751,15 @@
 			}	rs_bl.close();
 			
 			if(!blacklisted){
-				String sql = "";
-				if(mode == 0){
-					sql = "SELECT *, DATE_FORMAT(st_date,'%d/%m/%Y') AS st_date1, "
-							+ "DATE_FORMAT(ex_date,'%d/%m/%Y') AS ex_date1 ";					
-				}else if(mode == 1){
-					sql = "SELECT *, CONVERT(varchar(10),st_date,103) AS st_date1, "
-							+ "CONVERT(varchar(10),ex_date,103) AS ex_date1 ";					
-				}
+				String sql = "SELECT *, ";
+				sql += convertDate103("st_date","st_date_show",db_type)+", ";
+				sql += convertDate103("ex_date","ex_date_show",db_type)+" ";				
 				sql += "FROM dbemployee WHERE (idcard = '"+idcard+"') "; 
 				try{
 					ResultSet rs = stmtQry.executeQuery(sql);
 					while(rs.next()){
-						String stdate = rs.getString("st_date1");
-						String exdate = rs.getString("ex_date1");
+						String stdate = rs.getString("st_date_show");
+						String exdate = rs.getString("ex_date_show");
 						String seccode_emp = rs.getString("sec_code");
 						String poscode_emp = rs.getString("pos_code");
 						String typecode_emp = rs.getString("type_code");

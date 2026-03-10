@@ -86,7 +86,7 @@
 			   + "PRIMARY KEY (numid) "
 			   + ") ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;";			
 		try{
-			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
+			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
 			stmtUp.executeUpdate(sql);		
 		}catch(SQLException e){
 			out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");

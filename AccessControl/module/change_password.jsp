@@ -29,10 +29,10 @@
 	String newpass = request.getParameter("password1");
 	String ckusers = "";
 	if (!(username.equals("") && userpass.equals(null))) {
-		userpass = getPassword(userpass,stmtQry,mode);
-		newpass = getPassword(newpass,stmtQry,mode);
+		userpass = getPassword(userpass, stmtQry, db_type);
+		newpass = getPassword(newpass, stmtQry, db_type);
 
-		String sql = selectDbUser(username,userpass);
+		String sql = selectDbUser(username, userpass);
 		ResultSet rs = stmtQry.executeQuery(sql);
 		while (rs.next()) {
 			ckusers = rs.getString("user_name");

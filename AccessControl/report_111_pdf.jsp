@@ -132,18 +132,14 @@
 		
 		String TempName = "tmp"+report_id+"_"+getIP(request.getRemoteAddr());					
 		try{
-			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,"111",mode));
+			stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+			stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,db_type));
 		}catch(SQLException e){
 			out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
 		}
 		
 		String sql = "SELECT trs.*, SUBSTRING(trs.reader_no, 5, 1) AS reader_duty, door.door_id, door.group_door, rd.reader_func, ";
-		if(mode == 0){
-			sql = sql + "date_format(trs.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(trs.date_event) AS day_work, ";
-		}else{
-			sql = sql + "convert(varchar(10),trs.date_event,103) AS date_work, DATEPART(dw, trs.date_event) AS day_work, ";
-		}
+		sql = sql + convertDateEvent(db_type);
 		if(lang.equals("th")){
 			sql = sql + "emp.th_fname AS fname, emp.th_sname AS sname, sec.th_desc AS sec_desc, ";
 		}else{

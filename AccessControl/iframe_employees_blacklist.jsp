@@ -121,13 +121,13 @@
 							<%	
 								int count = 0;
 								String sql = "SELECT emp.idcard, emp.sec_code, emp.group_code, ";
-								if(mode == 0){
+								if(db_type == 0){
 									if(lang.equals("th")){
 										sql += "CONCAT(th_fname,' ',th_sname) AS em_name ";
 									}else{
 										sql += "CONCAT(en_fname,' ',en_sname) AS em_name ";
 									}
-								}else if(mode == 1){
+								}else if(db_type == 1){
 									if(lang.equals("th")){
 										sql += "th_fname+' '+th_sname AS em_name ";
 									}else{

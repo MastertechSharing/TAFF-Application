@@ -113,21 +113,20 @@
 			
 			String TempName = "tmp"+report_id+"_"+getIP(request.getRemoteAddr());	
 			try{
-				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,mode));		
+				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,db_type));		
 			}catch(SQLException e1){
 				out.println("<span class='err_exp'> SQL Exception :"+e1.getMessage()+"</span>");
 			}		
 			
 			String sql = "SELECT trs.idcard, ";
-			if(mode == 0){
+			sql = sql + convertDateEvent(db_type);
+			if(db_type == 0){
 				sql = sql + "trs.date_event, "
-						+ "date_format(trs.date_event,'%d/%m/%Y') AS date_work, DAYOFWEEK(trs.date_event) AS day_work, "
 						+ "min(concat(trs.date_event,' ',trs.time_event,' ',trs.reader_no)) AS min_dt, "
 						+ "max(concat(trs.date_event,' ',trs.time_event,' ',trs.reader_no)) AS max_dt, ";
 			}else{
 				sql = sql + "convert(varchar(10),trs.date_event,120) AS date_event, "
-						+ "convert(varchar(10),trs.date_event,103) AS date_work, DATEPART(dw, trs.date_event) AS day_work, "
 						+ "min(convert(varchar(10),trs.date_event,120)+' '+trs.time_event+' '+trs.reader_no) AS min_dt, "
 						+ "max(convert(varchar(10),trs.date_event,120)+' '+trs.time_event+' '+trs.reader_no) AS max_dt, ";
 			}

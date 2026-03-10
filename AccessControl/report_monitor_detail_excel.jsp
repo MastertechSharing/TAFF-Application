@@ -78,7 +78,7 @@
 		try{
 			String id = "", name = "", evt_desc = "", status = "";
 			String sql = "SELECT t.idcard, date_event, time_event,t.reader_no,t.event_code,";
-			if(mode == 0){
+			if(db_type == 0){
 				sql = sql + "CONCAT(e.th_fname,' ',e.th_sname) AS th_name,"
 					+ "CONCAT(e.en_fname,' ',e.en_sname) AS en_name,";										   
 			}else{

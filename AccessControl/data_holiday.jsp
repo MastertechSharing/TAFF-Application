@@ -4,7 +4,7 @@
 <%@ include file="../function/session.jsp"%>
 <%@ include file="../function/language.jsp"%>
 <%@ include file="../function/datetime.jsp"%>
-<%@ include file="../function/utility.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <% 	
 	session.setAttribute("page_g", "database");
 	session.setAttribute("subpage", "abouttime");
@@ -204,15 +204,9 @@
 							</thead>
 							<tbody>
 							<%	int count_holi0 = 0;
-								try{								
-									String sql = "";							
-									if(mode == 0){
-										sql = "SELECT date_format(holi_date,'%d/%m/%Y') AS holi_date ";
-									}else{
-										sql = "SELECT CONVERT(varchar(10), holi_date, 103) AS holi_date ";
-									}
-									sql += ", th_desc, en_desc FROM dbholiday ORDER BY holi_date ASC";
-									
+								try{
+									String sql = "SELECT "+ convertDate103("holi_date","holi_date",db_type)
+												+ ", th_desc, en_desc FROM dbholiday ORDER BY holi_date ASC";									
 									ResultSet rs = stmtQry.executeQuery(sql);	
 									while(rs.next()){		
 										count_holi0++;

@@ -299,9 +299,9 @@
 							<%	
 								String sql_section = "";
 								if((select_search.equals("0")) || (select_search == null) || (select_search.equals(""))){	
-									if(mode == 0){
+									if(db_type == 0){
 										sql_section = "SELECT DISTINCT(sec.sec_code), CONCAT('[',sec.sec_code,'] - ',sec.th_desc) AS desc_th, CONCAT ('[',sec.sec_code,']-',sec.en_desc) AS desc_en ";
-									}else if(mode == 1){
+									}else if(db_type == 1){
 										sql_section = "SELECT DISTINCT(sec.sec_code), sec.sec_code+' - '+sec.th_desc AS desc_th, sec.sec_code+'-'+sec.en_desc AS desc_en ";
 									}
 									sql_section = sql_section + "FROM dbsection sec ";
@@ -351,9 +351,9 @@
 								try{
 									String sql_group = "";
 									if(select_search.equals("1")) {
-										if(mode == 0){
+										if(db_type == 0){
 											sql_group = "SELECT DISTINCT(gr.group_code), CONCAT ('[',gr.group_code,'] - ',gr.th_desc) AS desc_th, CONCAT ('[',gr.group_code,']-',gr.en_desc) AS desc_en ";
-										}else if(mode == 1){
+										}else if(db_type == 1){
 											sql_group = "SELECT DISTINCT(gr.group_code),gr.group_code+' - '+ gr.th_desc AS desc_th,gr.group_code+'-'+ gr.en_desc AS desc_en ";
 										}
 										sql_group = sql_group + "FROM dbgroup gr ";
@@ -444,13 +444,13 @@
 							<%	
 								int count = 0;
 								String sql = "SELECT emp.idcard, emp.sec_code, emp.group_code, ";
-								if(mode == 0){
+								if(db_type == 0){
 									if(lang.equals("th")){
 										sql += "CONCAT(th_fname,' ',th_sname) AS em_name ";
 									}else{
 										sql += "CONCAT(en_fname,' ',en_sname) AS em_name ";
 									}
-								}else if(mode == 1){
+								}else if(db_type == 1){
 									if(lang.equals("th")){
 										sql += "th_fname+' '+th_sname AS em_name ";
 									}else{

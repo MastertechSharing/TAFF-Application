@@ -113,7 +113,7 @@
 				}							
 			}			
 			
-			if(mode == 0){				
+			if(db_type == 0){				
 				sql = " SELECT emp.idcard, emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, "
 					+ " emp.sec_code, emp.message, emp.message_date ";
 				if(lang.equals("th")){
@@ -124,7 +124,7 @@
 				sql += searchSQL;
 				sql += " ORDER BY " + colName + " " + dir ;
 				sql += " LIMIT " + row_start + ", " + amount;				
-			}else if(mode == 1){		
+			}else if(db_type == 1){		
 				int sEnd = Integer.parseInt(sStart) + Integer.parseInt(sAmount);				
 				sql = " SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir + " ) AS 'NumRow', "
 					+ " emp.idcard, emp.th_fname, emp.th_sname, emp.en_fname, emp.en_sname, "

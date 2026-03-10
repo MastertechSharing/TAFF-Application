@@ -31,7 +31,7 @@
 	String sql = "";
 	if (action.equals("clearall")) {
 		try{
-			sql = "UPDATE dbusers SET pass_word = "+convertPassField("user_name", mode);
+			sql = "UPDATE dbusers SET pass_word = "+convertPassField("user_name", db_type);
 			resultQry = stmtUp.executeUpdate(sql);
 			if (resultQry != 0) {
 				session.setAttribute("session_alert", msg_clearAllAcc);
@@ -43,7 +43,7 @@
 		}
 	} else if (action.equals("clear")) {
 		try{
-			sql = "UPDATE dbusers SET pass_word = "+convertPassValue(user_name, mode)+" WHERE (user_name = '" + user_name + "')";
+			sql = "UPDATE dbusers SET pass_word = "+convertPassValue(user_name, db_type)+" WHERE (user_name = '" + user_name + "')";
 			resultQry = stmtUp.executeUpdate(sql);
 			if (resultQry != 0) {
 				session.setAttribute("session_alert", msg_clearPwSuccess);
@@ -126,7 +126,7 @@
 		
 		if(!duplicate_group){
 			if (action.equals("add")) {
-				String user_pass = getPassword(user_name, stmtQry, mode);
+				String user_pass = getPassword(user_name, stmtQry, db_type);
 				try{
 					if (getCountRecord("dbusers","user_name",user_name,stmtQry) == 0) {
 						sql = " INSERT INTO dbusers (user_name, pass_word, user_right, st_date, ex_date, dep_code, monitor_location, sec_code, monitor_data, group_user, control_reader) "

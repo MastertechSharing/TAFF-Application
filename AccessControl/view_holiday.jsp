@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=tis-620" language="java"%>
 <%@ include file="../function/connect.jsp"%>
 <%@ include file="../function/language.jsp"%>
+<%@ include file="../function/sqlcmd.jsp"%>
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=tis-620">
@@ -30,14 +31,8 @@
 	String action = request.getParameter("action");
 	if(action.equals("view")){	
 		String holi_date = request.getParameter("holi_date"); 
-		String sql = "";		
-		if(mode == 0){
-			sql= "SELECT DATE_FORMAT(holi_date,'%d/%m/%Y') AS holi_date, ";
-		}else{
-			sql= "SELECT CONVERT(varchar(10), holi_date, 103) AS holi_date, ";
-		}
-		sql += "th_desc, en_desc FROM dbholiday WHERE (holi_date = '"+holi_date+"')";		
-		
+		String sql = "SELECT "+ convertDate103("holi_date","holi_date",db_type)
+					+ ", th_desc, en_desc FROM dbholiday WHERE (holi_date = '"+holi_date+"')";			
 		String col1 = "col-xs-3 col-md-3";
 		String col2 = "col-xs-9 col-md-9";
 		String col_line = "col-xs-12";

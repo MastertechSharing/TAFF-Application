@@ -107,9 +107,9 @@
 					</thead>
 					<tbody>
 			<% 	String fn_limit = "", fn_top = "";
-				if(mode == 0){
+				if(db_type == 0){
 					fn_limit = " LIMIT 1000 ";
-				}else if(mode == 1){
+				}else if(db_type == 1){
 					fn_top = " TOP 1000 ";
 				}
 				String sql = " SELECT " + fn_top + " date_event, trans.workday, trans.idcard, trans.time_event, trans.event_code, "

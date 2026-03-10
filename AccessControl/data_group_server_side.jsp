@@ -95,7 +95,7 @@
 		}	rs_group_user.close();
 		
 		String where_length, where_group_user = "";
-		if(mode == 0){
+		if(db_type == 0){
 			where_length = " AND (LENGTH(group_code) <= 6) ";
 		}else{
 			where_length = " AND (LEN(group_code) <= 6) ";
@@ -120,9 +120,9 @@
 		//	check show all record
 		if (sAmount != null) {
 			if (Integer.parseInt(sAmount) < 0){
-				if(mode == 0){
+				if(db_type == 0){
 					amount = total;
-				}else if(mode == 1){
+				}else if(db_type == 1){
 					sEnd = total;
 				}
 			}
@@ -136,17 +136,15 @@
 						+ " OR (th_desc LIKE '%"+searchTerm+"%') OR (en_desc LIKE '%"+searchTerm+"%')) ";
 			}
 		
-			if(mode == 0){
-				
+			if(db_type == 0){				
 				sql = " SELECT * FROM dbgroup "
 					+ " WHERE group_code != '' "
 					+   searchSQL
 					+   where_group_user
 					+   where_length
 					+ " ORDER BY " + colName + " " + dir 
-					+ " LIMIT " + row_start + ", " + amount;
-				
-			}else if(mode == 1){
+					+ " LIMIT " + row_start + ", " + amount;				
+			}else if(db_type == 1){
 				
 				sql = " SELECT * FROM ( SELECT ROW_NUMBER() OVER ( ORDER BY " + colName + " " + dir + " ) AS 'NumRow', * FROM dbgroup "
 					+ " WHERE group_code != '' "
