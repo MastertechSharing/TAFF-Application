@@ -84,29 +84,29 @@
 						document.getElementById('use_map_card').checked= true;
 					}
 				}
-			}
+			}			
 			
 			function ImgLoad(){
 				setTimeout(function(){
-				var myobj = document.getElementById("img_emp");				
-				if(myobj != null){  
-					var id =  document.getElementById("idcard").value;	
-					var timestamp = new Date().getTime();
-					var oImg = new Image();			
-					oImg.src = "photos/"+id+".jpg?t=" + timestamp;
-					oImg.onload = function(){ myobj.src = oImg.src }
-					oImg.onerror = function(){ 					
-						oImg.src = "photos/"+id+".JPG?t=" + timestamp;					
-						oImg.onerror = function(){ 
-							oImg.src = "photos/person.png";
-						}
-					}						
-				}
+					var myobj = document.getElementById("img_emp");				
+					if(myobj != null){  
+						var id =  document.getElementById("idcard").value;	
+						var timestamp = new Date().getTime();
+						var oImg = new Image();			
+						oImg.src = "photos/"+id+".jpg?t=" + timestamp;
+						oImg.onload = function(){ myobj.src = oImg.src }
+						oImg.onerror = function(){ 					
+							oImg.src = "photos/"+id+".JPG?t=" + timestamp;					
+							oImg.onerror = function(){ 
+								oImg.src = "photos/person.png";
+							}
+						}						
+					}
 				}, 1200);
 			}			
 			
 			function Rotate() {
-				document.getElementById("resize_small").style.display = "none";
+				document.getElementById("resize_full").style.display = "none";
 			
 				// Code for Safari
 				document.getElementById("resize_full").style.WebkitTransform = "rotate(90deg)"; 
@@ -121,13 +121,13 @@
 			
 			function ShowFullImage(){
 				document.getElementById("resize_full").style.display = "none";
-				$('#img_emp').animate({height: '140px', width: '140px'}, 'slow');	//	100px
+				$('#img_emp').animate({height: '144px', width: '144px'}, 'slow');	//	100px
 				document.getElementById("resize_small").style.display = "";
 			}
 			
 			function ShowSmallImage(){
 				document.getElementById("resize_small").style.display = "none";
-				$('#img_emp').animate({height: '24px', width: '24px'}, 'slow');
+				$('#img_emp').animate({height: '32px', width: '32px'}, 'slow');
 				document.getElementById("resize_full").style.display = "";
 			}
 		
@@ -370,7 +370,7 @@
 							<div class="row form-group">
 								<label class="control-label label-text-1 col-md-4"> <%= lb_emp_photo %> : </label>
 								<div class="col-md-5">
-									<img id="img_emp" class="img-rounded" width="24" height="24" style="cursor: default;"> &nbsp; 
+									<img id="img_emp" class="img-rounded" width="144" height="144" style="cursor: default;"> &nbsp; 
 									<span id="resize_full" class="glyphicon glyphicon-resize-full" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowFullImage();" data-toggle="tooltip" data-placement="right" title="Full size"> </span> 
 									<span id="resize_small" class="glyphicon glyphicon-resize-small" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowSmallImage();" data-toggle="tooltip" data-placement="left" title="Small size"> </span>
 								</div>
@@ -804,7 +804,7 @@
 							<div class="row form-group">
 								<label class="control-label label-text-1 col-md-4"> <%= lb_emp_photo %> : </label>
 								<div class="col-md-5">
-									<img id="img_emp" class="img-rounded" width="24" height="24" style="cursor: default;"> &nbsp; 
+									<img id="img_emp" class="img-rounded" width="144" height="144" style="cursor: default;"> &nbsp; 
 									<span id="resize_full" class="glyphicon glyphicon-resize-full" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowFullImage();" data-toggle="tooltip" data-placement="right" title="Full size"> </span> 
 									<span id="resize_small" class="glyphicon glyphicon-resize-small" style="cursor: pointer; cursor: hand; vertical-align: top; margin-top: 5px;" onClick="ShowSmallImage();" data-toggle="tooltip" data-placement="left" title="Small size"> </span>
 								</div>

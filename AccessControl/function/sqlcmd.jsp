@@ -398,9 +398,9 @@
 		String result = "";
 		if (dbType == 0) {
 			//mySQL5
-			result = " PASSWORD("+pw+") "; 
+			//result = " PASSWORD("+pw+") "; 
 			//mySQL8
-			//result = " CONCAT('*',UPPER(SHA1(UNHEX(SHA1("+pw+")) ";
+			result = " CONCAT('*', UPPER(CAST(SHA1(UNHEX(SHA1("+pw+"))) AS CHAR))) ";
 		} else if (dbType == 1) {
 			result = " CONVERT(VARCHAR(45), HASHBYTES('SHA', "+pw+"), 1) ";
 		}
@@ -411,9 +411,9 @@
 		String result = "";
 		if (dbType == 0) {
 			//mySQL5
-			result = " PASSWORD('"+pw+"') ";
+			//result = " PASSWORD('"+pw+"') ";
 			//mySQL8
-			//result = " CONCAT('*',UPPER(SHA1(UNHEX(SHA1('"+pw+"')) ";
+			result = " CONCAT('*', UPPER(CAST(SHA1(UNHEX(SHA1('"+pw+"'))) AS CHAR))) ";
 		} else if (dbType == 1) {
 			result = " CONVERT(VARCHAR(45), HASHBYTES('SHA', '"+pw+"'), 1) ";
 		}
@@ -425,7 +425,7 @@
 		try {
 			ResultSet rs = stm.executeQuery("SELECT "+convertPassValue(pw, dbType)+" AS user_password");
 			while (rs.next()) {
-				result = rs.getString("user_password");
+				result = rs.getString("user_password").toString().toUpperCase();
 			}
 			rs.close();
 		} catch (SQLException e) {
