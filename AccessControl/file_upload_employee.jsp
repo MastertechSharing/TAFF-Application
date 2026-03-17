@@ -307,7 +307,7 @@
 								
 								if(chk_dupcardid == false && chk_blacklist == false){
 									
-									user_password = getPassword(data_arr[0].toString(), stmtQry, mode);
+									user_password = getPassword(data_arr[0].toString(), stmtQry, db_type);
 									sql = "INSERT INTO dbemployee (idcard, sex, prefix, th_fname, th_sname, en_fname, en_sname, "
 											+"issue, pincode, st_date, ex_date, sec_code, pos_code, group_code, pass_word, date_data, "
 											+"type_code, emp_card, sn_card, use_map_card, nationality, card_id, phone_no, email, use_finger, "

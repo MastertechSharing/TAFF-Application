@@ -175,15 +175,13 @@
 		String TempNameDataFormat = "tmpformat_"+getIP(request.getRemoteAddr());
 		String TempNameFileTAF = "tmptaf_"+getIP(request.getRemoteAddr());
 		try{
-			stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDatabase, mode));
-			stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDataFormat, mode));
-			stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameFileTAF, mode));
-			stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDatabase, "base", mode));
-			stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDataFormat, "format", mode));
-			stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameFileTAF, "taf", mode));
+			stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDatabase, db_type));
+			stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameDataFormat, db_type));
+			stmtUp.executeUpdate(dropTableTmpReport(db_database, TempNameFileTAF, db_type));
+			stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDatabase, "base", db_type));
+			stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameDataFormat, "format", db_type));
+			stmtUp.executeUpdate(createTableTmpReport(db_database, TempNameFileTAF, "taf", db_type));
 		}catch(SQLException e){ }
-		
-		
 		
 	//	if((fileName != "") && (lastName.equals("TXT") || lastName.equals("txt") || lastName.equals("TAF") || lastName.equals("taf") || lastName.equals("REC") || lastName.equals("rec"))){
 			try{
@@ -210,8 +208,7 @@
 							if(process_todatabase.equals("checked")){
 								
 								msg_status_base = convData.CheckConvertData(data);
-								if(msg_status_base == 1){					//	1 = Success
-									
+								if(msg_status_base == 1){	//	1 = Success								
 									//	id(16)+duty(1)+date(8)+time(6)+taff(5)+seq(4)+event_code(2)+blank(6)+crc(2)					//	50
 									//	id(16)+duty(1)+date(8)+time(6)+taff(5)+seq(4)+event_code(2)+blank(6)+work_code(2)+crc(2)	//	52	//	work_code
 									String id = data.substring(0, 16);
@@ -226,20 +223,22 @@
 									String work_code = "";
 									String temperature = "";
 									String wearingmask = "";	
-								
-									if(data.length() == 52){
-										work_code = data.substring(48, 50);
-										crc = data.substring(50, 52);
-									} else if(data.length() == 56){
-										work_code = data.substring(48, 50);
-										temperature = data.substring(50, 54);
-										crc = data.substring(54, 56);
-									} else if (data != null && data.length() == 60) {
-										// work_code = data.substring(48, 50);
-										work_code = data.substring(55, 58);
-										temperature = data.substring(50, 54);
-										wearingmask = data.substring(54, 55);
-										crc = data.substring(58, 60);
+									
+									if(data.length() == 51){
+										crc = data.substring(48, 50);
+									}else{
+										crc = data.substring(data.length() - 2, data.length());									
+										if(data.length() == 52){
+											work_code = data.substring(48, 50);										
+										} else if(data.length() == 56){
+											work_code = data.substring(48, 50);
+											temperature = data.substring(50, 54);										
+										} else if (data != null && data.length() == 60) {
+											// work_code = data.substring(48, 50);
+											work_code = data.substring(55, 58);
+											temperature = data.substring(50, 54);
+											wearingmask = data.substring(54, 55);										
+										}
 									}
 										
 									//	เปรียบเทียบ เช็คเวลาว่าถูกตาม Pattern หรือป่าว ถ้าผิดรูปแบบ
@@ -251,8 +250,7 @@
 										String workday = date_event+" "+time_event;
 										if(db_type == 0){
 											workday = "'"+workday+"'";
-										}
-										if(db_type == 1){
+										} else	if(db_type == 1){
 											workday = "CONVERT(datetime, '"+workday+".000', 121)";
 										}
 										

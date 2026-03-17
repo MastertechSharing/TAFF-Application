@@ -53,21 +53,11 @@
 			ip_address = ip_addr1 + "." + ip_addr2 + "." + ip_addr3 + "." + ip_addr4;
 		}
 		String path_output_txt = new String(request.getParameter("path_output_txt").getBytes("ISO8859_1"), "tis-620");
-		if(mode == 0){
-			path_output_txt = path_output_txt.replace("?", "\\");
-		}
-		if(mode == 1){
-			path_output_txt = path_output_txt.replace("??", "\\");
-		}
-		
+		path_output_txt = replaceSymbolPathToBackSlash(path_output_txt,db_type);
+				
 		String path_output_std = new String(request.getParameter("path_output_std").getBytes("ISO8859_1"), "tis-620");
-		if(mode == 0){
-			path_output_std = path_output_std.replace("?", "\\");
-		}
-		if(mode == 1){
-			path_output_std = path_output_std.replace("??", "\\");
-		}
-		
+		path_output_std = replaceSymbolPathToBackSlash(path_output_std,db_type);
+				
 		String access_token = request.getParameter("access_token");
 		String reader_no = request.getParameter("reader_no");
 		String event_code = request.getParameter("event_code");

@@ -195,18 +195,26 @@
 			sql = sql + ")";
 		}
 		try {
-			resultQry = stmtUp.executeUpdate("DELETE FROM dbemployee "+sql);
-			
-			String dt = getCurrentDateTimeMsLog();			
-			String swModel = "TAFFServer67";
-			String cmd = "850";
-			String req = cmd + "_" + getCurrentDtBase() + "_" + idcard;							
-			resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
-			
+			resultQry = stmtUp.executeUpdate("DELETE FROM dbemployee "+sql);			
 			if (resultQry != 0) { 
 				resultQry = stmtUp.executeUpdate("DELETE FROM dbtransaction "+sql);
 				resultQry = stmtUp.executeUpdate("DELETE FROM dbtransaction_ev "+sql);
-				
+						
+				String[] dataID = idcard.split(",");
+				String idDels = "";				
+				for (int i = 0; i < dataID.length; i++) {		
+					idDels = dataID[i];
+					String dt = getCurrentDateTimeMsLog();			
+					String swModel = "TAFFServer67";
+					String cmd = "850";
+					String req = cmd + "_" + getCurrentDtBase() + "_" + idDels;							
+					resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
+			
+					cmd = "854";											
+					req = cmd + "_" + getCurrentDtBase() + "_" + idDels;											
+					resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));		
+				}
+							
 				session.setAttribute("session_alert", msg_delsuccess);
 				rc.WriteDataLogFile("[" + ses_user + "] Delete idcard : " + idcard
 						+ " [dbemployee],[dbtransaction],[dbtransaction_ev]");
@@ -238,8 +246,18 @@
 					// count idcard FROM dbtransaction and dbtransactio _ev
 					if (getCountRecord("dbtransaction","idcard",idcard,stmtQry) == 0) {
 						if (getCountRecord("dbtransaction_ev","idcard",idcard,stmtQry) == 0) {
-							resultQry = stmtUp.executeUpdate(deleteTable("dbemployee","idcard",idcard));
-							if (resultQry != 0) {
+							resultQry = stmtUp.executeUpdate(deleteTable("dbemployee","idcard",idcard));							
+							if (resultQry != 0) {								
+								String dt = getCurrentDateTimeMsLog();			
+								String swModel = "TAFFServer67";
+								String cmd = "850";
+								String req = cmd + "_" + getCurrentDtBase() + "_" + idcard;							
+								resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
+			
+								cmd = "854";											
+								req = cmd + "_" + getCurrentDtBase() + "_" + idcard;											
+								resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));		
+								
 								session.setAttribute("session_alert", msg_delsuccess);
 								rc.WriteDataLogFile("[" + ses_user + "] Delete idcard : " + idcard + " [dbemployee]");
 								out.println("<script>document.location='../data_employee.jsp';</script>");
@@ -664,11 +682,11 @@
 							String swModel = "TAFFServer67";
 							String cmd = "852";
 							String req = cmd + "_" + getCurrentDtBase() + "_" + idcard;							
-							resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));
+							resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", idcard2, swModel));
 														
 							cmd = "855";											
 							req = cmd + "_" + getCurrentDtBase() + "_" + idcard;											
-							resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", "", swModel));										
+							resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", idcard2, swModel));										
 							
 							//	Check File Photo & Template
 							if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){

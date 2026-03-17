@@ -1,5 +1,5 @@
 Version		: Access Control [Version 5.9]
-Last Update	: 27/02/2569
+Last Update	: 18/03/2569
 
 Update Version
 25/12/2555 : Access Control [Version 1.0]
@@ -156,10 +156,10 @@ Update Version
 	- Resolve menu monitor data transaction change flash to server sent event (sse)
 	- Resolve search thai language
 18/08/2564 : Access Controls [Version 5.3]
-	- Resolve menu  Download Text File [TXT]
-	- Resolve menu  Process Files / File New Format [TAF]
-	- Resolve menu  Process Files / Transaction File [Format TAFF67]
-	- Resolve menu  Data System / Server for set Path STD
+	- Resolve menu Download Text File [TXT]
+	- Resolve menu Process Files / File New Format [TAF]
+	- Resolve menu Process Files / Transaction File [Format TAFF67]
+	- Resolve menu Data System / Server for set Path STD
 	- Add menu Map Serial
 	- Add menu report [114] - All Transaction [Temperature-Mask]
 18/10/2564 : Access Controls [Version 5.4]	
@@ -176,6 +176,8 @@ Update Version
 	- Add menu Data System / Reader [Face Scan]
 	- Add menu Connect HW / Face Scan for communication VF1000
 	- Resolve Data Employee Config Face Employee Information 
-27/02/2569 : Access Controls [Version 5.9]
+18/03/2569 : Access Controls [Version 5.9]
 	- Add menu Import Data [TXT] / Employee Photos
 	- Resolve a camera issue, select images from a folder instead of taking photos.
+	- Fix bug command Face Scan for communication VF1000 Support TAFFServer67 V.7.9
+	- Add feature Integration API for masterTime

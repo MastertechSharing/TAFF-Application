@@ -147,7 +147,7 @@
 		String sql = "";
 		String user_right = "";		
 		try{
-			String user_password = getPassword(password1,stmtQry,mode);
+			String user_password = getPassword(password1,stmtQry,db_type);
 			
 			sql = "SELECT ex_date, user_name, pass_word, user_right FROM dbusers WHERE (user_name='"
 					+ username + "') AND (pass_word = '" + user_password + "') ";

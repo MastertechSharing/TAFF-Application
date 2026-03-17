@@ -113,8 +113,8 @@
 					
 			String TempName = "tmp"+report_id+"_"+getIP(request.getRemoteAddr());				
 			try{
-				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,mode));
-				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,mode));		
+				stmtUp.executeUpdate(dropTableTmpReport(db_database,TempName,db_type));
+				stmtUp.executeUpdate(createTableTmpReport(db_database,TempName,report_id,db_type));		
 			}catch(SQLException e){
 				out.println("<div class='alert alert-danger' role='alert'> SQL Exception :"+e.getMessage()+"</div>");
 			}		

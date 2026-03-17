@@ -154,15 +154,11 @@
 						
 						if(message.length() > 250){
 							message = message.substring(0, 250);
-						}
-						
+						}						
 						data_arr = (message+",#").split(",");
 						
 						boolean ckCode = chkPatternCode(data_arr[0].trim());
-						if(data_arr.length != 20 && data_arr.length != 18){
-							msgerr.add(message+" --> ("+lb_format_file_err+")");
-							no_pass++;
-						}else if(!ckCode || data_arr[0].length() > 16){
+						if(!ckCode || data_arr[0].length() > 16){
 							msgerr.add(message+" --> ("+lb_format_file_err+")");
 							no_pass++;
 						}else if((data_arr[8].length() != 10) || data_arr[9].length() != 10){
@@ -275,7 +271,7 @@
 									}catch(SQLException e){ }
 								}
 								
-								user_password = getPassword(data_arr[0].toString(), stmtQry, mode);							
+								user_password = getPassword(data_arr[0].toString(), stmtQry, db_type);							
 								sql_in = "INSERT INTO dbemployee (idcard, "+chk_lang_fname+", "+chk_lang_sname+", use_finger, sn_card, use_map_card, issue, pincode, "
 										+"st_date, ex_date, st_time, ex_time, group_code, sec_code, pos_code, type_code, pass_word, date_data, face_sn_card, face_pincode, face_identify_mode, face_date_data) "
 										+"VALUES ('"+data_arr[0]+"', '"+fname+"', '"+sname+"', '"+use_finger+"', '"+sn_card+"', '"+use_map_card+"', '"+issue+"', '"+pincode

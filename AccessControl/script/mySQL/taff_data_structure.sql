@@ -649,8 +649,8 @@ CREATE TABLE IF NOT EXISTS taff_data.integration_api (
   datetimestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   command_id VARCHAR(3) NOT NULL DEFAULT '',
   data_request VARCHAR(35) NOT NULL DEFAULT '',
-  response_json TEXT,  
-  options TEXT,  
+  response_json LONGTEXT,  
+  options LONGTEXT,  
   software_model VARCHAR(20) DEFAULT '', 
   PRIMARY KEY (command_id,data_request)
 ) ENGINE=MyISAM DEFAULT CHARSET=tis620 ROW_FORMAT=DYNAMIC;

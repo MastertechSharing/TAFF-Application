@@ -528,7 +528,7 @@ CREATE TABLE taff_data.dbo.dbresult (
   data_request VARCHAR(50) DEFAULT '',
   data_response TEXT,
   datetime_update DATETIME DEFAULT getdate(),
-  PRIMARY KEY (running_code,ip_address)
+  PRIMARY KEY (running_code,door_id)
 );
 
 IF OBJECT_ID('taff_data.dbo.dbserver', 'U') IS NOT NULL DROP TABLE taff_data.dbo.dbserver; 
@@ -678,5 +678,16 @@ CREATE TABLE  taff_data.dbo.dbresult (
   data_request VARCHAR(50) DEFAULT '',
   data_response TEXT,
   datetime_update DATETIME DEFAULT getdate(),
-  PRIMARY KEY (running_code,ip_address)
+  PRIMARY KEY (running_code,door_id)
+);
+
+IF OBJECT_ID('taff_data.dbo.integration_api', 'U') IS NULL 
+CREATE TABLE  taff_data.dbo.integration_api (
+  datetimestamp DATETIME NOT NULL DEFAULT getdate(),
+  command_id VARCHAR(3) NOT NULL DEFAULT '',
+  data_request VARCHAR(35) NOT NULL DEFAULT '',
+  response_json NVARCHAR(MAX),  
+  options NVARCHAR(MAX),  
+  software_model VARCHAR(20) DEFAULT '', 
+  PRIMARY KEY (command_id,data_request)
 );

@@ -42,12 +42,14 @@
 		URL = "jdbc:mysql://" + db_host + "/" + db_database + "?useUnicode=true&characterEncoding=TIS620&autoReconnect=true";
 	} else if (db_type == 1) { // ===== // [ SQL Server ]
 		//sqljdbc4-3.0.jar support SQL Server 2005, 2008, 2008 R2, 2012 
+		//mssql-jdbc-9.4.0.jre8 support SQL Server 2019
 		//mssql-jdbc-12.8.1.jre8 support SQL Server 2016 or later.
-		//String url = "jdbc:sqlserver://" + db_host +":1433;DatabaseName=" + db_database;            
-            //";user="+ db_username;
-            //";password=" + db_password;
-            //";encrypt=true;trustServerCertificate=true;"; 
-			// Accept certificate of server (if using a self-signed certificate)
+		//URL = "jdbc:sqlserver://" + db_host +":1433;DatabaseName=" + db_database;            
+        //URL += ";user="+ db_username;
+        //URL += ";password=" + db_password;
+		//URL += ";encrypt=false;";
+        //URL += ";encrypt=true;trustServerCertificate=true;"; 
+		//Accept certificate of server (if using a self-signed certificate)
 			
 		className = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 		URL = "jdbc:sqlserver://" + db_host + ";DatabaseName=" + db_database;						

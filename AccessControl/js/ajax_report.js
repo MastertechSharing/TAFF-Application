@@ -266,8 +266,9 @@ function showReponseCommand(num,ip,door_id,door_desc,result,data){
 			|| (request_Command=="F7")	//	Face Delete Employee	
 			){
 	    show_facesetcommand(num,ip,door_id,door_desc,result,data); 
-	}else if((request_Command=="F8")	//	Face Set Employees
-			||(request_Command=="F9")	//	Face Delete Employees
+	}else if((request_Command=="F8")	//	Face Get Employees
+			||(request_Command=="F9")	//	Face Set Employees
+			||(request_Command=="F0")	//	Face Delete Employees
 			){
 		show_facesetemployees(num,ip,door_id,door_desc,result,data); 			
 	}
@@ -518,7 +519,7 @@ function show_getcommand(num,ip,door_id,desc,result){
 	setstyledesc(cell3); 	
 	if ((result == "1") && ((request_Command==50)||(request_Command==51)||(request_Command==52)||(request_Command==53)||(request_Command==54)
 		||(request_Command==55)||(request_Command==58)||(request_Command==59)||(request_Command==61)||(request_Command==12)||(request_Command==13)||(request_Command==88)
-		||(request_Command=="F4")||(request_Command=="F8"))){
+		||(request_Command=="F4")||(request_Command=="F8")||(request_Command=="F9")||(request_Command=="F0"))){
 		setstyleresult(cell4,4);
 	}else{
 		setstyleresult(cell4,result);	

@@ -45,21 +45,22 @@
 		
 	} else if (action.equals("delall")) {
 		try{
-			if(mode == 0){
+			if(db_type == 0){
 				sql = " UPDATE dbemployee emp ";
+				sql += " SET message = '', message_date = NULL ";
 				if(checkPermission(ses_per, "1256")){
 					sql += " LEFT JOIN dbsection sec ON (sec.sec_code = emp.sec_code) "
 						+ " LEFT JOIN dbdepart dep ON (dep.dep_code = sec.dep_code) "
 						+ " LEFT JOIN dbusers users ON (users.dep_code = dep.dep_code) ";
 				}
-				sql += " SET message = '', message_date = NULL ";
+				
 				if(checkPermission(ses_per, "1256")){
 					sql += " WHERE (users.user_name = '"+ses_user+"') ";
 					if(checkPermission(ses_per, "56")){
 						sql += " AND (sec.sec_code = users.sec_code) ";
 					}
 				}
-			}else if(mode == 1){
+			}else if(db_type == 1){
 				sql = " UPDATE emp "
 					+ " SET message = '', message_date = NULL "
 					+ " FROM dbemployee emp ";
@@ -123,21 +124,21 @@
 			
 		}else if (action.equals("add_all")){
 			try{
-				if(mode == 0){
+				if(db_type == 0){
 					sql = " UPDATE dbemployee emp ";
+					sql += " SET message = '"+message_detail+"', message_date = '"+message_date+"' ";
 					if(checkPermission(ses_per, "1256")){
 						sql += " LEFT JOIN dbsection sec ON (sec.sec_code = emp.sec_code) "
 							+ " LEFT JOIN dbdepart dep ON (dep.dep_code = sec.dep_code) "
 							+ " LEFT JOIN dbusers users ON (users.dep_code = dep.dep_code) ";
-					}
-					sql += " SET message = '"+message_detail+"', message_date = '"+message_date+"' ";
+					}					
 					if(checkPermission(ses_per, "1256")){
 						sql += " WHERE (users.user_name = '"+ses_user+"') ";
 						if(checkPermission(ses_per, "56")){
 							sql += " AND (sec.sec_code = users.sec_code) ";
 						}
 					}
-				}else if(mode == 1){
+				}else if(db_type == 1){
 					sql = " UPDATE emp "
 						+ " SET message = '"+message_detail+"', message_date = '"+message_date+"' "
 						+ " FROM dbemployee emp ";

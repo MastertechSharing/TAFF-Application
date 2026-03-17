@@ -412,8 +412,7 @@
 	public String convertPassField(String pw, int dbType) {
 		String result = "";
 		if (dbType == 0) {
-			//mySQL5
-			//result = " PASSWORD("+pw+") "; 
+			//mySQL5 => result = " PASSWORD("+pw+") "; 
 			//mySQL8
 			result = " CONCAT('*', UPPER(CAST(SHA1(UNHEX(SHA1("+pw+"))) AS CHAR))) ";
 		} else if (dbType == 1) {
@@ -425,8 +424,7 @@
 	public String convertPassValue(String pw, int dbType) {
 		String result = "";
 		if (dbType == 0) {
-			//mySQL5
-			//result = " PASSWORD('"+pw+"') ";
+			//mySQL5 => result = " PASSWORD('"+pw+"') ";
 			//mySQL8
 			result = " CONCAT('*', UPPER(CAST(SHA1(UNHEX(SHA1('"+pw+"'))) AS CHAR))) ";
 		} else if (dbType == 1) {
@@ -440,7 +438,7 @@
 		try {
 			ResultSet rs = stm.executeQuery("SELECT "+convertPassValue(pw, dbType)+" AS user_password");
 			while (rs.next()) {
-				result = rs.getString("user_password").toString().toUpperCase();
+				result = rs.getString("user_password");
 			}
 			rs.close();
 		} catch (SQLException e) {

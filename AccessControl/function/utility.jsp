@@ -309,6 +309,16 @@
 		return sb.toString();
 	}
 	
+	public String replaceSymbolPathToBackSlash(String path, int dbType){
+		String result = "";
+		if(dbType == 0){
+			result = path.replace("?", "\\");
+		} else if (dbType == 1) {
+			result = path.replace("??", "\\");
+		}
+		return result;
+	}
+	
 	public String getIP(String ip) {
 		String result = "";
 		ip = ip.replace('.', ',');
@@ -382,7 +392,7 @@
 		
 		return result;
 	}
-
+		
 	public String removeLeadingZeros(String data) {
 		String result = "";
 		try {

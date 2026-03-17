@@ -257,7 +257,7 @@
 					<div class="col-xs-4" align="center"> 
 						<input type="hidden" name="sessions" value="<%= ses_user %>">
 						<input type="hidden" name="emp_ids">						
-						<input type="hidden" name="command" value="F8">														
+						<input type="hidden" name="command" value="F9">														
 						<button class="btn btn-primary btn-sm max-height-26 button-shadow1 button-shadow2" name="btn_ok" id="btn_ok" onMouseOver="this.style.cursor='hand';"> &nbsp; &nbsp; &nbsp; <%= btn_ok %> &nbsp; &nbsp; &nbsp; </button> &nbsp;
 					</div>
 					<div class="col-xs-4" align="center"> </div>
@@ -316,6 +316,15 @@
 						ModalWarning_TextName(msg2, "chkid");
 						return false;						
 					}else{
+						
+						if(rdo.value == 1){
+							document.form1.command.value = "F9";
+						} else if(rdo.value == 2){
+							document.form1.command.value = "F0";
+						} else {
+							document.form1.command.value = "F8";
+						}
+				
 						document.form1.emp_ids.value = emp_ids;
 						
 					//	window.document.form1.submit();		
@@ -324,13 +333,7 @@
 						window.document.form1.target = 'connect_hw';
 						window.document.form1.submit();
 					}
-				}	
-
-				//if(rdo == 2){
-					//document.form1.command.value = "F9";
-				//} else {
-					//document.form1.command.value = "F8";
-				//}				
+				}
 			}
 		</script>
 	
