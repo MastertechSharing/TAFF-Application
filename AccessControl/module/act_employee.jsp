@@ -321,7 +321,7 @@
 		while (rs.next()) {
 			idcard = rs.getString("idcard");
 			if(rs.getString("photo").equals("1")){
-				if((new File(path_EmpPic + idcard + ".jpg").exists() == false)){
+				if((new File(path_EmpPhotos + idcard + ".jpg").exists() == false)){
 					stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '0' WHERE idcard = '"+idcard+"' ");
 				}
 			}
@@ -333,7 +333,7 @@
 		}	rs.close();
 		
 		//	Check File Photo
-		File[] list_photo = new File(path_EmpPic).listFiles();
+		File[] list_photo = new File(path_EmpPhotos).listFiles();
 		for(int i = 0; i < list_photo.length; i++){
 			if(list_photo[i].isFile()){
 				String files = list_photo[i].getName();
@@ -377,13 +377,13 @@
 	
 		//	Copy file from photos/tmpCapture to photos/ && delete file tmp
 		try {
-			File tmpFile = new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg");
-			File newFile = new File(getServletContext().getRealPath("/") + "photos\\"+idcard+".jpg");
+			File tmpFile = new File(path_EmpPhotos + "tmpCapture\\CaptureBy-" + username + ".jpg");
+			File newFile = new File(path_EmpPhotos + idcard + ".jpg");
 			FileUtils.copyFile(tmpFile, newFile);
 			//	delete file tmpCapture
-			new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg").delete();
+			tmpFile.delete();
 			
-			if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){
+			if(newFile.exists()){
 				stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '1' WHERE idcard = '"+idcard+"' ");
 			}
 		} catch (Exception ef) { }
@@ -504,19 +504,16 @@
 									
 											//	Copy file from photos/tmpCapture to photos/ && delete file tmp
 											try {
-												File tmpFile = new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg");
-												File newFile = new File(getServletContext().getRealPath("/") + "photos\\"+idcard+".jpg");												
+												File tmpFile = new File(path_EmpPhotos + "tmpCapture\\CaptureBy-" + username + ".jpg");
+												File newFile = new File(path_EmpPhotos + idcard + ".jpg");												
 												FileUtils.copyFile(tmpFile, newFile);
-												
-												//File newFileP = new File(path_EmpPhotos + "photos\\"+idcard+".jpg");
-												//FileUtils.copyFile(tmpFile, newFileP);
-												
+																								
 												//	delete file tmpCapture
-												new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg").delete();
+												tmpFile.delete();
 											} catch (Exception ef) { }
 									
 											//	Check File Photo & Template
-											if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){
+											if((new File(path_EmpPhotos + idcard + ".jpg").exists() == true)){
 												stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '1' WHERE idcard = '"+idcard+"' ");
 											}
 											if(new File(path_tpl + idcard + ".DAT").exists() == true){
@@ -689,7 +686,7 @@
 							resultQry = stmtUp.executeUpdate(insertIntegrationAPI(dt, cmd, req, "", idcard2, swModel));										
 							
 							//	Check File Photo & Template
-							if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){
+							if((new File(path_EmpPhotos + idcard + ".jpg").exists() == true)){
 								stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '1' WHERE idcard = '"+idcard+"' ");
 							}else{
 								stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '0' WHERE idcard = '"+idcard+"' ");
@@ -737,7 +734,7 @@
 							if (resultQry != 0) {
 								
 								//	Check File Photo & Template
-								if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){
+								if((new File(path_EmpPhotos + idcard + ".jpg").exists() == true)){
 									stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '1' WHERE idcard = '"+idcard+"' ");
 								}else{
 									stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '0' WHERE idcard = '"+idcard+"' ");
@@ -750,8 +747,8 @@
 								
 								//	Rename file .jpg
 								try{
-									File f = new File(getServletContext().getRealPath("/") + "photos\\"+idcard2+".jpg");
-									f.renameTo(new File(getServletContext().getRealPath("/") + "photos\\"+idcard+".jpg"));
+									File filePhotos = new File(path_EmpPhotos + idcard2 + ".jpg");
+									filePhotos.renameTo(new File(path_EmpPhotos + idcard+ ".jpg"));
 								}catch(Exception ef){ }
 								
 								stmtUp.executeUpdate(updateTable("dbtransaction","idcard",idcard,idcard2));

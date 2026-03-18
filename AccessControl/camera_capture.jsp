@@ -11,7 +11,7 @@
 	if(action.equals("add")){
 		session.setAttribute("action_capture", "add");
 		session.setAttribute("idcard_capture", "");
-		new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg").delete();
+		new File(path_EmpPhotos + "tmpCapture\\CaptureBy-" + username + ".jpg").delete();
 	}else if(action.equals("edit")){
 		session.setAttribute("action_capture", "edit");
 		session.setAttribute("idcard_capture", idcard);
@@ -414,9 +414,9 @@
 			
 			$("#btn_save").prop('disabled', true);
 			
-			<%	if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){	%>
+			<%	if((new File(path_EmpPhotos + idcard + ".jpg").exists() == true)){	%>
 				$("#btn_del").prop('disabled', false);
-			<%	}else if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == false)){	%>
+			<%	}else if((new File(path_EmpPhotos + idcard + ".jpg").exists() == false)){	%>
 				$("#btn_del").prop('disabled', true);
 			<%	}	%>
 			

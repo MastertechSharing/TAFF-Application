@@ -193,9 +193,9 @@
 					sec_link += " - " + rs.getString("sec_desc");
 				}				
 				
-				String img_jpg = "camera.png", img_tlp = "finger_tab.png";
+				String img_jpg = "person.png", img_tlp = "finger_tab.png";
 				if(rs.getString("photo").equals("0")){
-					img_jpg = "camera_bw.png";
+					img_jpg = "person_bw.png";
 				}
 				if(rs.getString("template").equals("0")){
 					img_tlp = "finger_tab_bw.png";

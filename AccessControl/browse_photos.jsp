@@ -11,7 +11,7 @@
 	if(action.equals("add")){
 		session.setAttribute("action_browse", "add");
 		session.setAttribute("idcard_browse", "");
-		new File(getServletContext().getRealPath("/") + "photos\\tmpBrowse\\BrowseBy-"+username+".jpg").delete();
+		new File(path_EmpPhotos + "tmpBrowse\\BrowseBy-" + username + ".jpg").delete();
 	}else if(action.equals("edit")){
 		session.setAttribute("action_browse", "edit");
 		session.setAttribute("idcard_browse", idcard);
@@ -247,7 +247,7 @@
 	<script type="text/javascript">
 		function disabledButton(){			
 		<%	
-			boolean isFileExists = new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists();
+			boolean isFileExists = new File(path_EmpPhotos + idcard + ".jpg").exists();
 		%>
 			$("#btn_del").prop('disabled', <%= !isFileExists%> );						
 		}

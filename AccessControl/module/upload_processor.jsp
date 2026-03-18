@@ -47,13 +47,15 @@
 			} else {
 				out.print("file not found for upload");
 			}
+			//out.println("<script>alert('phoo action');</script>");
+			//out.println("<script>location.href='act_employee.jsp?action=check_file';</script>");
 			out.flush();
 	
         } catch (Exception ex) {
             response.setStatus(500);
 			out.clear();
             out.print("Error: " + ex.getMessage());
-        }
+        }		
     }
 %>
 

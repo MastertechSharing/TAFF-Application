@@ -156,9 +156,9 @@
 								<button class="btn btn-primary btn-sm max-height-26 button-shadow1 button-shadow2" name="btn_ok" id="btn_ok" style="max-height: 24px !important; margin-left: 35px;" onMouseOver="this.style.cursor='hand';"> &nbsp; &nbsp; &nbsp; <%= lb_send_data %> &nbsp; &nbsp; &nbsp; </button> &nbsp;
 							</div> 
 							<div class="modal-title col-xs-2 col-md-2"> 
-						<%	try{
-								BufferedImage img = ImageIO.read(new File(application.getRealPath("/") + "photos\\" + idcard + ".jpg"));
-								ImageIO.write(resizeImage(img, 800, 480), "jpg", new File(path_EmpPic + "\\" + idcard + ".jpg"));
+						<%	try{								
+								BufferedImage img = ImageIO.read(new File(path_EmpPhotos + idcard + ".jpg"));
+								ImageIO.write(resizeImage(img, 800, 480), "jpg", new File(path_EmpPic + idcard + ".jpg"));
 						%>
 								<input type="hidden" name="filename" id="filename" value="<%= idcard + ".jpg" %>" />
 						<%	}catch (IOException e){ %>

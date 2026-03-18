@@ -14,11 +14,10 @@
 	}
 	
 	try{
-		BufferedImage img = ImageIO.read(new File(application.getRealPath("/") + "photos\\" + filename));
-		ImageIO.write(resizeImage(img, 640, 480), "jpg", new File(path_EmpPic + "\\" + filename));
+		BufferedImage img = ImageIO.read(new File(path_EmpPhotos + filename));
+		ImageIO.write(resizeImage(img, 640, 480), "jpg", new File(path_EmpPic + filename));
 		
-		out.println(" <script> window.parent.document.getElementById('filename').value = '"+filename+"'; </script> ");
-		
+		out.println(" <script> window.parent.document.getElementById('filename').value = '"+filename+"'; </script> ");		
 	}catch (IOException e){ 
 		out.println(" <script> window.parent.document.getElementById('filename').value = ''; </script> ");
 	}

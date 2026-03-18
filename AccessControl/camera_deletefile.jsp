@@ -10,9 +10,8 @@
 	String file = request.getParameter("file");
 	 
 	if(action.equals("add")){
-		new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\"+file).delete();
+		new File(path_EmpPhotos + "tmpCapture\\" + file).delete();
 	}else if(action.equals("edit")){
-		new File(getServletContext().getRealPath("/") + "photos\\"+file).delete();
+		new File(path_EmpPhotos + file).delete();
 	}
-
 %>

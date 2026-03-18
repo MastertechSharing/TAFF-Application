@@ -18,13 +18,13 @@
 		} catch (Exception e) { } 
 	}else if(action.equals("jpg_add")){
 		try {
-			if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){
+			if((new File(path_EmpPhotos + idcard + ".jpg").exists() == true)){
 				stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '1' WHERE idcard = '"+idcard+"' ");
 			}
 		} catch (Exception e) { } 
 	}else if(action.equals("jpg_del")){
 		try {
-			if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == false)){
+			if((new File(path_EmpPhotos + idcard + ".jpg").exists() == false)){
 				stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '0' WHERE idcard = '"+idcard+"' ");
 			}
 		} catch (Exception e) { } 

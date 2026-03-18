@@ -88,7 +88,7 @@
 				while (rs.next()) {
 					idcard = rs.getString("idcard");
 					if(rs.getString("photo").equals("1")){
-						if((new File(path_EmpPic + idcard + ".jpg").exists() == false)){
+						if((new File(path_EmpPhotos + idcard + ".jpg").exists() == false)){
 							stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '0' WHERE idcard = '"+idcard+"' ");
 						}
 					}
@@ -100,7 +100,7 @@
 				}	rs.close();
 				
 				//	Check File Photo
-				File[] list_photo = new File(path_EmpPic).listFiles();
+				File[] list_photo = new File(path_EmpPhotos).listFiles();
 				for(int i = 0; i < list_photo.length; i++){
 					if(list_photo[i].isFile()){
 						String files = list_photo[i].getName();

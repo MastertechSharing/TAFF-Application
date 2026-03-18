@@ -22,9 +22,9 @@
 		byte[] decodedData = Base64.decodeBase64(contentData);
 		String imgName = "";
 	//	if(action.equals("add")){
-			imgName = getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg";
+			imgName = path_EmpPhotos + "tmpCapture\\CaptureBy-" + username + ".jpg";
 	//	}else if(action.equals("edit")){
-	//		imgName = getServletContext().getRealPath("/") + "photos\\"+idcard+".jpg";
+	//		imgName = path_EmpPhotos + idcard + ".jpg";
 	//	}
 		FileOutputStream fos = new FileOutputStream(imgName);
 		fos.write(decodedData);

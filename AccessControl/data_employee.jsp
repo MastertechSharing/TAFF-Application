@@ -272,7 +272,7 @@
 									<li> <img src="images/edit.png" width="20" height="20" align="absmiddle" style="margin-left: 12px"> &nbsp; <%= lb_editdata %> <p> </li>
 									<li> <img src="images/delete.png" width="22" height="22" align="absmiddle" style="margin-left: 10px"> &nbsp; <%= lb_deletedata %> <p> </li>
 									<li> <img src="images/refresh.png" width="18" height="18" align="absmiddle" style="margin-left: 14px"> &nbsp; <%= lb_clear_pw %> <p> </li>
-									<li> <img src="images/camera.png" width="20" height="20" align="absmiddle" style="margin-left: 12px"> &nbsp; <%= lb_take_photo %> <p> </li>
+									<li> <img src="images/person.png" width="20" height="20" align="absmiddle" style="margin-left: 12px"> &nbsp; <%= lb_emp_photo %> <p> </li>
 									<li> <img src="images/finger_tab.png" width="22" height="22" align="absmiddle" style="margin-left: 10px"> &nbsp; <%= lb_enrollfp %> </li>
 								</ul>
 							</div>
@@ -297,8 +297,8 @@
 								</button>
 								<ul class="dropdown-menu bottom-30" id="liview" style="width: 280px;" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
 									<li onClick="chkView('0');" style="margin-top: -5px; margin-bottom: -5px;"> <a href="#"> <img src="images/view_all.png" width="20" height="20" align="absmiddle" style="margin-left: -12px"> &nbsp; <%= lb_all_emp %> </a> <p> </li>
-									<li onClick="chkView('1');" style="margin-top: -5px; margin-bottom: -5px;"> <a href="#"> <img src="images/camera.png" width="20" height="20" align="absmiddle" style="margin-left: -12px"> &nbsp; <%= lb_emp_have_photo %>  </a> <p> </li>
-									<li onClick="chkView('2');" style="margin-top: -5px; margin-bottom: -5px;"> <a href="#"> <img src="images/camera_bw.png" width="20" height="20" align="absmiddle" style="margin-left: -12px"> &nbsp; <%= lb_emp_dhave_photo %>  </a> <p> </li>
+									<li onClick="chkView('1');" style="margin-top: -5px; margin-bottom: -5px;"> <a href="#"> <img src="images/person.png" width="20" height="20" align="absmiddle" style="margin-left: -12px"> &nbsp; <%= lb_emp_have_photo %>  </a> <p> </li>
+									<li onClick="chkView('2');" style="margin-top: -5px; margin-bottom: -5px;"> <a href="#"> <img src="images/person_bw.png" width="20" height="20" align="absmiddle" style="margin-left: -12px"> &nbsp; <%= lb_emp_dhave_photo %>  </a> <p> </li>
 									<li onClick="chkView('3');" style="margin-top: -5px; margin-bottom: -5px;"> <a href="#"> <img src="images/finger_tab.png" width="20" height="20" align="absmiddle" style="margin-left: -14px"> &nbsp; <%= lb_emp_have_template %>  </a> <p> </li>
 									<li onClick="chkView('4');" style="margin-top: -5px; margin-bottom: -5px;"> <a href="#"> <img src="images/finger_tab_bw.png" width="20" height="20" align="absmiddle" style="margin-left: -14px"> &nbsp; <%= lb_emp_dhave_template %>  </a> </li>
 								</ul>

@@ -448,7 +448,7 @@ CREATE TABLE taff_data.dbo.dbtrans_event (
   duty VARCHAR(1) DEFAULT '',
   data_seq VARCHAR(4) DEFAULT '',
   data_blank VARCHAR(6) DEFAULT '',
-  datetime_update DATETIME DEFAULT getdate(),
+  datetime_update DATETIME DEFAULT GETDATE(),
   PRIMARY KEY (date_event,time_event,reader_no,event_code) 
 );
 
@@ -464,7 +464,7 @@ CREATE TABLE taff_data.dbo.dbtransaction (
   duty VARCHAR(1) DEFAULT '',
   data_seq VARCHAR(4) DEFAULT '',
   data_blank VARCHAR(6) DEFAULT '',
-  datetime_update DATETIME DEFAULT getdate(),
+  datetime_update DATETIME DEFAULT GETDATE(),
   PRIMARY KEY (date_event,time_event,reader_no,event_code,idcard) 
 );
 
@@ -480,7 +480,7 @@ CREATE TABLE taff_data.dbo.dbtransaction_ev (
   duty VARCHAR(1) DEFAULT '',
   data_seq VARCHAR(4) DEFAULT '',
   data_blank VARCHAR(6) DEFAULT '',
-  datetime_update DATETIME DEFAULT getdate(),
+  datetime_update DATETIME DEFAULT GETDATE(),
   PRIMARY KEY (date_event,time_event,reader_no,event_code,idcard)
  );
   
@@ -526,8 +526,8 @@ CREATE TABLE taff_data.dbo.dbresult (
   act_request VARCHAR(2) DEFAULT '',
   act_response VARCHAR(2) DEFAULT '',
   data_request VARCHAR(50) DEFAULT '',
-  data_response TEXT,
-  datetime_update DATETIME DEFAULT getdate(),
+  data_response NVARCHAR(MAX),
+  datetime_update DATETIME DEFAULT GETDATE(),
   PRIMARY KEY (running_code,door_id)
 );
 
@@ -676,14 +676,14 @@ CREATE TABLE  taff_data.dbo.dbresult (
   act_request VARCHAR(2) DEFAULT '',
   act_response VARCHAR(2) DEFAULT '',
   data_request VARCHAR(50) DEFAULT '',
-  data_response TEXT,
-  datetime_update DATETIME DEFAULT getdate(),
+  data_response NVARCHAR(MAX),
+  datetime_update DATETIME DEFAULT GETDATE(),
   PRIMARY KEY (running_code,door_id)
 );
 
 IF OBJECT_ID('taff_data.dbo.integration_api', 'U') IS NULL 
 CREATE TABLE  taff_data.dbo.integration_api (
-  datetimestamp DATETIME NOT NULL DEFAULT getdate(),
+  datetimestamp DATETIME NOT NULL DEFAULT GETDATE(),
   command_id VARCHAR(3) NOT NULL DEFAULT '',
   data_request VARCHAR(35) NOT NULL DEFAULT '',
   response_json NVARCHAR(MAX),  

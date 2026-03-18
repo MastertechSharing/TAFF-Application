@@ -357,8 +357,8 @@
 <% 		if(action.equals("add")){	
 			
 			//	Delete tmp photo
-			new File(getServletContext().getRealPath("/") + "photos\\tmpBrowse\\BrowseBy-"+username+".jpg").delete();
-			new File(getServletContext().getRealPath("/") + "photos\\tmpCapture\\CaptureBy-"+username+".jpg").delete();
+			new File(path_EmpPhotos + "tmpBrowse\\BrowseBy-" + username + ".jpg").delete();
+			new File(path_EmpPhotos + "tmpCapture\\CaptureBy-" + username + ".jpg").delete();
 %>				
 				<div class="row">
 				

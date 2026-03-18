@@ -51,16 +51,14 @@
 <%		
 	}else if(type_data.equals("save")){
 		
-		try {
-			
+		try {			
 			File getFile = new File(pathfile);
-			File saveFile = new File(request.getRealPath("/")+"photos\\"+idcard+".jpg");
+			File saveFile = new File(path_EmpPhotos + idcard + ".jpg");
 			FileUtils.copyFile(getFile, saveFile);
 			
-			if((new File(getServletContext().getRealPath("/")+"photos/" + idcard + ".jpg").exists() == true)){
+			if((new File(path_EmpPhotos + idcard + ".jpg").exists() == true)){
 				stmtUp.executeUpdate(" UPDATE dbemployee SET photo = '1' WHERE idcard = '"+idcard+"' ");
-			}
-			
+			}			
 		} catch(Exception e){ }
 		
 	}

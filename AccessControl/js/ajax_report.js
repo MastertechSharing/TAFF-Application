@@ -99,8 +99,9 @@ function handleResponse() {
 				document.getElementById("process_count").value = count;
 			}
 		} // end status 200 
-		setTimeout("sendRequest()", 1000); 
 		setTimeout("ShowCurrentTime()", 1000);	
+		setTimeout("sendRequest()", 1000); 
+		
 	} // ready stage = 4 	
 }
 

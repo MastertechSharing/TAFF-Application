@@ -195,6 +195,7 @@
 						statusText.innerHTML = "<b style='color:red;'>Upload fail " + xhr.responseText + " </b>";
 					}
 					setTimeout(function() {
+						 window.location.href = 'module/act_employee.jsp?action=check_file';
 						// ถ้าต้องการให้ปิดหน้าต่างเองหลังจาก 3 วินาที
 						// window.close(); 
 					}, 3000);
